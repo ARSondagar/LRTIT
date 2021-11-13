@@ -1,0 +1,55 @@
+<div class="accounts-content-modal" [ngSwitch]="type">
+  <i class="close-icon material-icons cursor-pointer" (click)="onClickClose()" attr="kek">close</i>
+  <form class="form-signin" [formGroup]="loginForm" *ngSwitchCase="'default'">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">{{titleConnect}}</h1>
+    <p class="text-danger">{{errorMessage}}</p>
+    <input type="email" id="inputEmail1" class="form-control" placeholder="Логин"
+      [ngClass]="{'inp-error':getValidationError('login','required') || getValidationError('login','email')}"
+      formControlName="login">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" formControlName="password"
+
+      [ngClass]="{'inp-error':getValidationError('password','required')}">
+    <button class="btn btn-block new-accont-btn" type="submit" (click)="onSubmit()"
+      [disabled]="loginForm.invalid || loading">
+        <i class="fas fa-sign-in-alt"></i>
+        Подключить
+        <i class="fa fa-circle-o-notch fa-spin lm-loader" *ngIf="loading"></i>
+      </button>
+  </form>
+  <!-- TFA -->
+  <form class="form-signin" [formGroup]="twaCodeForm" *ngSwitchCase="'two'">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Код sms</h1>
+    <!--      <p class="text-danger">{{errorMessage}}</p>-->
+    <p>Двухфакторная аутентификация</p>
+    <input type="text" class="form-control" placeholder="Код sms" formControlName="code" />
+    <button class="btn btn-block new-accont-btn" type="submit" (click)="onTwoFactorLogin()"
+      [disabled]="twaCodeForm.invalid || twaLoading"><i class="fas fa-sign-in-alt"></i>
+      Отправить
+      <i class="fa fa-circle-o-notch fa-spin lm-loader" *ngIf="twaLoading"></i>
+    </button>
+  </form>
+
+  <!-- SMS -->
+  <form class="form-signin" [formGroup]="challengeCodeForm" *ngSwitchCase="'sms'">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Код sms</h1>
+    <!--      <p class="text-danger">{{errorMessage}}</p>-->
+    <input type="text" class="form-control" placeholder="Код sms" formControlName="code" />
+    <button class="btn btn-block new-accont-btn" type="submit" (click)="onInstagramSMS()"
+      [disabled]="challengeCodeForm.invalid || instagramSMSLoading"><i class="fas fa-sign-in-alt"></i>
+      Отправить
+      <i class="fa fa-circle-o-notch fa-spin lm-loader" *ngIf="instagramSMSLoading"></i>
+    </button>
+  </form>
+
+  <!-- Chalange -->
+  <form class="form-signin" *ngSwitchCase="'challange'">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Подтвердить</h1>
+    <!--      <p class="text-danger">{{errorMessage}}</p>-->
+    <button class="btn btn-block new-accont-btn" type="submit" (click)="itsMe()"
+    [disabled]="itsMeLoading">
+      <i class="fas fa-sign-in-alt"></i>
+      Это я!
+      <i class="fa fa-circle-o-notch fa-spin lm-loader" *ngIf="itsMeLoading"></i>
+    </button>
+  </form>
+</div>

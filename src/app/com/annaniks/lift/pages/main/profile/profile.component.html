@@ -1,0 +1,38 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <section class="pg-container profile-container">
+    <div class="pg-content">
+        <p class="text pg-title">Настройки профиля</p>
+        <div class="profile-content">
+            <div class="profile-tab" [ngSwitch]="tab">
+                <div class="profile-tab-content row m-0">
+                    <!-- <div class="tab-item d-flex" (click)=changedTab(1) [ngClass]="{'activeTab':tab==1}">
+                        <p class="tab-text ">Основные настройки</p>
+                    </div> -->
+                    <div class="tab-item d-flex" (click)=changedTab(1) [ngClass]="{'activeTab':tab==1}">
+                        <p class="tab-text ">Персональные настройки</p>
+                    </div>
+<!--                    <div class="tab-item d-flex" (click)=changedTab(3) [ngClass]="{'activeTab':tab==3}">-->
+<!--                        <p class="tab-text">Дополнительные настройки</p>-->
+<!--                    </div>-->
+                </div>
+                <div class="tab-inner">
+                    <basic-settings (nextTab)="changedTab($event)" [user]="(currentUser$ | async)" *ngSwitchCase="2"></basic-settings>
+                    <personal-settings (nextTab)="changedTab($event)" [user]="(currentUser$ | async)" *ngSwitchCase="1">
+                    </personal-settings>
+                    <additional-settings [user]="(currentUser$ | async)" *ngSwitchCase="3"></additional-settings>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>
+
+

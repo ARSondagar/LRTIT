@@ -1,0 +1,122 @@
+@import "src/assets/scss/styles/variables"
+.box
+  max-width: 1470px
+  padding: 0 1rem
+  margin: auto
+  //overflow: hidden
+  &__
+    padding: 1px 0
+  &__header
+    position: relative
+    min-height: 100vh
+    flex-flow: column nowrap
+    border-bottom: 1px solid #d1d1d1
+    display: flex
+    justify-content: stretch
+    align-items: stretch
+
+
+.boxHeader__topbar
+  background-color: #303030
+  flex-shrink: 0
+  z-index: 51
+  position: relative
+
+.auth
+  min-height: 100vh
+  display: flex
+  justify-content: stretch
+  align-items: stretch
+  flex-flow: column nowrap
+  overflow: hidden
+.auth__topbar
+  +_mr(768px)
+    display: none
+.auth__content
+  background: #05689b url('../../../../../../../../assets/images/auth_bg.png') bottom center no-repeat
+  background-size: cover
+  flex-grow: 1
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 1em
+  +_mr(768px)
+    padding: 0
+    background: #fff
+.auth__form
+  +_mr(768px)
+    width: 100%
+.social
+  font-size: 1em
+  list-style: none
+  padding: 0
+  margin: 0
+  display: flex
+.social__item
+  display: inline-block
+  vertical-align: middle
+  &+&
+    margin-left: 1em
+.social__link
+  font-size: 1.25em
+  display: inline-block
+  transition-duration: 0.3s
+  width: 1em
+  height: 1em
+  color: #8b8b8b
+  fill: #8b8b8b
+  &:hover, &:focus
+    color: #dbdbdb
+    fill: #dbdbdb
+  &:active
+    color: #b9b9b9
+    fill: #b9b9b9
+  &_tiktok
+    width: 1.1em
+    height: 1.1em
+  &_vk
+    width: 1.2em
+    height: 1.2em
+
+
+.topbar
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0.5em 0
+.topbar__logo
+  margin-right: 3.3em
+  flex-shrink: 0
+.topbar__social
+  flex-grow: 1
+  display: flex
+  justify-content: flex-start
+  align-items: center
+
+
+
+
+.formAuth
+  background-color: #fff
+  border-radius: 0.444em
+  position: relative
+  width: 44em
+  max-width: 100%
+  padding: 2em 10em 5em
+  transition-duration: 0.3s
+
+  @media screen and (max-height: 700px) and (min-width: 768px)
+    font-size: 80%
+  @media screen and (max-height: 600px) and (min-width: 768px)
+    font-size: 70%
+
+  +_mr(768px)
+    width: 100%
+    padding: 3em
+.formAuth__close
+  width: 1.2em
+  height: 1.2em
+  position: absolute
+  top: 1.8em
+  right: 1.8em
+  fill: #a9a9a9

@@ -1,0 +1,98 @@
+@import "variables";
+
+.nots-content {
+  position: absolute;
+  display: block;
+  background: #ffffff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding: 30px 13px 15px 32px;
+  z-index: 1;
+  width: 478px;
+  height: 381px;
+  transition: all 0.3s;
+  right: 20px;
+
+  @media (max-width: $desktop_width) {
+    right: 68px;
+    top: 44px;
+  }
+
+  @media (max-width: $tablet_width) {
+    max-width: 97%;
+    right: 51%;
+    transform: translateX(50%);
+  }
+
+  @media (max-width: $mobile_width) {
+    padding: 30px 13px 15px 13px;
+  }
+
+  @media (max-width: 450px) {
+    top: 105px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .not-items-container {
+    max-height: 292px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #fff;
+      border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: #fff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #777777;
+      border-radius: 6px;
+    }
+
+    .not-item {
+      margin-bottom: 13px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      img {
+        margin-right: 34px;
+
+        @media (max-width: $mobile_width) {
+          margin-right: 10px;
+        }
+      }
+
+      .not-item-timing {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        color: rgba(0, 0, 0, 0.25);
+        margin-bottom: 13px;
+      }
+
+      .not-item-content {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        color: #000000;
+      }
+    }
+  }
+
+  .as-read {
+    padding-top: 15px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.25);
+    border-top: 1px solid #ccc;
+  }
+}

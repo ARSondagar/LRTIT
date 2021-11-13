@@ -1,0 +1,28 @@
+<section class="pg-container article-details-section">
+    <div class="pg-content article-details-content">
+        <p class="path-text">
+            {{(article?.category?.parent) ? article?.category?.parent?.name : article?.category?.name}}<b class="title"
+                *ngIf="article?.category?.parent?.name">/{{article?.category?.name}}</b></p>
+        <p class="text mt-2">{{article?.title}}</p>
+        <div class="article-details-description d-flex  justify-content-between">
+            <div class="article-details-left-description">
+                <div class="article-details-content" [innerHTML]="article?.html"></div>
+                <button class="load-more d-flex">
+                    <p *ngIf="!sendLikeMessage">
+                        <span class="button-text ml-3 mr-2">Было полезно?</span>
+                        <span (click)="onClickLike('yes')">Да </span>
+                        <span (click)="onClickLike('no')">/ Нет</span>
+                    </p>
+                    <p *ngIf="sendLikeMessage">Спасибо за ваш ответ. Ваш ответ успешно принят</p>
+                </button>
+            </div>
+            <div class="article-details-right-description">
+                <div *ngFor="let article of articles">
+                    <p class="text">{{article?.name}}</p>
+                    <a class="arc-nav-link" *ngFor="let child of article?.articles"
+                        [routerLink]="['/','article',child?.id]">{{child.title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

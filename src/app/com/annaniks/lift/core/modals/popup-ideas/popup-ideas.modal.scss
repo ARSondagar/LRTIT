@@ -1,0 +1,128 @@
+.popup-ideas-modal {
+    padding: 18px 25px;
+
+    .popup-ideas-header {
+        .text {
+            font-weight: 600;
+        }
+
+        .close-image {
+            height: 21px;
+            width: 21px;
+        }
+    }
+
+    .popup-ideas-form {
+        margin-top: 42px;
+
+        .serach-input-content {
+            border: 1px solid #c2d0db;
+
+        }
+
+        .popup-ideas-checked {
+            margin-top: 13px;
+
+            .down-image {
+                height: 14px;
+                width: 14px;
+            }
+
+            .checkbox-label {
+                margin-right: 32px;
+            }
+
+            .last-label-chiled {
+                margin-right: 0 !important;
+            }
+
+        }
+    }
+
+    .ideas-card {
+
+        margin-top: 30px;
+
+        .ideas-card-item {
+            padding: 0;
+            margin-left: 20px;
+            border-radius: 4px;
+
+            .card-image {
+                height: 280px;
+                width: 100%;
+            }
+
+            .card-text {
+                color: #fff;
+                font-size: 24px;
+                font-weight: 600;
+                left: 44px;
+                bottom: 43px;
+                word-break: break-all;
+                width: 100%;
+                max-width: 330px;
+            }
+        }
+    }
+
+    .ideas-post {
+        margin-top: 20px;
+
+        .ideas-post-item {
+            padding: 0;
+            margin-left: 20px;
+            border-radius: 4px;
+            &:hover{
+                .use-button{
+                    display: block !important;
+
+                }
+
+            }
+
+            .post-image {
+              height: 540px;
+              width: 100%;
+            }
+
+            .post-text {
+                font-weight: 600;
+                font-size: 24px;
+                bottom: 130px;
+                color: #fff;
+                left: 0;
+                right: 0;
+                text-align: center;
+            }
+
+            .use-button {
+                padding: 17px 35px;
+                background: #3399cc;
+                color: #fff;
+                right: 0;
+                left: 0;
+                bottom: 43px;
+                display: none;
+                transition: .5s all ease-out;
+            }
+        }
+    }
+}
+
+input {
+    color: #e6e6e6;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+    background-color: #3399cc !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border: 1px solid #c2d0db !important;
+}

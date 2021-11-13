@@ -1,0 +1,214 @@
+@import "variables";
+
+:host {
+  position: relative;
+}
+
+button.balance__payment-button {
+  margin-top: 3ex;
+  padding: 10px 33px !important;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 50%), 0 6px 20px 0 rgb(0 0 0 / 20%) !important;
+}
+
+.subscription-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding-left: 36px;
+
+  @media (max-width: $mobile_width) {
+    padding-left: 20px;
+  }
+
+  .subscription-title {
+    overflow: hidden;
+    p {
+      padding-right: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #3d3d3d;
+      white-space: nowrap;
+
+      @media (max-width: $mobile_width) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .subscribers-statistic {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 400px) {
+      display: none;
+    }
+
+    p {
+      color: #7d7d7d;
+      font-size: 18px;
+      margin-right: 12px;
+      white-space: nowrap;
+
+      @media (max-width: $tablet_width) {
+        display: none;
+      }
+    }
+  }
+}
+
+.subscription-accordion {
+
+  .accordion-body {
+    background-color: #f6f6f6;
+    padding: 14px 36px;
+    border-radius: 6px;
+
+    @media (max-width: $mobile_width) {
+      padding: 14px 20px;
+    }
+
+    .accordion-body-collapse {
+      margin-left: 32px;
+
+      @media (max-width: $tablet_width) {
+        margin-left: 0;
+      }
+    }
+
+    .collapse-heading {
+      display: flex;
+      align-items: center;
+
+      button {
+        color: #3d3d3d;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        width: 100%;
+        position: relative;
+        text-align: left;
+
+        img {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: all 0.3s;
+        }
+
+        &.collapsed {
+          img {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+
+      .arrow-up {
+        margin-left: auto;
+
+        @media (max-width: 480px) {
+          display: none;
+        }
+      }
+    }
+
+    .same-conditions {
+      font-size: 18px;
+      color: #3d3d3d;
+      margin-top: 34px;
+    }
+
+    .conditions-list {
+      margin-top: 15px;
+    }
+
+    .subscribes-limits {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 38px;
+
+      &-item {
+        margin-right: 35px;
+
+        &:last-child {
+          margin-top: 12px;
+        }
+
+        input {
+          border-style: solid;
+          border-width: 2px;
+          border-color: rgb(194, 208, 219);
+          border-radius: 4px;
+          width: 79px;
+          height: 46px;
+          margin-right: 18px;
+          font-family: "SF UI Display Regular";
+          font-size: 18px;
+          padding-left: 8px;
+          margin-bottom: 10px;
+        }
+
+        span {
+          font-family: "SF UI Display Regular";
+          font-size: 18px;
+          color: #3d3d3d;
+        }
+
+        ::ng-deep {
+          mat-slider {
+            display: block;
+
+            .mat-slider-thumb {
+              border-radius: 2px;
+              border-color: transparent;
+              background-color: rgb(51, 153, 204);
+              height: 35px;
+              bottom: -21px;
+            }
+
+            .mat-slider-track-wrapper,
+            .mat-slider-track-background {
+              height: 10px !important;
+              background-color: rgb(211, 211, 211);
+              position: absolute;
+              border-radius: 5px;
+            }
+
+            .mat-slider-track-fill {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.add-condition {
+  width: 100%;
+  text-align: center;
+  background: #ededed;
+  border: none;
+  border-radius: 6px;
+  color: #3399cc;
+  font-family: "SF UI Display Semibold";
+  box-shadow: 0 3px 7px 0 rgba(116, 116, 116, 0.2);
+  font-size: 16px;
+  padding: 17px 0 14px 0;
+  margin-bottom: 16px;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+  background-color: #3399cc !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border: 1px solid #c2d0db !important;
+}

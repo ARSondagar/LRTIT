@@ -1,0 +1,123 @@
+<div class="popup-ideas-modal">
+    <div class="popup-ideas-container">
+        <div class="popup-ideas-header d-flex justify-content-between">
+            <!-- <p class="text">Поиск идей для постов</p> -->
+            <img src="assets/icons/close.png" class="rounded img-responsive  cursor-pointer close-image"
+                (click)="closeModal()">
+        </div>
+        <div class="popup-ideas-form">
+            <form [formGroup]="popUpGroup">
+
+                <div class="form-group">
+                    <div class="input-content serach-input-content">
+                        <input id="search" name="search" placeholder="введите слово, #хэштег или @аккаунт"
+                            class="form-control here" type="text" formControlName="search">
+                    </div>
+                </div>
+                <div class="popup-ideas-checked  d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <p class="text">Все локации</p>
+                        <img src="assets/icons/arr_down_blue.png"
+                            class="rounded img-responsive  cursor-pointer ml-2 down-image">
+                    </div>
+
+                    <div class="form-group d-flex">
+                        <div class="input-item d-flex">
+
+                            <div class="input-content">
+                                <div>
+                                    <mat-checkbox>
+
+                                    </mat-checkbox>
+                                    <label class="checkbox-label ml-1"> с текстом</label>
+                                </div>
+                            </div>
+                            <div class="input-content ml-3">
+                                <div>
+                                    <mat-checkbox>
+
+                                    </mat-checkbox>
+                                    <label class="checkbox-label ml-1"> с картинками</label>
+                                </div>
+                            </div>
+
+                            <div class="input-content ml-3">
+                                <div>
+                                    <mat-checkbox>
+
+                                    </mat-checkbox>
+                                    <label class="checkbox-label last-label-chiled ml-1"> с видео</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+        <div class="ideas-card row ml-0 mr-0">
+            <div class="col-6 p-0">
+                <div class="ideas-card-item  ml-0">
+                    <div>
+                        <img src="assets/images/card1-img.png"
+                            class="rounded img-responsive  cursor-pointer card-image position-relative">
+                        <p class="card-text position-absolute">Ближайшие даты
+                            Праздники, поводы, события...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 p-0">
+                <div class="ideas-card-item">
+                    <div>
+                        <img src="assets/images/card2-img.png"
+                            class="rounded img-responsive  cursor-pointer card-image position-relative">
+                        <p class="card-text position-absolute">Тренды, популярные хэштеги</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ideas-post row ml-0 mr-0">
+            <div class=" col-4 p-0">
+                <div class="ideas-post-item ml-0">
+                    <div>
+                        <img src="assets/images/post1-img.png"
+                            class="rounded img-responsive  cursor-pointer post-image position-relative">
+                        <p class="post-text position-absolute">Идея для поста</p>
+                        <button name="submit" type="submit"
+                            class="btn use-button m-auto position-absolute">Использовать</button>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-4 p-0">
+                <div class="ideas-post-item">
+                    <div>
+                        <img src="assets/images/post2-img.png"
+                            class="rounded img-responsive  cursor-pointer post-image position-relative">
+                        <p class="post-text position-absolute">Идея для поста</p>
+                        <button name="submit" type="submit"
+                            class="btn use-button m-auto position-absolute">Использовать</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class=" col-4 p-0">
+                <div class="ideas-post-item ">
+                    <div>
+                        <img src="assets/images/post3-img.png"
+                            class="rounded img-responsive  cursor-pointer post-image position-relative">
+                        <p class="post-text position-absolute">Идея для поста</p>
+                        <button name="submit" type="submit"
+                            class="btn use-button m-auto position-absolute">Использовать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

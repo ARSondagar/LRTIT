@@ -1,0 +1,87 @@
+<div class="pg-container unsubscribe">
+  <div class="block-curtain half-16" *ngIf="!appSvc.unsubscribeIsValid">
+    <div class="warning-message">
+      <h2>Данная функция не оплачена.</h2>
+      <h2>Перейдите в тарифы для оплаты.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Перейти в тарифы</button>
+    </div>
+  </div>
+
+  <h1 class="title">Отписка</h1>
+  <p class="subtitle">Что вы получите в результате чистки</p>
+  <p class="description">
+    Отписка необходима, чтобы почистить аккаунт от неактивных подписчиков, которые не видят публикации, висят
+    мертвым грузом и портят
+    статистику. Отписка так же нужна, если вы покупали подписчиков или вам их накрутили, делаете хороший контент, но
+    не выходите в топ и
+    рекомендации, выросли на гивах или марафонах, и охваты сильно просели после отписок, а также чтобы повысить
+    охваты для продаж.
+    После чистки вы заметите рост охвата постов и показов сторис.
+  </p>
+  <div class="watch-video-outer">
+    <button class="watch-video">
+      <img src="assets/icons/play-button.png" alt="" />
+      Лень читать ? Смотри видео
+    </button>
+  </div>
+  <form [formGroup]="unsubscribeForm">
+    <div class="condition unfollow-from">
+      <label class="label">Отписываться от:</label>
+      <app-select class="condition-select" [options]="unsubscribeOptions"
+                  formControlName="unsubscribeFrom"></app-select>
+    </div>
+<!--    <div class="unsubscribe-count d-flex flex-wrap align-items-center">-->
+<!--      <div class="count"><span>Количество отписок</span></div>-->
+<!--      <div class="count-input"><input formControlName="unsubscribeCount" type="number" min="1" /></div>-->
+<!--      <div class="recommended-limits d-flex align-items-center">-->
+<!--        <img src="assets/icons/question-blue.png" alt="" />-->
+<!--        <span>Рекомендуемые лимиты</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <mat-checkbox class="basic-checkbox" formControlName="startFromEnd">Сначала отписаться от старых пользователей-->
+<!--    </mat-checkbox>-->
+<!--    <mat-checkbox class="basic-checkbox" formControlName="unsubscribeFromLift">Отписаться только от тех , на кого-->
+<!--      подписался LIFT-->
+<!--    </mat-checkbox>-->
+
+    <div class="basic-checkbox" formGroupName="whiteList" class="inline-checkoxes">
+      <mat-checkbox formControlName="status">
+        Использовать White list
+      </mat-checkbox>
+      <span class="checkbox-label">
+                <input class="white-list-input" formControlName="value" type="text">
+            </span>
+      <div class="white-list-description d-flex align-items-center">
+        <img src="assets/icons/question-blue.png" alt="" />
+        <span>Что такое White list</span>
+      </div>
+    </div>
+
+
+<!--    Настройки фильтров-->
+<!--    <app-audience-filter [massData]="settings"></app-audience-filter>-->
+
+<!--    Блок с указанием даты старта-->
+<!--    <div class="configure-start-time">-->
+<!--      <div class="title">-->
+<!--        <span>Задания будут начинаться<br class="title-break"> в заданное время</span>-->
+<!--      </div>-->
+<!--      <div class="date-picker d-flex align-items-center">-->
+<!--        <p-calendar placeholder="Дата старта" formControlName="date"></p-calendar>-->
+<!--        <div class="time-inputs">-->
+<!--          <img class="time-icon" src="/assets/icons/clock.png" alt="" />-->
+<!--          <div class="condition no-border timer">-->
+<!--            <app-select class="condition-select" [options]="hourOption" formControlName="hours"-->
+<!--                        position="top"></app-select>-->
+<!--          </div>-->
+<!--          <div class="condition no-border timer">-->
+<!--            <app-select class="condition-select" [options]="minuteOption" formControlName="minutes"-->
+<!--                        position="top"></app-select>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <button (click)="saveUnsubscribeSettings()" class="to-queue">В очередь</button>-->
+<!--      </div>-->
+<!--    </div>-->
+  </form>
+</div>

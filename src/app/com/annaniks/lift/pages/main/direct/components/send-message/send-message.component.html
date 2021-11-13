@@ -1,0 +1,22 @@
+<form [formGroup]="messageForm" class="type_msg d-flex w-100 justify-content-between align-items-baseline">
+    <div class="image-upload">
+        <label for="file-input">
+            <img height="20" src="assets/icons/attachment.png" />
+        </label>
+        <input #fileInput (change)="handleInputChange($event)" class="file" id="file-input" type="file" />
+    </div>
+    <div class="input_msg_write d-flex  align-items-center">
+
+        <input formControlName="message" type="text" class="write_msg" placeholder="Введите сообщение" />
+        <div *ngIf="type == 'direct'" class="image-upload">
+            <label for="file-input">
+                <img src="assets/icons/gallery.png" />
+            </label>
+            <input (change)="handleInputChange($event)" class="file" id="file-input1" type="file" />
+        </div>
+        <!-- <button class="chat-actions" type="button"><img src="assets/icons/smole.png"
+                                alt=""></button> -->
+    </div>
+    <button [disabled]="messageForm.invalid" (click)="sendMessage()" class="msg_send_btn" type="submit"><img
+            src="assets/icons/send-chat.png" alt=""></button>
+</form>

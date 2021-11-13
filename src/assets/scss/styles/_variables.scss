@@ -1,0 +1,53 @@
+@function em($px, $fontSize: 16px) {
+  @if (unitless($px)) {
+    $px: $px * 1px;
+  }
+  @if (unitless($fontSize)) {
+    $fontSize: $fontSize * 1px;
+  }
+  @return $px / $fontSize * 1em;
+
+}
+
+@mixin _mr($point) {
+  @media(max-width: $point) {
+    @content
+  }
+}
+
+@mixin mr_($point) {
+  @media(min-width: $point) {
+    @content
+  }
+}
+
+@mixin _mr_($point1, $point2) {
+  @media(min-width: $point1) and (max-width: $point2) {
+    @content
+  }
+}
+
+// queries width
+$desktop_width: 1200px;
+$tablet_width: 900px;
+$mobile_width: 550px;
+
+// button auth
+$btn_color: #12aad6;
+$btn_color_hover: darken($btn_color, 2%);
+$btn_color_active: darken($btn_color, 4%);
+$btn_border_width: 0.125em;
+$btn_border: $btn_border_width solid $btn_color;
+
+$btn_padding: 0.75em 1.8em;
+$btn_padding_outlined: 0.5em 1.8em;
+$btn_padding_small: 0.5em 2.2em;
+
+$btn_border_radius: 2em;
+$btn_font_size: 0.875em;
+
+//font
+$font_regular: "SF Regular", sans-serif;
+$font_medium: "SF Medium", sans-serif;
+$font_semibold: "SF Semibold", sans-serif;
+$font_bold: "SF Bold", sans-serif;

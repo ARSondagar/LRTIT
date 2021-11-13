@@ -1,0 +1,177 @@
+@import "src/assets/scss/styles/variables"
+
+.formAuth
+  background-color: #fff
+  border-radius: 0.444em
+  position: relative
+  width: 44em
+  max-width: 100%
+  padding: 2em 10em 5em
+  transition: 0.3s linear, transform 2s ease-in
+  @media screen and (max-height: 700px) and (min-width: 768px)
+    font-size: 80%
+  @media screen and (max-height: 600px) and (min-width: 768px)
+    font-size: 70%
+
+  +_mr(768px)
+    width: 100%
+    padding: 5%
+  &.formAuth_close
+    transform: translateY(100vh)
+.formAuth__close
+  width: 1.2em
+  height: 1.2em
+  position: absolute
+  top: 1.8em
+  right: 1.8em
+  fill: #a9a9a9
+.formAuth__image
+  display: block
+  margin: auto
+  width: 5em
+.formAuth__signIn
+.formAuth__title
+  text-align: center
+  font: 2.2em/1 $font_bold
+  color: #1f1f1f
+  margin-bottom: 1.1em
+.formAuth__field
+  background-color: transparent
+  border: 2px solid #c2d0db
+  color: #777777
+  border-radius: 0.5em
+  display: block
+  width: 100%
+  margin-bottom: 1.6em
+  font: 1.125em/1 $font_regular
+  padding: 0.5em 1.2em
+  outline: none
+  +_mr(768px)
+    border-radius: 3em
+    border-color: #777777
+    border-width: 1px
+.formAuth__labelEmail
+.formAuth__labelPass
+  display: block
+.formAuth__passEye
+.formAuth__remember
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-top: -0.6em
+.formAuth__rememberMe
+.formAuth__rememberForgot
+  font: 1em/1 $font_regular
+  color: #a3a3a3
+  transition-duration: 0.3s
+  &:hover
+    cursor: pointer
+    color: #12aad6
+.formAuth__submit
+  white-space: nowrap
+.formAuth__submitBtn
+  min-width: 65%
+  margin: 1.4em auto 1.8em
+  +_mr(768px)
+    width: 100%
+.formAuth__toSingInFromReset,
+.formAuth__toSingIn,
+.formAuth__toSingUp
+  text-align: center
+  font: 1.125em/1.3 $font_regular
+  color: #777777
+
+.checkbox
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: start
+  &__field:checked + &__fake
+    background-color: #3399cc
+.checkbox__field
+  display: none
+.checkbox__fake
+  display: inline-block
+  width: 1.125em
+  height: 1.125em
+  position: relative
+  z-index: 99
+  transition-duration: 0.2s
+  border: 2px solid #c2d0db
+  border-radius: 0.125em
+  background: #fff url('../../../../../../../../assets/images/checked.png') center center no-repeat
+  background-size: 80%
+  margin-right: 0.8em
+  flex-shrink: 0
+  +_mr(768px)
+    border-color: #777
+    border-width: 1px
+.checkbox__text
+  font: 1em/1 $font_regular
+  color: #a3a3a3
+
+.authHide
+  display: none
+
+
+.btn
+  font: 1.125em/1 $font_semibold
+  padding: $btn_padding
+  background-color: $btn_color
+  border: $btn_border
+  border-radius: $btn_border_radius
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  color: #fff
+  text-decoration: none
+  text-align: center
+  outline: none
+  cursor: pointer
+  transition-duration: 0.2s
+  &[disabled]
+    cursor: default
+    border-color: #a3a3a3 !important
+    background-color: #a3a3a3 !important
+  &:hover, &:focus
+    text-decoration: none
+  &:not(&_outlined)
+    &:hover, &:focus
+      background-color: $btn_color_hover
+      border-color: $btn_color_hover
+    &:active
+      background-color: $btn_color_active
+      border-color: $btn_color_active
+  &_block
+    display: block
+  &_outlined
+    padding: $btn_padding_outlined
+    color: $btn_color
+    background-color: transparent
+    &:hover, &:focus
+      color: $btn_color_active
+      border-color: $btn_color_active
+    &:active
+      color: $btn_color_active
+      border-color: $btn_color_active
+  &_small
+    font: #{$btn_font_size}/1 $font_regular
+    padding: $btn_padding_small
+  &_light
+    border-color: #fff
+    color: #fff
+    &:hover, &:focus
+      color: rgba(255, 255, 255, 0.8)
+      border-color: rgba(255, 255, 255, 0.82)
+    &:active
+      color: rgba(255, 255, 255, 0.6)
+      border-color: rgba(255, 255, 255, 0.6)
+.but__icon
+  display: block
+  margin-right: 0.6em
+.but__text
+
+
+.inp-error,
+.ng-dirty.ng-invalid
+  border-color: #ff2e00

@@ -1,0 +1,62 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <div class="pg-container support-service">
+    <div class="pg-content">
+        <p class="pg-title">Служба поддержки</p>
+        <div class="actions-bar d-flex align-items-center">
+            <p class='label'>Новый запрос в службу поддержки</p>
+            <button class="btn add-button" (click)="onClickAddQuestion()">
+                <img src="/assets/icons/support-ticket.png">
+                <span>Создать</span>
+            </button>
+        </div>
+        <div class="active-tickets">
+            <div class="tickets-list" *ngIf="!loading">
+                <app-ticket-list-item [ticket]="ticket" *ngFor="let ticket of openedTickets"></app-ticket-list-item>
+            </div>
+            <div class="tickets-list" *ngIf="loading">
+                <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+            </div>
+            <p class="empty-message" *ngIf="!loading && openedTickets?.length==0">
+                Нет открытых тикетов
+            </p>
+
+            <div class="closed-tickets">
+                <div class="collapse-heading">
+                    <div class="line"></div>
+                    <div class="block" (click)="toggle()">
+                        <span>Скрыть закрытые тикеты</span>
+                        <img src="/assets/icons/arrow_down_gray.png" [class.open]="open">
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <div class="tickets-list" *ngIf="open && !loading">
+                    <app-ticket-list-item [ticket]="ticket" *ngFor="let ticket of closedTickets"></app-ticket-list-item>
+                </div>
+                <div class="tickets-list" *ngIf="open && loading">
+                    <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                    <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                    <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                    <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                    <app-ticket-list-item [mode]="'skeletion'"></app-ticket-list-item>
+                </div>
+                <p class="empty-message" *ngIf="open && !loading && closedTickets?.length==0">
+                    Нет закрытых тикетов
+                </p>
+            </div>
+        </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>
+

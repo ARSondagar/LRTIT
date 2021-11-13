@@ -1,0 +1,120 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <section class="pg-container affiliate-program-section">
+    <div class="pg-content">
+        <div class="affiliate-program-container">
+            <p class="pg-title">Партнерская программа</p>
+            <div class="affiliate-program-card">
+                <div class="affiliate-program-card-item">
+                    <div class="card-item ml-0 d-flex">
+                        <div class="card-item-container">
+                            <p class="text">Ваша ссылка для распространения</p>
+                            <div class="form-group d-flex">
+                                <div class="input-content">
+                                    <input id="link" name="link"
+                                        placeholder="https://liftme.pro/partnerlink 8002896share"
+                                        class="form-control here" required="required" type="text"
+                                        [formControl]="referalCodeControl" #inputlink>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center card-description"
+                                (click)="copyInputMessage(inputlink)">
+                                <img src="assets/icons/copy.png"
+                                    class="rounded img-responsive  cursor-pointer description-icon">
+                                <p class="cord-text ml-2">Скопировать ссылку в буфер</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="affiliate-program-card-item">
+                    <div class="card-item d-flex">
+                        <div class="card-item-container">
+                            <p class="text">На вашем балансе</p>
+                            <p class="price">1421.00 руб</p>
+                            <div class="d-flex balance-container">
+                                <div class="d-flex align-items-center card-description">
+                                    <div class="d-flex align-items-center">
+                                        <img src="assets/icons/withdraw.png"
+                                            class="rounded img-responsive  cursor-pointer description-icon">
+                                        <p class="cord-text ml-2">Запросить вывод</p>
+                                    </div>
+                                    <div class="d-flex align-items-center history-content">
+                                        <img src="assets/icons/time.png"
+                                            class="rounded img-responsive  cursor-pointer description-icon">
+                                        <p class="cord-text ml-2">История выводов</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="table table-image lcb-table">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Переходов</th>
+                            <th scope="col">Регистраций</th>
+                            <th scope="col">Операций</th>
+                            <th scope="col">Ваш доход</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of affiliateProgramOperation">
+                            <td>{{item?.date | date}}</td>
+                            <td>{{item?.transition}}</td>
+                            <td>{{item?.registration}}</td>
+                            <td>{{item?.operations || 0}}<span> руб</span>
+                            </td>
+                            <td class="income-text"> {{item?.income || 0}} руб</td>
+                        </tr>
+                        <tr *ngFor="let item of affiliateProgramOperation">
+                            <td>{{item?.date | date}}</td>
+                            <td>{{item?.transition}}</td>
+                            <td>{{item?.registration}}</td>
+                            <td>{{item?.operations || 0}}<span> руб</span>
+                            </td>
+                            <td class="income-text"> {{item?.income || 0}} руб</td>
+                        </tr>
+                        <tr *ngFor="let item of affiliateProgramOperation">
+                            <td>{{item?.date | date}}</td>
+                            <td>{{item?.transition}}</td>
+                            <td>{{item?.registration}}</td>
+                            <td>{{item?.operations || 0}}<span> руб</span>
+                            </td>
+                            <td class="income-text"> {{item?.income || 0}} руб</td>
+                        </tr>
+                        <tr *ngFor="let item of affiliateProgramOperation">
+                            <td>{{item?.date | date}}</td>
+                            <td>{{item?.transition}}</td>
+                            <td>{{item?.registration}}</td>
+                            <td>{{item?.operations || 0}}<span> руб</span>
+                            </td>
+                            <td class="income-text"> {{item?.income || 0}} руб</td>
+                        </tr>
+                        <tr *ngFor="let item of affiliateProgramOperation">
+                            <td>{{item?.date | date}}</td>
+                            <td>{{item?.transition}}</td>
+                            <td>{{item?.registration}}</td>
+                            <td>{{item?.operations || 0}}<span> руб</span>
+                            </td>
+                            <td class="income-text"> {{item?.income || 0}} руб</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="show-more d-flex" (click)="onClickSeeMore()"><div class="d-flex m-auto">Показать еще операции<mat-spinner class="ml-3" *ngIf="loading"></mat-spinner></div></button>
+        </div>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>
+
+

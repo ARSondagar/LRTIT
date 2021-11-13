@@ -1,0 +1,79 @@
+.account-by-location-container {
+  display: flex;
+  align-items: center;
+  .account-by-location {
+    padding: 0.2145em 0.286em;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    .location-item {
+      background-color: #d7d7d7;
+      border-radius: 4px;
+      padding: 10px 12px 10px 13px;
+      margin: 5px;
+      &.invalid {
+        border: 1px solid #dc3545;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      img {
+        cursor: pointer;
+      }
+    }
+    .add-location {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      padding: 0.5em;
+      color: #7d7d7d;
+      cursor: pointer;
+    }
+  }
+  .clear-all-fields {
+    display: flex;
+    align-items: center;
+    margin-left: 22px;
+    img {
+      margin-right: 10px;
+    }
+    p {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      color: #7d7d7d;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+  }
+}
+#map {
+  width: 100%;
+  height: 350px;
+  margin: 30px auto auto auto;
+}
+p-autoComplete {
+  ::ng-deep {
+    input.ui-inputtext {
+      padding-left: 0 !important;
+    }
+    input.ui-autocomplete-input {
+      font-family: "SF UI Display Regular" !important;
+      font-size: 14px !important;
+      color: #3d3d3d !important;
+      margin-right: 14px;
+      background: transparent !important;
+      border: transparent !important;
+      border-radius: 4px !important;
+      padding: 0 0 0 8px !important;
+      max-width: 100% !important;
+      // &:focus {
+      //   border: inset !important;
+      // }
+    }
+  }
+}

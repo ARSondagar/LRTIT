@@ -1,0 +1,58 @@
+<section class="connected-services">
+    <h2 class="connected-services__title">Подключенные услуги</h2>
+    <table class="services-table">
+      <colgroup>
+        <col class="svc-checkbox"/>
+        <col class="svc-name">
+        <col class="svc-checkbox"/>
+        <col class="svc-name">
+      </colgroup>
+      <tbody>
+        <tr *ngFor="let lfIndex of leftIndexes; let i = index">
+          <td>
+            <svg
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices[lfIndex].isOrdered; else notOrdered1">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #notOrdered1>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+          </td>
+          <td>{{orderedServices[lfIndex].name}}</td>
+          <ng-container *ngIf="rightIndexes[i] >= 0; else outOfIndex">
+            <td>
+              <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                <ng-container *ngIf="orderedServices[rightIndexes[i]].isOrdered; else notOrdered2">
+                  <use xlink:href="#icon-checked"></use>
+                </ng-container>
+                <ng-template #notOrdered2>
+                  <use xlink:href="#icon-unchecked"></use>
+                </ng-template>
+              </svg>
+            </td>
+            <td>{{orderedServices[rightIndexes[i]].name}}</td>
+          </ng-container>
+          <ng-template #outOfIndex>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+<!--
+-->
+    <p class="connected-services__end-date">
+        Срок действия услуг заканчивается {{validUntil}} г.
+    </p>
+</section>

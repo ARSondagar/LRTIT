@@ -1,0 +1,36 @@
+<div class="accounts-content">
+    <a (click)="navigated.emit()" class="account-item" routerLink="/profile">
+        <img src="assets/icons/profile.png" alt="">
+        <span>Профиль</span>
+    </a>
+    <a (click)="navigated.emit()" class="account-item" routerLink="/tariff">
+        <img src="assets/icons/change.png" alt="">
+        <span>Тариф</span>
+    </a>
+    <a (click)="navigated.emit()" class="account-item" routerLink="/support">
+        <img src="assets/icons/support.png" alt="">
+        <span>Поддержка</span>
+    </a>
+<!--
+    <ng-container *ngIf="!isRestricted; else disabledLink_4">
+      <a (click)="navigated.emit()" class="account-item" routerLink="/affiliate-program">
+        <img src="assets/icons/partners.png" alt="">
+        <span>Партнерам</span>
+      </a>
+    </ng-container>
+    <ng-template #disabledLink_4>
+      <a class="account-item disabled-link">
+        <img src="assets/icons/partners.png" alt="">
+        <span>Партнерам (Скоро)</span>
+      </a>
+    </ng-template> -->
+
+    <!-- <a (click)="navigated.emit()" class="account-item">
+        <img src="assets/icons/ellipse.png" alt="">
+        <span>Информирование</span>
+    </a> -->
+    <a (click)="navigated.emit();logOut.emit()" class="account-item">
+        <img src="assets/icons/logout.png" alt="">
+        <span>Выйти</span>
+    </a>
+</div>

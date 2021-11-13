@@ -1,0 +1,63 @@
+<div class="additional-settings-container">
+  <div class="additional-settings-form">
+    <p class="text">
+      Здесь текст для чего собственно собираются такие детальные данные у пользователей.
+      В последнее время появляется все больше материалов о технике проведения собеседований.
+      Но, почему-то, не слишком часто встречается информация о дополнительных приемах,
+      позволяющих провести собеседования (а, соответственно, и оценить профессиональные
+      и личные качества соискателя) с наибольшей эффективностью.
+    </p>
+    <div class="additional-form">
+      <form [formGroup]="additionalForm">
+        <div class="form-group d-flex flex-wrap">
+          <label for="select" class="col-form-label label">Цель использования
+            сервиса</label>
+          <div class="input-content">
+            <app-select [options]="settingVariants?.goalUsings" [(value)]="goalUsingsValue"></app-select>
+          </div>
+        </div>
+
+        <div class="form-group d-flex flex-wrap">
+          <label for="select" class="col-form-label label ">Род деятельности</label>
+          <div class="input-content">
+            <app-select [options]="settingVariants?.occupations" [(value)]="occupationsValue"></app-select>
+          </div>
+        </div>
+        <div class="form-group d-flex flex-wrap">
+          <label for="publicinfo" class="col-form-label label">Расскажите о себе</label>
+          <div class="tex-area-content">
+                        <textarea id="publicinfo" name="publicinfo" cols="40" rows="4" class="form-control text-area"
+                                  placeholder="Пример, что рассказывать" formControlName="description"
+                                  [ngClass]="{'border':checkIsValid(additionalForm,'description')}"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="pages-form">
+      <form [formGroup]="pagesForm">
+        <div class="form-group d-flex flex-wrap">
+          <label for="instagram" class="col-form-label label ">Страница в Instagram</label>
+          <div class="input-content">
+            <input id="instagram" name="instagram" placeholder="https://instagram.com/логин"
+                   class="form-control here" required="required" type="text" formControlName="instagram"
+                   [ngClass]="{'border':checkIsValid(pagesForm,'instagram')}">
+          </div>
+        </div>
+        <div class="form-group d-flex flex-wrap">
+          <label for="facebook" class="col-form-label label ">Страница в Facebook</label>
+          <div class="input-content">
+            <input id="facebook" name="facebook" placeholder="https://facebook.com/логин"
+                   class="form-control here" required="required" type="text" formControlName="facebook"
+                   [ngClass]="{'border':checkIsValid(pagesForm,'facebook')}">
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div class="d-flex save-button-content">
+      <button name="submit" type="submit" class="btn save-button m-auto" [disabled]="pagesForm.invalid || loading"
+              (click)="changeMe()">Сохранить
+      </button>
+    </div>
+  </div>
+</div>

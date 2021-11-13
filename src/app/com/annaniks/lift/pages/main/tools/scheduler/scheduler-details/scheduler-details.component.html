@@ -1,0 +1,138 @@
+<div id="scheduler-details" class="scheduler-details">
+    <div class="title d-flex">
+        <img src="assets/icons/star.png" alt="">
+        <span>
+            {{options?.event?.title}}
+        </span>
+    </div>
+    <div class="subtitle">
+        <span>
+            {{options?.event?.start | date : 'medium'}}
+        </span>
+    </div>
+    <div *ngIf="options?.event?.meta.type != 'story' && options?.event?.meta.type != 'post'"
+        class="parametres-container">
+        <div class="parameter-item d-flex align-items-start">
+            <p>По хэштегам:</p>
+            <div class="d-flex hashtags-container">
+                <div class="hashtag-item" *ngFor="let tag of settings?.tags">
+                    <div *ngIf="tag.name">
+                        <input disabled [value]="'#' +tag.name" type="text" #hashtagInput [size]="tag.name.length"
+                            maxlength="50">
+                        <img src="assets/icons/delete-1.png">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="parameter-item">
+            <p>На подписчиков аккаунтов:</p>
+            <div *ngFor="let item of settings?.followersByAccounts;let lastItem = last">
+                <span>
+                    @{{item.username}}
+                </span>
+                <span *ngIf="!lastItem">,</span>
+            </div>
+        </div>
+        <div class="parameter-item">
+            <p>По геолокации:</p>
+            <div *ngFor="let item of settings?.location;let lastItem = last">
+                <span>
+                    {{item.title}}
+                </span>
+                <span *ngIf="!lastItem">,</span>
+
+            </div>
+        </div>
+        <div class="parameter-item">
+            <p>На комментаторов аккаунтов:</p>
+            <div *ngFor="let item of settings?.commentersByAccounts;let lastItem = last">
+                <span>
+                    @{{item.username}}
+                </span>
+                <span *ngIf="!lastItem">,</span>
+
+            </div>
+        </div>
+        <div class="parameter-item">
+            <p>На лайкеров аккаунтов:</p>
+            <div *ngFor="let item of settings?.likers;let lastItem = last">
+                <span>
+                    @{{item.username}}
+                </span>
+                <span *ngIf="!lastItem">,</span>
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="options?.event?.meta.type != 'story' && options?.event?.meta.type != 'post'"
+        class="subscribe-statistics">
+        <div class="item">
+            <span class="title-key">Задано действий: </span>
+            <span class="value">100</span>
+        </div>
+        <div class="item">
+            <span class="title-key">Выполнено: </span>
+            <span class="value">1000</span>
+        </div>
+        <!-- <div class="item">
+            <span class="title-key">Подписалось в ответ: </span>
+            <span class="value">250</span>
+        </div>
+        <div class="item">
+            <span class="title-key">Конверсия: </span>
+            <span class="value">25%</span>
+        </div> -->
+    </div>
+    <div class="w-100 poster" *ngIf="options?.event?.meta.type == 'story' || options?.event?.meta.type == 'post'">
+        <img height="150" [src]="fileUrl + '/' +  options?.event?.meta.file.filename" alt="">
+    </div>
+    <!-- <div class="statistics-action">
+        <button class="copy-settings">
+            <img src="assets/icons/copy-settings.png" alt="">
+            Копировать параметры
+        </button>
+        <button class="repeat-task">
+            <img src="assets/icons/repeat-task.png" alt="">
+            Повторить задание
+        </button>
+    </div> -->
+    <!-- <div class="title d-flex">
+        <img src="assets/icons/star.png" alt="">
+        <span>
+            {{options?.event?.title}}
+        </span>
+    </div>
+    <div class="subtitle">
+        <span>
+            Вторник, 18 Апреля | 10:30 - 18:00
+        </span>
+        <span>
+            {{options?.event?.start | date : 'medium'}}
+        </span>
+    </div> -->
+
+    <!-- <div class="subscribe-statistics">
+        <div class="item">
+            <span class="value">Лимит лайков - 1000</span>
+        </div>
+        <div class="item">
+            <span class="value">Лимит подписок - 300</span>
+        </div>
+    </div> -->
+    <div class="statistics-action">
+        <button (click)="editPostOrStory()"
+            *ngIf="options?.event?.meta.type == 'story' || options?.event?.meta.type == 'post'" class="copy-settings">
+            <img src="assets/icons/edit-settings.png" alt="">
+            Изменить
+        </button>
+        <!-- <button class="repeat-task">
+            <img src="assets/icons/shuffle-settings.png" alt="">
+            Перенести
+        </button> -->
+        <button (click)="onDeleteScheduler()" class="repeat-task">
+            <img src="assets/icons/remove-settings.png" alt="">
+            Удалить
+        </button>
+    </div>
+</div>

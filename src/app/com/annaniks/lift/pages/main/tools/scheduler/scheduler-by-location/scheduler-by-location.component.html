@@ -1,0 +1,41 @@
+<div class="title">
+    <h5>Ставить лайки аккаунтам ,которые подписаны на </h5>
+</div>
+<div [formGroup]="locationForm" class="account-by-location-container"
+    [ngClass]="{'spacing':itemsControl?.controls?.length > 0}">
+    <div class="account-by-location">
+        <div class="location-item"
+            [ngClass]="{'invalid':itemsControl?.controls[i]?.invalid && itemsControl?.controls[i]?.touched}"
+            formArrayName="items" *ngFor="let item of itemsControl?.controls; let i = index;">
+            <div [formGroupName]="i">
+                <img src="assets/icons/location.png" alt="">
+                <p-autoComplete maxlength="25" field="title" formControlName="label"
+                    [suggestions]="searchStream$ | async" (completeMethod)="searchFor($event)"
+                    [size]="item.get('label')?.value?.length || item.get('label')?.value?.title?.length || 5">
+                </p-autoComplete>
+                <img (click)="deleteLocation(i)" src="assets/icons/delete-1.png">
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="itemsControl.controls.length > 0" (click)="clearAll()" class="clear-all-fields">
+        <img src="assets/icons/trash.png">
+        <p>очистить все</p>
+    </div>
+</div>
+<button (click)="addItem()" class="text-center add-location btn w-100">Добавить локацию</button>
+<!-- <div class="inline-checkoxes">
+    <mat-checkbox>
+        Взаимодействовать с публикациями последних </mat-checkbox>
+    <span class="checkbox-label">
+        <input OnlyNumber="true" class="range-input" type="text"> дней
+    </span>
+</div>
+<hr>
+<div class="inline-checkoxes">
+    <mat-checkbox>
+        Какое количество лайков нужно применить </mat-checkbox>
+    <span class="checkbox-label">
+        <input OnlyNumber="true" class="range-input" type="text">
+    </span>
+</div> -->

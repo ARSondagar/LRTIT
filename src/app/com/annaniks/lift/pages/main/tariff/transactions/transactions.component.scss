@@ -1,0 +1,248 @@
+.transactions {
+  padding: 40px 40px 40px;
+  background-color: #f6f6f6;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 950px) {
+  .transactions {
+    padding: 35px;
+  }
+}
+@media (max-width: 450px) {
+  .transactions {
+    padding: 7%;
+  }
+}
+
+.toggled-head {
+  position: relative;
+  padding-right: 50px;
+}
+
+.toggled-head__title {
+  margin: 0;
+  color: #121111;
+  font-size: 28px;
+  font-weight: bolder;
+  line-height: 37px;
+}
+@media (max-width: 950px) {
+  .toggled-head__title {
+    font-size: 28px;
+    line-height: 33px;
+  }
+}
+@media (max-width: 450px) {
+  .toggled-head__title {
+    font-size: 22px;
+    line-height: 27px;
+  }
+}
+
+.toggled-head__toggle-button {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.toggled-head__toggle-button:hover, .toggled-head__toggle-button:focus {
+  opacity: 0.5;
+}
+.toggled-head__toggle-button:active {
+  opacity: 0.4;
+}
+@media (max-width: 450px) {
+  .toggled-head__toggle-button {
+    top: -3px;
+  }
+}
+
+.toggled-head__toggle-button-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.transactions__content {
+  margin-top: 42px;
+  margin-bottom: 44px;
+}
+@media (max-width: 950px) {
+  .transactions__content {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 35px;
+    margin-bottom: 30px;
+  }
+}
+
+.transactions__info {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: separate;
+  border-spacing: 0 2px;
+}
+
+.transactions__info-item {
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.transactions__info-head {
+  & .transactions__info-item {
+    margin-bottom: 4px;
+  }
+}
+
+.transactions__info-stat-name {
+  padding: 22px 10px 17px 10px;
+  color: #121111;
+  white-space: nowrap;
+  font-size: 28px;
+  line-height: 33px;
+  font-weight: 600;
+
+  @media (max-width: 1100px) {
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  @media (max-width: 750px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.transactions__info-spacer {
+  padding: 1px;
+}
+
+.transactions__info-stat-value {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #000000;
+  white-space: nowrap;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  text-align: center;
+
+  @media (max-width: 1100px) {
+    padding: 20px 10px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (max-width: 750px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+th.transactions__info-stat-name {
+  text-align: center !important;
+}
+
+.transactions__info-stat-name,
+.transactions__info-stat-value {
+  background-color: #ffffff;
+
+  &:first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+
+  &:last-child {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+}
+
+.transactions__info-item {
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.transactions__info-head {
+  & .transactions__info-item {
+    margin-bottom: 4px;
+  }
+}
+
+.transactions__show-more {
+  display: block;
+  margin: 0 auto;
+  padding: 22px 91px;
+  background-color: #94a6b0;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 950px) {
+    padding: 15px 40px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 10px 20px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+button.toggled-head__toggle-button span.material-icons {
+  font-size: 40px;
+  color: rgb(51, 152, 204);
+}
+
+table.transactions__info_reduced {
+  table-layout: fixed;
+  width: 300px;
+
+  th {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    padding-bottom: 4px;
+  }
+
+  .transactions__info-stat-date {
+    width: 75px;
+  }
+  .transactions__info-stat-operation {
+    width: 110px;
+  }
+  .transactions__info-stat-summ {
+    width: 100px;
+  }
+
+  td.transactions__info-stat-date {
+    padding-left: 4px;
+  }
+  td.transactions__info-stat-summ {
+    text-align: right;
+  }
+
+  tbody {
+    border-top: 1px solid silver;
+  }
+}
+

@@ -1,0 +1,151 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <div>
+    <section class="preview-content">
+      <div class="pg-container">
+        <app-user-details></app-user-details>
+      </div>
+      <div class="preview-container">
+        <div class="statistics">
+          <div class="pg-container statistic-content">
+            <div class="statistic-card d-flex flex-wrap">
+              <div class="card-item">
+                <div class="card">
+                  <div class="card-description">
+                    <div class="card-top-content d-flex align-items-center">
+                      <img src="/assets/images/previw_card_icon.png"
+                            class="rounded img-responsive card-image card-description-img" alt="">
+                      <div class="d-flex align-items-center">
+                        <div class="card-subscription">
+                          <p class="text">Подписчики</p>
+                          <p class="text value">{{followersCount?.value}}</p>
+                        </div>
+                        <div class="card-progress">
+                          <p class="progress-text">{{followersCount?.todayCount}} сегодня
+                            <img [src]="followersCount.icon" class="rounded img-responsive" alt="">
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-chart">
+                      <app-simple-line-chart *ngIf="!loading" [labels]="followersChartLabels" [dataSets]="followersChartData"></app-simple-line-chart>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-item">
+                <div class="card">
+                  <div class="card-description">
+                    <div class="card-top-content d-flex align-items-center">
+                      <img src="/assets/images/preview_card_like_icon.png"
+                            class="rounded img-responsive card-image card-description-img" alt="">
+                      <div class="d-flex align-items-center">
+                        <div class="card-subscription">
+                          <p class="text">Лайки</p>
+                          <p class="text value">{{likesCount?.value}}</p>
+                        </div>
+                        <div class="card-progress text-center">
+                          <p class="progress-text">{{likesCount?.todayCount}} сегодня
+                            <img [src]="likesCount.icon" class="rounded img-responsive" alt="">
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-chart">
+                      <app-simple-line-chart *ngIf="!loading" [labels]="likesChartLabels" [dataSets]="likesChartData"></app-simple-line-chart>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--action-->
+        <div class="pg-container action">
+          <div class="action-cards d-flex flex-wrap">
+            <div class="acton-item">
+              <div class="card">
+                <div class="card-description d-flex">
+                  <img src="assets/images/action_posts.png" class="rounded img-responsive action-image">
+                  <div class="action-description">
+                    <div class="action-description-left">
+                      <p class="text">Посты</p>
+                      <p class="text value">{{postsCount?.value}}</p>
+                    </div>
+                    <p class="text progress-text">
+                      {{postsCount?.todayCount}} сегодня
+                      <img [src]="postsCount?.icon" class="rounded img-responsive action-icon">
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="acton-item">
+              <div class="card">
+                <div class="card-description d-flex">
+                  <img src="assets/images/action_comments.png" class="rounded img-responsive action-image">
+                  <div class="action-description">
+                    <div class="action-description-left">
+                      <p class="text">Комментарии</p>
+                      <p class="text value">{{commentsCount?.value}}</p>
+                    </div>
+                    <p class="text progress-text">
+                      {{commentsCount?.todayCount}} сегодня<img [src]="commentsCount?.icon" class="rounded img-responsive action-icon">
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="acton-item">
+              <div class="card">
+                <div class="card-description d-flex">
+                  <img src="assets/images/action_comments.png"
+                        class="rounded img-responsive action-image">
+                  <div class="action-description">
+                    <div class="action-description-left">
+                      <p class="text">Просмотры</p>
+                      <p class="text value">{{lastViewCountInfo.value}}</p>
+                    </div>
+                    <p class="text progress-text">
+                      {{lastViewCountInfo.todayCount}} сегодня
+                      <img [src]="lastViewCountInfo?.icon"
+                          class="rounded img-responsive action-icon  ml-3">
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-best-posts-for-last-month [posts]="lastBestPosts"></app-best-posts-for-last-month>
+        <!--settings-->
+        <div class="settings">
+          <div class="pg-container settings-details d-flex flex-wrap">
+            <app-balans [amount]="userDetails.balance" [dailyDiscount]="dailyDiscount"></app-balans>
+            <app-services [orderedServices]="allServices" [validUntil]="finishDate"></app-services>
+
+            <div class="event-content  align-items-center d-none">
+              <button class="btn add-button">
+                <div class="d-flex m-auto  align-items-center">
+                  <img class="add-image rounded img-responsive mr-3" src="assets/images/add-icon.png">
+                  <p class="add-text">Добавить событие</p>
+                </div>
+
+              </button>
+              <p class="text">Управление календаром
+                <img class="rounded img-responsive ml-3" src="assets/images/action_str.png"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>

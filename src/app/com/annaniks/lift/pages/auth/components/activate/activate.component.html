@@ -1,0 +1,32 @@
+<div class="formAuth" [ngClass]="{'formAuth_close': stage === 3}" [@enterAnimation]><a href="http://liftme.pro" class="formAuth__close">
+      <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85947000, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85947000" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+    <path d="M12.1,10l7.4-7.4c0.6-0.6,0.6-1.5,0-2.1s-1.5-0.6-2.1,0L10,7.9L2.6,0.5C2-0.1,1.1-0.1,0.5,0.5s-0.6,1.5,0,2.1L7.9,10 l-7.4,7.4c-0.6,0.6-0.6,1.5,0,2.1c0.3,0.3,0.7,0.4,1.1,0.4s0.8-0.1,1.1-0.4l7.4-7.4l7.4,7.4c0.3,0.3,0.7,0.4,1.1,0.4 c0.4,0,0.8-0.1,1.1-0.4c0.6-0.6,0.6-1.5,0-2.1L12.1,10z"></path>
+  </svg></a>
+  <app-rocket [stage]="stage" class="formAuth__image"></app-rocket>
+  <form class="formAuth__signIn" [formGroup]="activateForm" (submit)="onSubmit()">
+    <h1 class="formAuth__title">Подтвердить регистрацию</h1>
+    <p class="formAuth__subtitle">Код подтверждения был отправлен на указанную почту</p>
+    <input formControlName="code" class="formAuth__field formAuth__field_code" type="text" placeholder="Введите код" (ngModelChange)="onCodeChange($event)" />
+    <p class="text-danger">{{errorMessage}}</p>
+    <div class="formAuth__submit">
+      <button [disabled]="activateForm.invalid || countdown" class="btn btn_block formAuth__submitBtn"
+        type="submit">{{!countdown ? 'Подтвердить' : 'Подтвердить через '+countdown+' сек'}}</button>
+    </div>
+    <div class="formAuth__toSingUp"><a routerLink="/auth/login">Войти</a></div>
+  </form>
+</div>

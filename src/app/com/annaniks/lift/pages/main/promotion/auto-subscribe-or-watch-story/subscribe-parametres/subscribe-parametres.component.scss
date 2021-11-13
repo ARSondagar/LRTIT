@@ -1,0 +1,164 @@
+@import "variables";
+
+.pg-container {
+  margin-top: 40px;
+
+  @media (max-width: $mobile_width) {
+    margin-top: 12px;
+  }
+}
+
+.subscription-accordion {
+  .accordion-body {
+    background-color: #f6f6f6;
+    padding: 14px 36px;
+    border-radius: 6px;
+
+    @media (max-width: $mobile_width) {
+      padding: 14px 20px;
+    }
+
+    .collapse-heading {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .btn {
+        font-weight: bold;
+      }
+
+      .filters-count {
+        padding: 3px 9px 3px 7px;
+        background: #0dce99;
+        border-radius: 2px;
+
+        span {
+          font-family: "SF UI Display Regular";
+          font-size: 14px;
+          line-height: 1.5;
+          color: white;
+        }
+      }
+
+      button {
+        color: #3d3d3d;
+        font-size: 18px;
+        text-decoration: none;
+        text-align: left;
+
+        img {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: all 0.3s;
+        }
+
+        &.collapsed {
+          img {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+
+        .arrow-up {
+          @media (max-width: 480px) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.parametres-container {
+  padding: 25px 0 12px 30px;
+
+  @media (max-width: $tablet_width) {
+    padding-left: 0;
+  }
+
+  .parameter-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
+
+      span {
+        font-family: "SF UI Display Regular";
+        font-size: 16px;
+        line-height: 1.5;
+        color: #7d7d7d;
+      }
+    }
+
+    .hashtags-container {
+      margin-left: 22px;
+
+      .hashtag-item {
+        background-color: #d7d7d7;
+        border-radius: 4px;
+        padding: 10px 12px 10px 13px;
+        margin: 0 9px 7px 0;
+
+        @media (max-width: 400px) {
+          width: 100%;
+        }
+
+        div {
+          position: relative;
+
+          @media (max-width: 400px) {
+            width: 100%;
+          }
+
+          input {
+            padding-right: 20px;
+            font-family: "SF UI Display Regular";
+            font-size: 16px;
+            color: #3d3d3d;
+            background: transparent;
+            border: transparent;
+            border-radius: 4px;
+
+            @media (max-width: 400px) {
+              width: 100%;
+            }
+          }
+
+          img {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+          }
+        }
+
+      }
+    }
+
+    p {
+      width: 100%;
+      font-family: "SF UI Display SemiBold";
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+
+    &:last-child {
+      p:not(:last-child) {
+        margin-right: 50px;
+      }
+    }
+  }
+}

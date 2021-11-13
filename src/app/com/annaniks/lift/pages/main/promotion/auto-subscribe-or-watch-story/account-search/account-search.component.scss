@@ -1,0 +1,120 @@
+@import "variables";
+
+.subscribed-to-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .subscribed-to {
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    padding: 8px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 6px;
+
+    p {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      color: #7d7d7d;
+    }
+  }
+
+  .clear-all-fields {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 150px;
+
+    display: flex;
+    align-items: center;
+    margin-left: 22px;
+    width: 100%;
+
+    img {
+      margin-right: 10px;
+
+      @media (max-width: 700px) {
+        margin-right: 0;
+      }
+    }
+
+    p {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      color: #7d7d7d;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+
+      @media (max-width: 700px) {
+        font-size: 0;
+      }
+    }
+  }
+}
+form.user-autocomplete {
+  display: flex;
+}
+
+p-autoComplete {
+  width: 100%;
+  margin: auto;
+
+  ::ng-deep {
+    span {
+      // width: 100%;
+
+      &::before {
+        @media (max-width: $mobile_width) {
+          position: absolute;
+          top: 50%;
+          right: 0;
+        }
+      }
+    }
+
+    input.ui-inputtext {
+      // padding-left: 0 !important;
+      width: 100%;
+    }
+
+    ul {
+      width: 100%;
+      border: none;
+
+      li.ui-autocomplete-token {
+        width: 100%;
+        font-family: "SF UI Display Regular" !important;
+        background-color: #d7d7d7 !important;
+        border-radius: 4px;
+        padding: 10px 12px 10px 13px !important;
+        color: #7d7d7d !important;
+        margin: auto;
+        overflow: visible !important;
+      }
+
+      li {
+        // padding: 0 !important;
+        width: 100%;
+
+        input {
+          width: 100%;
+          font-family: "SF UI Display Regular I";
+          font-size: 16px !important;
+          padding-right: 10px !important;
+
+          // &.ui-autocomplete-items {
+          //   li {
+          //     background-color: #305976 !important;
+          //     color: white !important;
+          //   }
+          // } max-width: 500px;
+        }
+      }
+    }
+  }
+}
+

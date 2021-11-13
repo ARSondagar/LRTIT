@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  background: white;
+}
+
+.best-posts-slider {
+  padding: 10px 0;
+
+  .best-posts-slider__title {
+    padding: 15px;
+    font-size: 24px;
+    font-family: "SF UI Display Regular";
+    font-weight: bold;
+    line-height: 1.2;
+    color: rgb(61, 61, 61);
+  }
+}
+
+.best-post-card {
+  background: #f6f6f6 !important;
+}

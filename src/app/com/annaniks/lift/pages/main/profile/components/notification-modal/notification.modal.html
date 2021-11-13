@@ -1,0 +1,121 @@
+<div class="notification-modal">
+    <div class="notification-container">
+        <div class="notification-header d-flex justify-content-between">
+            <p class="text">Настройки уведомлений</p>
+            <img src="assets/icons/close.png" class="rounded img-responsive  cursor-pointer close-image"
+                (click)="closeModal()">
+        </div>
+        <div class="notificatin-form">
+            <form [formGroup]="notificationForm">
+                <div class="form-group d-flex align-items-center">
+                    <label for="select" class="col-form-label  label p-0">Отправлять</label>
+                    <div class="tab-content d-flex">
+                        <mat-radio-group formControlName="interval">
+                            <mat-radio-button value="1" class="radio-button-item"
+                                [ngClass]="{'activeTab':notificationForm.get('interval')?.value=='1'}">Раз в день
+                            </mat-radio-button>
+                            <mat-radio-button value="2" class="radio-button-item"
+                                [ngClass]="{'activeTab':notificationForm.get('interval')?.value=='2'}">Раз в
+                                неделю
+                            </mat-radio-button>
+                            <mat-radio-button value="3" class="radio-button-item"
+                                [ngClass]="{'activeTab':notificationForm.get('interval')?.value=='3'}">Раз в
+                                месяц</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center">
+                    <label class="col-form-label  label p-0">За период</label>
+                    <div class="input-content">
+                      <app-select [options]="durationOption" formControlName="duration"></app-select>
+                    </div>
+                </div>
+                <div class="form-group d-flex">
+                    <label for="checkbox" class=" col-form-label label ">Показатели</label>
+                    <div class="checkbox-container d-flex justify-content-between">
+                        <div class="checkbox-item">
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaPosts">
+                                        <span class="wrap-checkbox-label"> Выложено постов</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaFollowers">
+                                        <span class="wrap-checkbox-label"> Подписалось</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaLikes">
+                                        <span class="wrap-checkbox-label"> Поставлено лайков</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaComments">
+                                        <span class="wrap-checkbox-label"> Поставлено комментариев</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="topPosts">
+                                        <span class="wrap-checkbox-label"> Топ 3(5) постов за период</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaStores">
+                                        <span class="wrap-checkbox-label"> Выложено Stories</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaUnfollowings">
+                                        <span class="wrap-checkbox-label"> Отписались</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="deltaSaves">
+                                        <span class="wrap-checkbox-label"> Поставлено закладок</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="totalActions">
+                                        <span class="wrap-checkbox-label"> Всего действий</span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="checkbox-content">
+                                <div class="checkbox-group d-flex">
+                                    <mat-checkbox formControlName="spendRatio">
+                                        <span class="wrap-checkbox-label">
+                                            Соотношение затраченной суммы
+                                            к полученным действиям
+                                        </span>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex save-button-content">
+                <button (click)="addInforming()" name="submit" type="submit" class="btn save-button">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>

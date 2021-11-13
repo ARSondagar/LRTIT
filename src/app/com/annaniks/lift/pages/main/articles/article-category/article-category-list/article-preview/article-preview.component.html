@@ -1,0 +1,47 @@
+<div *ngIf="mode == 'normal'" class="article-preview d-flex justify-content-between">
+    <a class="article-img-wrapper" [routerLink]="['/','articles','category','post',articleData.id]">
+        <div class="article-img" [ngStyle]="{'background-image': 'url(' + fileUrl + articleData.path + ')'}"></div>
+    </a>
+    <div class="article-info">
+        <div class=" d-flex justify-content-between align-items-center">
+            <div class="article-categories d-flex flex-wrap w-100">
+                <a *ngFor="let category of articleData.category " [routerLink]="['/','articles','category','list']"
+                    [queryParams]="{'categoryId': category.categoryId,'pageIndex':'1'}">
+                    <div [style.border-color]="category.parent.color" class="category-item">
+                        <p [style.color]="category.parent.color">{{category.parent.title}}</p>
+                    </div>
+                </a>
+            </div>
+            <div *ngIf="articleData.status == 'new'" class="article-status">
+                <p>новое</p>
+            </div>
+        </div>
+        <div class="article-title">
+            <a [routerLink]="['/','articles','category','post',articleData.id]">
+                <p>{{articleData.title}}</p>
+            </a>
+
+        </div>
+        <div class="article-subtitle">
+            <p>{{articleData.shortDescription}}</p>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="mode == 'skeleton'" class="preview-skeleton">
+    <div class="d-flex">
+        <div class="image">
+
+        </div>
+        <div class="content d-flex justify-content-around flex-column">
+            <div class="category d-flex">
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+            <div class="title"><span></span></div>
+            <div class="description"><span></span></div>
+        </div>
+    </div>
+</div>

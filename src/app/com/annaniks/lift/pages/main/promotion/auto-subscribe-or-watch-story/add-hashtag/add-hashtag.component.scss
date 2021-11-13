@@ -1,0 +1,134 @@
+.hashtags-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+
+  .hashtags-container {
+    padding: 0.2145em 0.286em;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+
+    .hashtag-item {
+      background-color: #d7d7d7;
+      border-radius: 4px;
+      padding: 10px 12px 10px 13px;
+      margin: 5px;
+
+      @media (max-width: 400px) {
+        width: 100%;
+      }
+
+      &.invalid {
+        border: 1px solid #dc3545;
+      }
+
+      & > div {
+        display: flex;
+        align-items: center;
+
+        & > img {
+          margin-left: auto;
+        }
+      }
+
+      input {
+        font-family: "SF UI Display Regular";
+        font-size: 16px;
+        color: #3d3d3d;
+      //  margin-right: 14px;
+        background: transparent;
+        border: transparent;
+        border-radius: 4px;
+        padding-left: 8px;
+        // &:focus {
+        //   border: inset;
+        // }
+      }
+
+      img {
+        cursor: pointer;
+      }
+    }
+
+    .add-hashtag {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      padding: 0.5em;
+      color: #7d7d7d;
+      cursor: pointer;
+    }
+  }
+
+  .clear-all-hashtags {
+    display: flex;
+    align-items: center;
+    margin-left: 22px;
+
+    img {
+      margin-right: 10px;
+
+      @media (max-width: 700px) {
+        margin-right: 0;
+      }
+    }
+
+    p {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      color: #7d7d7d;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+
+      @media (max-width: 700px) {
+        font-size: 0;
+      }
+    }
+  }
+}
+
+p-autoComplete {
+  ::ng-deep {
+    .ui-autocomplete-input {
+      background: transparent !important;
+      border: none !important;
+    }
+
+    input.ui-inputtext {
+      padding: 0 !important;
+      margin-right: 14px;
+      font-family: "SF UI Display Regular" !important;
+      font-size: 14px !important;
+    }
+
+    ul {
+      border: none;
+
+      li.ui-autocomplete-token {
+        background-color: #d7d7d7 !important;
+        border-radius: 4px;
+        padding: 0 !important;
+        color: #7d7d7d !important;
+      }
+
+      li {
+        input {
+          // width: 315px;
+          max-width: 500px;
+        }
+      }
+
+      // &.ui-autocomplete-items {
+      //   li {
+      //     background-color: #305976 !important;
+      //     color: white !important;
+      //   }
+      // }
+    }
+  }
+}

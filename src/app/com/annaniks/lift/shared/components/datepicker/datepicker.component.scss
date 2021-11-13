@@ -1,0 +1,184 @@
+@import "variables";
+
+#cdk-overlay-0.cdk-overlay-pane {
+  @media (max-width: $tablet_width) {
+    position: absolute !important;
+    right: 50% !important;
+    transform: translateX(50%);
+  }
+}
+
+#cdk-overlay-1.cdk-overlay-pane {
+  @media (max-width: $tablet_width) {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}
+
+app-datepicker {
+  .ant-input {
+    width: 145px;
+    background: transparent;
+    border: 0;
+    color: #3399cc;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: pointer;
+    font-size: 24px;
+    font-family: "SF UI Display Regular";
+    padding: 0;
+
+    &:focus {
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    @media (max-width: $desktop_width) {
+      font-size: 22px;
+      width: 130px;
+    }
+
+    @media (max-width: $tablet_width) {
+      font-size: 20px;
+      width: 120px;
+    }
+  }
+
+  .ant-calendar-picker-clear,
+  .ant-calendar-picker-icon {
+    display: none !important;
+  }
+}
+
+.actions {
+  & > div {
+    cursor: pointer;
+  }
+
+  p {
+    margin-left: 4px;
+    font-size: 14px;
+    font-family: "SF UI Display Regular";
+    color: rgb(125, 125, 125);
+    line-height: 1.2;
+  }
+
+  .icon {
+    font-size: 15px;
+    margin-bottom: -2px;
+  }
+
+  .active {
+    p {
+      font-weight: bold;
+      margin-left: 4px;
+      color: rgb(61, 61, 61);
+    }
+
+    .icon {
+      color: #379bcd;
+    }
+  }
+}
+
+.ant-calendar {
+  width: 380px;
+  max-width: 90vw;
+
+  @media (max-width: $tablet_width) {
+    width: auto;
+  }
+
+  @media (max-width: $mobile_width) {
+    width: auto;
+    max-width: none;
+  }
+}
+
+.ant-calendar-footer-btn {
+  display: none;
+}
+
+.ant-calendar-footer {
+  border-top: 0;
+  padding: 20px 30px;
+}
+
+.ant-calendar-header {
+  height: 70px;
+  line-height: 70px;
+  border-bottom: 0;
+
+  a:hover {
+    color: #e6e6e6;
+  }
+}
+
+.ant-calendar-panel {
+  @media (max-width: $mobile_width) {
+
+  }
+}
+
+.ant-calendar-date-panel {
+  background: #f5f7f9;
+  border: 0;
+}
+
+.ant-calendar-body {
+  padding: 0 30px;
+}
+
+.ant-calendar-table {
+  background-color: white !important;
+}
+
+.ant-calendar-selected-day .ant-calendar-date {
+  background: #e6e6e6;
+}
+
+.ant-calendar-date {
+  font-size: 14px;
+  width: 40px;
+
+  &:hover {
+    background: #e6e6e6;
+  }
+}
+
+.ant-calendar-column-header-inner {
+  font-size: 14px;
+  font-family: "SF UI Display Regular";
+  color: rgb(125, 125, 125);
+}
+
+.ant-calendar-next-year-btn,
+.ant-calendar-prev-year-btn {
+  display: none !important;
+}
+
+.ant-calendar-next-month-btn,
+.ant-calendar-prev-month-btn {
+  line-height: 70px !important;
+  cursor: pointer;
+
+  &:before {
+    border-width: 3.5px 0 0 3.5px !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+
+.ant-calendar-month-select,
+.ant-calendar-year-select {
+  font-size: 20px;
+  font-family: "SF UI Display Regular";
+  color: rgb(61, 61, 61) !important;
+  line-height: 1.2;
+  cursor: pointer;
+
+  &:hover {
+    color: #e6e6e6;
+  }
+}

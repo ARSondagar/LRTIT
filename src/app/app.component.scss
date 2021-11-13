@@ -1,0 +1,185 @@
+
+div#custom-modal-back-drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.25);
+  opacity: 1.0;
+
+  display: none;
+}
+
+
+div#custom-payment-dialog {
+  position: relative;
+  z-index: 2002;
+  opacity: 1.0;
+  background-color: white;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 750px;
+  height: 541px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+
+  display: none;
+
+  div.close-bar {
+    left: 0;
+    margin-top: 8px;
+    height: 32px;
+    padding-right: 8px;
+    width: 100%;
+    text-align: right;
+  }
+
+  span.close-btn {
+    display: block;
+    float: right;
+    font-size: 54px;
+    font-weight: lighter;
+    margin-top: -8px;
+    color: #828282;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  @media (max-width: 650px) {
+    span.close-btn {
+      margin-top: -6px;
+      margin-right: 0;
+    }
+  }
+
+  h2.dlg-title {
+    margin-top: 48px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 42px;
+    text-align: center;
+  }
+  @media (max-width: 650px) {
+    h2.dlg-title {
+      font-size: 32px;
+    }
+  }
+
+  div.amount-wrapper {
+    margin-top: 36px;
+    height: 72px;
+    width: 490px;
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+
+    input#amauntValue {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-color: #F6F6F6;
+
+      font-size: 32px;
+      font-weight: 500;
+      font-family: 'Roboto';
+      color: #3398CC;
+      border: none;
+    }
+
+    p.tool-tip {
+      width: 100%;
+      text-align: center;
+      margin-top: 16px;
+      color: #BDBDBD;
+    }
+  }
+  @media (max-width: 650px) {
+    div.amount-wrapper {
+      width: 100%;
+    }
+  }
+
+  .button-wrapper {
+    width: 487px;
+    height: 72px;
+    margin-top: 96px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+  }
+  @media (max-width: 650px) {
+    .button-wrapper {
+      width: 100%;
+    }
+  }
+
+
+  button.custom-blue-btn {
+    background-color: #3398CC;
+    color: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 28px;
+  }
+  @media (max-width: 650px) {
+    button.custom-blue-btn {
+      font-size: 18px;
+    }
+  }
+
+  div.small-text {
+    width: 100%;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #828282;
+    margin-top: 1ex;
+  }
+
+  mat-hint.small-text {
+    font-size: small;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+  }
+}
+@media (max-width: 650px) {
+  div#custom-payment-dialog {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+
+    margin-top: 50px;
+    height: 541px;
+  }
+}
+
+//=====================
+
+div.wait-spinner {
+  position: fixed;
+  left: 64px;
+  top: 96px;
+  width: 100px;
+  height: 100px;
+  z-index: 1200;
+}
+
+mat-dialog-content {
+  overflow-y: hidden;
+}

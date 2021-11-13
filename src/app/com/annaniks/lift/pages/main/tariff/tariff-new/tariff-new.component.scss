@@ -1,0 +1,55 @@
+div.tarif-page {
+//  background-color: beige;
+  padding: 0px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+@media (max-width: 1250px) {
+  div.tarif-page {
+    padding-top: 0px;
+    padding: 25px calc(3% - 10px) 0;
+  }
+}
+
+
+.title-row {
+  display: flex;
+  margin-bottom: 30px; 
+}
+@media (max-width: 1440px) {
+  .title-row {
+    display: block; 
+  } 
+}
+@media (max-width: 1440px) {
+  .title-row {
+    margin-bottom: 20px; 
+  } 
+}
+
+div.service-manager-row {
+  width: 100%;
+  margin-bottom: 26px;
+
+  border-radius: 8px;
+}
+
+div.transactions-row {
+  width: 100%;
+  margin-bottom: 26px;
+  background-color: beige;
+//  height: 300px;
+
+  border-radius: 8px;
+ }
+
+app-services {
+  display: block;
+  flex-grow: 9;
+  background-color: #f6f6f6;
+  margin-right: 0;
+  border-radius: 8px;
+}

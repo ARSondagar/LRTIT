@@ -1,0 +1,47 @@
+<div class="pg-container ">
+    <div class="pg-content">
+        <div class="messaging">
+            <a class="messaging__support-link" routerLink="/support">
+                <img alt="dropdown" src="assets/icons/down.png">
+                Назад
+            </a>
+            <div class="inbox_msg">
+                <div class="mesgs">
+                    <div class="msg_history" #msgContainer [scrollTop]="msgContainer.scrollHeight">
+                        <div *ngFor="let message of messages" app-ticket-message [message]="message"></div>
+                    </div>
+                    <form class="type_msg w-100" [formGroup]="messageForm">
+                        <div class="input_msg_write d-flex  align-items-center">
+                            <textarea placeholder="Введите сообщение" class="write_msg"
+                                formControlName="message"></textarea>
+                        </div>
+                        <div class="attached-files-container">
+                            <p class="text" *ngIf="attachedFiles && attachedFiles.length>0">Прикрепленные файлы</p>
+                            <div class="affached-file-list d-flex align-items-center flex-wrap">
+                                <div *ngFor="let file of attachedFiles;let ind=index;" class="attached-file-item">
+                                    <span>{{file?.name}}</span>
+                                    <i class="icon delete-icon material-icons"
+                                        (click)="onClickRemoveAttachedFile(ind)">close</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="send-btn d-flex justify-content-between ">
+                            <button class="btn" type="submit" (click)="onClickSend()"
+                                [disabled]="messageForm.invalid">Отправить</button>
+                            <div class="image-upload">
+                                <label for="file-input">
+                                    <div class="cursor-pointer">
+                                        <img height="20" src="assets/icons/attachment.png" />
+                                        Прикрепить файл
+                                    </div>
+                                </label>
+                                <input #fileInput class="file" id="file-input" type="file" multiple
+                                    (change)="onChangeFiles($event,fileInput)" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

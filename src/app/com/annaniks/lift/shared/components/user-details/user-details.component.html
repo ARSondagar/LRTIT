@@ -1,0 +1,32 @@
+<div class="user-details d-flex align-items-center">
+  <div class="user-details-left text-center">
+    <img [src]="imageToShow" class="rounded-circle img-responsive user-image" *ngIf="hasImage; else noUserImage">
+    <ng-template #noUserImage>
+      <img src="../../../../../../../assets/images/boy.png" class="rounded-circle img-responsive user-image">
+    </ng-template>
+    <div class="user-details-left-botton-content">
+      <p class="user-name">{{activeAccount?.login}}</p>
+      <div class="user-details-left-bottom-content d-flex text-center">
+        <div class="subscription-content d-flex">
+          <p class="subscription-text"><b>{{statistics?.postsCount}}</b> публикаций</p>
+          <p class="subscription-text text-center"><b>{{statistics?.followers}}.</b> подписчиков</p>
+          <p class="subscription-text text-center">подписки <b>{{statistics?.followings}}</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user-details-right">
+    <div class="user-details-right-top-content d-flex align-items-center flex-wrap">
+      <p class="user-name">{{activeAccount?.login}}</p>
+      <a class="btn button" [href]="'https://instagram.com/'+activeAccount.login" target="_blank">
+        <span>Перейти в профиль</span>
+        <img src="assets/icons/instagram_icon.png" class="rounded-circle img-responsive ml-2">
+      </a>
+    </div>
+    <div class="user-details-right-bottom-content d-flex text-center">
+      <p class="subscription-text"><b>{{statistics?.postsCount || 0}}</b> публикаций</p>
+      <p class="subscription-text"><b>{{statistics?.followers || 0}}</b> подписчиков</p>
+      <p class="subscription-text">подписки: <b>{{statistics?.followings || 0}}</b></p>
+    </div>
+  </div>
+</div>

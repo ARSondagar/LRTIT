@@ -1,0 +1,47 @@
+.msg-text {
+  max-width: 100% !important;
+  animation: slide-up 0.5s ease;
+
+  &.incoming-msg {
+    max-width: 50% !important;
+  }
+
+  .msg-text-container {
+    flex-wrap: wrap !important;
+  }
+
+  .message-body {
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .sent-by {
+    .msg-img {
+      margin-left: 10px;
+    }
+  }
+
+  .attached-files-container {
+    flex: 0 1 100%;
+
+    .attached-file-item {
+      padding: 7px 0;
+
+      .file-link {
+        color: #007bff;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    // transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    // transform: translateY(0);
+  }
+}

@@ -1,0 +1,96 @@
+.notification-modal {
+    .notification-container {
+        margin: 10px 20px;
+
+        .label {
+            padding: 0;
+            width: 100%;
+            max-width: 210px;
+
+        }
+
+        .input-content {
+            padding: 0;
+            max-width: 300px;
+            width: 100%;
+        }
+        .form-group{
+            margin-top: 30px;
+        }
+
+        .notification-header {
+            .text {
+                font-weight: 600;
+                font-size: 24px;
+            }
+
+            .close-image {
+                height: 21px;
+                width: 21px;
+            }
+        }
+
+        .notificatin-form {
+            margin-top: 70px;
+
+            .tab-content {
+                width: 100%;
+                max-width: 616px;
+                border-radius: 4px;
+                border: 5px solid #dce7ec;
+
+                .radio-button-item {
+                    width: 33.33333%;
+                    padding: 9px 52px;
+                    color: #71b1d5;
+                    background: #f1f1f1;
+                    border-right: 3px solid #dce7ec;
+                    transition: .5s all ease-out;
+
+                    &:last-child {
+                        border: none !important;
+                    }
+                }
+            }
+
+            .checkbox-container {
+                width: 100%;
+                .checkbox-item {
+                    width: 50%;
+
+                    .checkbox-content {
+                        margin-bottom: 25px;
+                    }
+                }
+            }
+        }
+           .save-button {
+            color: white;
+            background: #3399cc;
+            padding: 17px 63px;
+            margin: 40px auto;
+        }
+    }
+}
+
+.activeTab {
+    color: white !important;
+    background: #3399cc !important;
+}
+
+.wrap-checkbox-label{
+    max-width: 100%;
+    word-break: break-word;
+    white-space: normal;
+}
+
+// ::ng-deep .mat-dialog-container {
+//     padding: 0 !important;
+// }
+
+::ng-deep .mat-radio-container {
+    display: none !important;
+}
+::ng-deep .mat-checkbox{
+    margin-right: 19px !important;
+}

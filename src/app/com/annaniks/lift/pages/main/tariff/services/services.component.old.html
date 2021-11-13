@@ -1,0 +1,146 @@
+<section class="connected-services">
+    <h2 class="connected-services__title">Подключенные услуги</h2>
+    <ul class="connected-services__list">
+
+        <li class="connected-services__item connected-services__item--connected">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.statistics; else statOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #statOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Статистика
+        </li>
+        <li class="connected-services__item connected-services__item--connected">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.autoPosting; else autoPostOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #autoPostOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Автопостинг
+        </li>
+        <li class="connected-services__item ">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.getSubscibers; else subsciberOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #subsciberOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Получение подписчиков
+        </li>
+        <li class="connected-services__item connected-services__item--connected">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.directAndMailing; else mailingOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #mailingOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Директ и рассылка
+        </li>
+        <li class="connected-services__item ">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.increaseCoverage; else coverageOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #coverageOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Повышение охватов
+        </li>
+        <li class="connected-services__item ">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.deleteSubscibers; else deleteSubOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #deleteSubOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Удаление мертвых подписчиков
+        </li>
+        <li class="connected-services__item connected-services__item--connected">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.getActivity; else getActivityOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #getActivityOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Получение активности
+        </li>
+        <li class="connected-services__item connected-services__item--connected">
+            <svg
+                class="connected-services__item-icon"
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <ng-container *ngIf="orderedServices.getAccounts; else getAccountsOffBlock">
+                <use xlink:href="#icon-checked"></use>
+              </ng-container>
+              <ng-template #getAccountsOffBlock>
+                <use xlink:href="#icon-unchecked"></use>
+              </ng-template>
+            </svg>
+            Количество аккаунтов - {{accounts}}шт.
+        </li>
+
+    </ul>
+    <p class="connected-services__end-date">
+        Срок действия услуг заканчивается {{validUntil}}г.
+    </p>
+</section>

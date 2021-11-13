@@ -1,0 +1,96 @@
+@import "variables";
+
+.user-details {
+  padding: 30px 15px 25px;
+
+  @media (max-width: $desktop_width) {
+    padding: 30px 0 25px;
+  }
+
+  @media (max-width: $tablet_width) {
+    flex-direction: column;
+  }
+
+  .user-details-left {
+    .user-image {
+      width: 130px;
+      height: 130px;
+      margin-right: 45px;
+
+      @media (max-width: $tablet_width) {
+        margin-right: 0;
+      }
+    }
+
+    .user-details-left-botton-content {
+      margin-top: 15px;
+      display: none;
+    }
+  }
+
+  .user-details-right {
+    .user-details-right-top-content {
+      @media (max-width: $tablet_width) {
+        justify-content: center;
+      }
+
+      .user-name {
+        font-family: "SF UI Display Regular";
+        font-weight: 600;
+        font-size: 24px;
+        color: rgb(60, 60, 60);
+        line-height: 1.2;
+        padding: 10px 16px 10px 0;
+
+        @media (max-width: $tablet_width) {
+          padding-left: 16px;
+        }
+
+        @media (max-width: $mobile_width) {
+          font-size: 22px;
+          padding-bottom: 8px;
+        }
+      }
+
+      .button {
+        background-color: #3399cc;
+        border-color: #3399cc;
+        color: #ffffff;
+        font-family: "SF UI Display SemiBold";
+        font-size: 15px;
+
+        @media (max-width: $tablet_width) {
+          display: none;
+        }
+      }
+    }
+
+    .user-details-right-bottom-content {
+      margin-left: -10px;
+      display: flex;
+      flex-wrap: wrap;
+
+      @media (max-width: $tablet_width) {
+        margin-left: 0;
+      }
+
+      @media (max-width: $mobile_width) {
+        flex-direction: column;
+      }
+
+      .subscription-text {
+        padding: 10px;
+        font-size: 18px;
+
+        @media (max-width: $mobile_width) {
+          font-size: 17px;
+          padding: 9px;
+        }
+
+        b {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

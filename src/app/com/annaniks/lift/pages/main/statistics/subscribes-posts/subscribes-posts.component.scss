@@ -1,0 +1,225 @@
+@import "variables";
+
+.sp-container {
+  background-color: #f6f8f9;
+  padding-bottom: 45px;
+
+  .post-statistic-heading {
+    position: relative;
+    padding: 40px 0 30px 0;
+
+    h4 {
+      font-family: "SF UI Display Semibold";
+      padding-right: 20px;
+
+      @media (max-width: $desktop_width) {
+        font-size: 22px;
+      }
+
+      @media (max-width: $tablet_width) {
+        font-size: 20px;
+      }
+
+      b {
+        white-space: nowrap;
+      }
+    }
+
+    .post-statistic-manage {
+      cursor: pointer;
+      position: absolute;
+      top: 48px;
+      right: 0;
+
+      span {
+        font-family: "SF UI Display Regular";
+        color: #7d7d7d;
+        font-size: 18px;
+        padding-right: 26px;
+
+        @media (max-width: $tablet_width) {
+          font-size: 0;
+        }
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+  .post-statistic-sources {
+    display: none;
+    margin-bottom: 38px;
+
+    img {
+      margin-left: 10px;
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      border: 1px solid #d7d7d7;
+      margin-bottom: 38px;
+    }
+  }
+
+  .post-statistic-chart-heading {
+    display: flex;
+    height: 30px;
+    background-color: #eef1f2;
+
+    .post-statistic-action {
+      border-top: none;
+      border-bottom: none;
+      border-right: 1px solid #d2d2d2;
+      padding: 0 11px;
+      background: transparent;
+      font-size: 14px;
+      color: #3d3d3d;
+      font-family: "SF UI Display Regular";
+
+      &.active {
+        background-color: #3399cc;
+        color: white;
+      }
+    }
+  }
+
+  .business-account-statistics {
+    margin-top: 50px;
+  }
+
+  .pie-statistic-chart-heading {
+    display: flex;
+    justify-content: center;
+    margin: 63px 0 20px 0;
+
+    .pie-statistic-action {
+      border: none;
+      background: transparent;
+      color: #7d7d7d;
+      margin: 0 10px;
+      font-family: "SF UI Display Medium";
+
+      &.active {
+        background: #a0b0bc;
+        border-radius: 2px;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .form-group {
+    display: none;
+    margin: 30px auto;
+    width: 95%;
+  }
+
+  .chart-map {
+    display: flex;
+    align-items: center;
+
+    .pie-chart {
+      width: 660px !important;
+      height: 330px !important;
+    }
+
+    .map-container {
+      display: flex;
+      height: 100%;
+      width: 50%;
+    }
+
+    #map {
+      width: 100%;
+      height: 320px;
+      margin: auto;
+    }
+  }
+
+  h4 {
+    font-family: "SF UI Display Semibold";
+
+    font-size: 24px;
+    color: #3d3d3d;
+
+    &.statistic-by-day-heading {
+      margin: 35px 0 50px 0;
+    }
+
+    span {
+      color: #3399cc;
+      text-decoration: underline;
+      text-decoration-style: dashed;
+    }
+  }
+
+  .table-heading {
+    // max-width: 900px;
+  }
+
+  .sp-table {
+    color: #7d7d7d;
+    margin-bottom: 27px;
+    overflow-x: auto;
+    // max-width: 900px;
+
+    td,
+    th {
+      vertical-align: middle;
+      border: none;
+      padding: 0;
+      font-family: "SF UI Display Regular";
+    }
+
+    th {
+      font-weight: 400;
+    }
+
+    tbody {
+      tr {
+        height: 70px;
+        border-bottom: 1px solid #e9e9e9;
+        font-family: "SF UI Display Regular";
+      }
+    }
+
+    td {
+      img {
+        width: 63px;
+        height: auto;
+      }
+
+      .caption {
+        margin-left: 10px;
+        max-width: 350px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .load-more {
+    border-radius: 2px;
+    border: none;
+    background-color: #f4f4f4;
+    width: 100%;
+    padding: 29px 0 25px 0;
+    font-size: 16px;
+    color: #7d7d7d;
+    font-family: "SF UI Display Regular";
+  }
+}
+
+:host ::ng-deep .mat-form-field-infix {
+  width: auto;
+}
+
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  display: none !important;
+}

@@ -1,0 +1,79 @@
+variables:
+  KUBECONFIG: /etc/deploy/config
+  KUBERNETES_CPU_REQUEST: 3
+  KUBERNETES_CPU_LIMIT: 5
+  KUBERNETES_MEMORY_REQUEST: 512Mi
+  KUBERNETES_MEMORY_LIMIT: 1Gi
+  KUBERNETES_EPHEMERAL_STORAGE_REQUEST: 512Mi
+  KUBERNETES_EPHEMERAL_STORAGE_LIMIT: 1Gi
+  KUBERNETES_HELPER_CPU_REQUEST: 3
+  KUBERNETES_HELPER_CPU_LIMIT: 5
+  KUBERNETES_HELPER_MEMORY_REQUEST: 512Mi
+  KUBERNETES_HELPER_MEMORY_LIMIT: 1Gi
+  KUBERNETES_HELPER_EPHEMERAL_STORAGE_REQUEST: 512Mi
+  KUBERNETES_HELPER_EPHEMERAL_STORAGE_LIMIT: 1Gi
+
+  KUBERNETES_SERVICE_CPU_REQUEST: 3
+  KUBERNETES_SERVICE_CPU_LIMIT: 5
+  KUBERNETES_SERVICE_MEMORY_REQUEST: 512Mi
+  KUBERNETES_SERVICE_MEMORY_LIMIT: 1Gi
+  KUBERNETES_SERVICE_EPHEMERAL_STORAGE_REQUEST: 512Mi
+  KUBERNETES_SERVICE_EPHEMERAL_STORAGE_LIMIT: 1Gi
+
+
+before_script:
+  - export SERVICE_NAME=$(echo $CI_JOB_NAME | awk '{split($0,a,":");print a[1]}')
+  - export IMAGE_FULL_NAME=${CI_REGISTRY_IMAGE}:${CI_COMMIT_BRANCH}
+
+
+stages:
+  - build
+  - deploy
+
+build_docker_image_master:
+  stage: build
+  image:
+    name: gitlab-registry.cern.ch/ci-tools/docker-image-builder
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --cache --cache-ttl 1440h --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $IMAGE_FULL_NAME
+  retry: 2
+  only:
+    - master
+
+build_docker_image_dev:
+  stage: build
+  image:
+    name: gitlab-registry.cern.ch/ci-tools/docker-image-builder
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --cache --cache-ttl 1440h --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile_dev --destination $IMAGE_FULL_NAME
+  retry: 2
+  only:
+    - dev
+
+deploy_staging_kubernetes_master:
+    stage: deploy
+    image:
+      name: lwolf/helm-kubectl-docker:latest
+    script:
+      - mkdir -p /etc/deploy
+      - echo ${KUBE_CONFIG} | base64 -d > ${KUBECONFIG}
+      - kubectl rollout restart deployment web-application
+    only:
+      - master
+
+deploy_staging_kubernetes_dev:
+    stage: deploy
+    image:
+      name: lwolf/helm-kubectl-docker:latest
+    script:
+      - mkdir -p /etc/deploy
+      - echo ${KUBE_CONFIG} | base64 -d > ${KUBECONFIG}
+      - kubectl rollout restart deployment web-application-dev
+    only:
+      - dev

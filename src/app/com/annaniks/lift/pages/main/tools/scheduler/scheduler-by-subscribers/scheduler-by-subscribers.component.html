@@ -1,0 +1,25 @@
+<div class="subscribed-to-container">
+    <div class="subscribed-to" [ngClass]="{'invalid':accounts.invalid && accounts.touched}">
+        <p-autoComplete maxlength="50" field="username" placeholder="Введите имена аккаунтов" [formControl]="accounts"
+            [suggestions]="searchValue$ | async" (completeMethod)="search($event)" [multiple]="true">
+            <ng-template let-user pTemplate="item">
+                <div class="d-flex align-items-center">
+                    <img [src]="user.profile_pic_url" class="rounded-circle" height="32" />
+                    <div class="ml-1">{{user.username}}</div>
+                </div>
+            </ng-template>
+        </p-autoComplete>
+    </div>
+    <div *ngIf="accounts?.value.length > 0" (click)="clearAll()" class="clear-all-fields">
+        <img src="assets/icons/trash.png">
+        <p>очистить все</p>
+    </div>
+</div>
+<!-- <div class="inline-checkoxes">
+    <mat-checkbox>
+        Взаимодействовать с публикациями последних </mat-checkbox>
+    <span class="checkbox-label">
+        <input OnlyNumber="true" class="range-input" type="text"> дней
+    </span>
+</div>
+<hr> -->

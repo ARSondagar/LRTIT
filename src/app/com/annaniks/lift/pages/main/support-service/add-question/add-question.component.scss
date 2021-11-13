@@ -1,0 +1,135 @@
+@import "variables";
+
+.add-question-container {
+  .add-question-header {
+    align-items: center;
+
+    .text {
+      font-weight: 600;
+      font-size: 24px;
+    }
+
+    .close-icon {
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  .add-question-form {
+    margin-top: 45px;
+
+    @media (max-width: $tablet_width) {
+      margin-top: 35px;
+    }
+
+    .inputs-wrapper {
+      @media (max-width: $tablet_width) {
+        flex-wrap: wrap;
+      }
+
+      .input-content {
+        padding: 0;
+        max-width: 300px;
+        width: 100%;
+        color: #7d7d7d;
+
+        &:not(:first-child) {
+          margin-left: 15px;
+        }
+
+        @media (max-width: $tablet_width) {
+          max-width: 100%;
+          margin-top: 15px;
+
+          &:not(:first-child) {
+            margin-left: 0;
+          }
+        }
+
+        input {
+          height: 100%;
+        }
+      }
+    }
+
+    .text-area {
+      .text-area-content {
+        max-height: 140px;
+        min-height: 140px;
+      }
+    }
+
+    .submit-button-content {
+      margin-top: 20px;
+
+      @media (max-width: $mobile_width) {
+        flex-wrap: wrap;
+      }
+
+      .submit-button {
+        color: #fff;
+        background: #3399cc;
+        padding: 17px 61px;
+
+        @media (max-width: $mobile_width) {
+          width: 100%;
+          order: 2;
+          padding: 7px 61px;
+          margin-top: 10px;
+        }
+      }
+
+      .label {
+        color: #7d7d7d;
+        font-size: 18px;
+      }
+
+      .file-icon {
+        height: 20px;
+        width: 14px;
+      }
+    }
+  }
+}
+
+
+.attached-files-container {
+  padding: 10px 0;
+
+  .text {
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    color: #7d7d7d;
+    margin-bottom: 10px;
+  }
+
+  .attached-file-item {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px 0;
+    padding-right: 10px;
+    position: relative;
+    margin-right: 10px;
+
+    .delete-icon {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    &:hover {
+      .delete-icon {
+        display: block;
+      }
+    }
+  }
+}
+
+.border {
+  border: 1px solid red !important;
+}

@@ -1,0 +1,71 @@
+@import "variables";
+
+.condition {
+  display: flex;
+  align-items: center;
+  padding: 27px 0;
+  border-top: 1px solid #d7d7d7;
+
+  &-index {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #919191;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  &-select {
+    width: 338px;
+    margin-right: 20px;
+  }
+
+  .icon-remove {
+    margin-left: auto;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+
+      @media (max-width: 700px) {
+        margin-right: 0;
+      }
+    }
+
+    p {
+      font-family: "SF UI Display Regular";
+      font-size: 16px;
+      color: #7d7d7d;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+
+      @media (max-width: 700px) {
+        font-size: 0;
+      }
+    }
+  }
+}
+
+.condition-subtitle {
+  font-family: "SF UI Display Regular";
+  font-size: 18px;
+  color: #3d3d3d;
+  margin-bottom: 18px;
+}
+
+.comment, .likes {
+  ::ng-deep {
+    .subscribed-to {
+      font-family: "SF UI Display Regular";
+      //padding: 8px 20px !important;
+    }
+  }
+}

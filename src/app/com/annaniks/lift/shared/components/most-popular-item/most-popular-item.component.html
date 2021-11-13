@@ -1,0 +1,37 @@
+<div *ngIf="mode == 'normal'" class="most-popular-item w-100 position-relative">
+    <div class="bookmark"><img src="assets/article/bookmark_icon.png" alt=""></div>
+    <!-- <div> <img class="header" [src]="articleData.imageUrl" alt=""> </div> -->
+    <a *ngIf="!inDetailView" [routerLink]="['/','articles','category','list']"
+        [queryParams]="{'categoryId': articleData.category[0]?.categoryId,'pageIndex':'1'}">
+        <div class="header" [ngStyle]="{'background-image': 'url(' + fileUrl +  articleData.path + ')'}"></div>
+    </a>
+    <a *ngIf="inDetailView" [routerLink]="['/','articles','category','post',articleData.id]">
+        <div class="header" [ngStyle]="{'background-image': 'url(' + fileUrl +  articleData.path + ')'}"></div>
+    </a>
+    <div class="article-categories d-flex flex-wrap">
+        <a *ngFor="let category of articleData.category" [routerLink]="['/','articles','category','list']"
+            [queryParams]="{'categoryId': category.categoryId,'pageIndex':'1'}">
+            <div [style.border-color]="category.parent.color" class="category-item">
+                <p [style.color]="category.parent.color">{{category.parent.title}}</p>
+            </div>
+        </a>
+    </div>
+    <div class="title">
+        <a *ngIf="!inDetailView" [routerLink]="['/','articles','category','list']"
+            [queryParams]="{'categoryId': articleData.category[0]?.categoryId,'pageIndex':'1'}">
+            <p>{{articleData.title}}</p>
+        </a>
+        <a *ngIf="inDetailView" [routerLink]="['/','articles','category','post',articleData.id]">
+            <p>{{articleData.title}}</p>
+        </a>
+    </div>
+    <div class="article-status position-absolute" *ngIf="articleData.status == 'new'">
+        <p>новое</p>
+    </div>
+</div>
+<div *ngIf="mode == 'skeleton'" class="category-skeleton">
+    <div class="bookmark"></div>
+    <div class="header"></div>
+    <div class="category"></div>
+    <div class="title"></div>
+</div>

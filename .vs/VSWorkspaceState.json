@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\com",
+    "\\src\\app\\com\\annaniks",
+    "\\src\\app\\com\\annaniks\\lift",
+    "\\src\\app\\com\\annaniks\\lift\\pages",
+    "\\src\\app\\com\\annaniks\\lift\\pages\\main",
+    "\\src\\app\\com\\annaniks\\lift\\pages\\main\\promotion",
+    "\\src\\app\\com\\annaniks\\lift\\pages\\main\\promotion\\auto-subscribe-or-watch-story"
+  ],
+  "SelectedNode": "\\src\\app\\com\\annaniks\\lift\\pages\\main\\promotion\\auto-subscribe-or-watch-story\\auto-subscribe-watch-story.component.ts",
+  "PreviewInSolutionExplorer": false
+}

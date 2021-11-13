@@ -1,0 +1,33 @@
+<div class="pg-container most-popular">
+    <app-search (ngChanged)="onSearchArticles($event)" [options]="searchResult" class="search">
+      <div [routerLink]="'/articles/category/post/' + item.id" class="search-result" *ngFor="let item of searchResult">
+        <img class="list-image" [src]="fileUrl + item.path" alt="">
+        <div class="list-text" style="font-size:18px;">
+          {{item.title}}
+        </div>
+      </div>
+    </app-search>
+    <div class="most-popular-container d-flex flex-wrap" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+        [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
+        <ng-container>
+            <ng-container *ngFor="let preview of showArticleData;let ind = index">
+                <app-most-popular-item [mode]="'normal'" [style.width]="ind < 2 ? '50%' : '33.3%'"
+                    class="most-popular-item" [data]="preview"></app-most-popular-item>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!showItems">
+            <ng-container *ngFor="let preview of [1,2,3,4,5,6,7,8,9];let ind = index">
+                <app-most-popular-item [mode]="'skeleton'" [style.width]="ind < 2 ? '50%' : '33.3%'"
+                    class="most-popular-item" [data]="preview"></app-most-popular-item>
+            </ng-container>
+        </ng-container>
+    </div>
+
+    <!-- <ng-container>
+        <ng-container *ngFor="let preview of articles;let ind = index">
+            <app-most-popular-item [mode]="'normal'" [style.width]="'33.3%'" class="most-popular-item" [data]="preview">
+            </app-most-popular-item>
+        </ng-container>
+    </ng-container> -->
+
+</div>

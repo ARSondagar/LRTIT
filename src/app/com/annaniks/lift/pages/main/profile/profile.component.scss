@@ -1,0 +1,73 @@
+@import "variables";
+
+.profile-container {
+  // margin-top: 42px;
+  .profile-content {
+    margin-top: 33px;
+
+    .tab-inner {
+      background: #f6f6f6;
+      padding: 53px;
+
+      @media (max-width: $tablet_width) {
+        padding: 35px;
+      }
+
+      @media (max-width: $mobile_width) {
+        padding: 15px;
+      }
+    }
+
+    .profile-tab {
+      .profile-tab-content {
+        .tab-item {
+          cursor: pointer;
+          height: 50px;
+          flex-grow: 1;
+          max-width: 280px;
+          margin-left: 3px;
+          padding: 0;
+          transition: 0.2s ease-out all;
+          background-color: #dddddd;
+
+          @media (max-width: 600px) {
+            max-width: 33%;
+          }
+
+          @media (max-width: $mobile_width) {
+            max-width: 100%;
+            width: 100%;
+            margin-left: 0;
+          }
+
+          .tab-text {
+            margin: auto;
+            padding: 0 8px;
+            font-weight: 600;
+
+            @media (max-width: 800px) {
+              font-size: 14px;
+            }
+
+            @media (max-width: 600px) {
+              max-width: 75%;
+            }
+
+            @media (max-width: $mobile_width) {
+              font-size: 16px;
+            }
+          }
+
+          &:first-child {
+            margin-left: 0px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.activeTab {
+  background: #f6f6f6 !important;
+  border-top: 4px solid #3399cc !important;
+}

@@ -1,0 +1,246 @@
+@import "~ng-zorro-antd/badge/style/index.min.css";
+@import "~ng-zorro-antd/switch/style/index.min.css";
+@import "~ng-zorro-antd/dropdown/style/index.min.css";
+@import "~ng-zorro-antd/date-picker/style/index.min.css";
+@import "variables";
+
+body {
+  font-family: "SF UI Display Regular" !important;
+
+  // min-width: 900px;
+  box-sizing: border-box;
+}
+
+div.block-curtain {
+  background-color: #9e9796c7;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  div.warning-message {
+    align-self: center;
+    text-align: center;
+
+    h2 {
+      font-size: xx-large;
+      font-weight: bold;
+      font-style: italic;
+      display: block;
+      color: #305976;
+      opacity: 1.0;
+    }
+  }
+}
+
+div.block-curtain-small {
+  background-color: #9e9796c7;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500; //1200;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  &.small-index {
+    z-index: 1;
+  }
+
+  div.warning-message {
+    align-self: center;
+    text-align: center;
+
+    h2 {
+      font-size: xx-large;
+      font-weight: bold;
+      font-style: italic;
+      display: block;
+      color: #305976;
+      opacity: 1.0;
+
+      &:last-child {
+        margin-top: 200px;
+      }
+    }
+  }
+}
+
+.balance__payment-button {
+  padding: 22px 33px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  background-color: #3398cc;
+  border: none;
+  border-radius: 4px;
+  margin-top: 32px;
+}
+.balance__payment-button:hover, .balance__payment-button:focus {
+  opacity: 0.8;
+}
+.balance__payment-button:active {
+  opacity: 0.7;
+}
+@media (max-width: 950px) {
+  .balance__payment-button {
+    right: 35px;
+    bottom: 35px;
+    padding: 16px 25px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 650px) {
+  .balance__payment-button {
+    display: block;
+    width: 80%;
+
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+  }
+}
+@media (max-width: 450px) {
+  .balance__payment-button {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.blurred-text {
+  text-shadow: 0 0 3px #000 !important;
+}
+
+span.ui-autocomplete {
+  input.ui-autocomplete-input {
+    max-width: 500px !important;
+  }
+}
+
+.add-ps-container .mat-dialog-container {
+  background: #f6f8f9;
+
+  @media (max-width: $mobile_width) {
+    padding: 24px 18px !important;
+  }
+}
+
+.events-scheduler-dialog .mat-dialog-container {
+  padding: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.mat-dialog-container {
+  position: relative;
+}
+
+.full-screen-modal .mat-dialog-container {
+  max-width: none;
+}
+
+.scheduler-details .mat-dialog-container {
+  padding: 24px 40px;
+}
+
+.toast-error {
+  opacity: 0.9 !important;
+  transition: all 0.5s;
+}
+
+.ui-datepicker {
+  z-index: 1004 !important;
+}
+
+// Image Editor
+.tui-image-editor-header-logo {
+  display: none;
+}
+
+.tui-image-editor-header-buttons .tui-image-editor-download-btn {
+  display: none !important;
+}
+
+.account-switch {
+  .ant-dropdown-menu {
+    width: 190px;
+
+    .ant-dropdown-menu-item {
+      padding: 10px 12px;
+    }
+  }
+}
+
+.categories .scrollbar {
+  left: -300px !important;
+  min-width: calc(100% + 300px);
+  max-height: 300px !important;
+}
+
+.most-popular .scrollbar {
+  left: 0 !important;
+  max-width: 100%;
+  min-width: auto !important;
+}
+
+.lm-loader {
+  margin-left: 5px;
+}
+
+.save-button {
+  background: #3399cc;
+  color: white;
+  padding: 13px 34px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+a.disabled-link {
+  color: lightslategray !important;
+
+  &:hover {
+    cursor: auto;
+  }
+}
+
+div.sidenav.left {
+  z-index: 1500;
+  position: fixed;
+  left: 0;
+  top: 60px;
+}
+
+mat-dialog-container[id^='AccountConnectionDialog'] {
+  background-color: #a7a7a7 !important;
+}
+
+div#custom-modal-back-drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+
+  z-index: 2000;
+  background-color: gray;
+  opacity: 1;
+
+  display: block;
+}

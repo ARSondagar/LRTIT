@@ -1,0 +1,132 @@
+.scheduler-details {
+    .poster {
+        margin-top: 20px;
+        img {
+            border-radius: 6px;
+            width: 100%;
+            object-position: center;
+            object-fit: cover;
+        }
+    }
+    .title {
+        margin: 0 0 5px -30px;
+
+        span {
+            display: block;
+            color: #3d3d3d;
+            font-size: 20px;
+            font-family: "SF UI Display SemiBold";
+        }
+
+        img {
+            width: 14px;
+            height: 14px;
+            margin-right: 16px;
+        }
+    }
+    .subtitle {
+        span {
+            color: #3d3d3d;
+            font-size: 16px;
+            font-family: "SF UI Display Regular";
+        }
+    }
+    .parametres-container {
+        padding: 25px 0;
+        border-bottom: 1px solid #bfbfbf;
+        .parameter-item {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            div {
+                display: flex;
+                flex-wrap: wrap;
+                margin-left: 17px;
+                &:not(:first-child) {
+                    margin-left: 5px;
+                }
+
+                span {
+                    font-family: "SF UI Display Regular";
+                    font-size: 16px;
+                    color: #7d7d7d;
+                }
+            }
+            .hashtags-container {
+                margin-left: 22px;
+                .hashtag-item {
+                    background-color: #d7d7d7;
+                    border-radius: 4px;
+                    padding: 10px 12px 10px 13px;
+                    margin: 0 9px 7px 0;
+                    div {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                    input {
+                        font-family: "SF UI Display Regular";
+                        font-size: 16px;
+                        color: #3d3d3d;
+                        margin-right: 14px;
+                        background: transparent;
+                        border: transparent;
+                        border-radius: 4px;
+                        // &:focus {
+                        //   border: inset;
+                        // }
+                    }
+                    img {
+                        cursor: pointer;
+                    }
+                }
+            }
+            p {
+                color: 3d3d3d;
+                font-family: "SF UI Display SemiBold";
+                font-size: 16px;
+            }
+            &:not(:last-child) {
+                margin-bottom: 12px;
+            }
+            &:last-child {
+                p:not(:last-child) {
+                    margin-right: 50px;
+                }
+            }
+        }
+    }
+    .subscribe-statistics {
+        padding: 20px 0;
+        border-bottom: 1px solid #bfbfbf;
+        .item {
+            margin-bottom: 10px;
+            font-size: 16px;
+            .title-key {
+                font-family: "SF UI Display Regular";
+                color: #7d7d7d;
+            }
+            .value {
+                font-family: "SF UI Display SemiBold";
+                color: #3d3d3d;
+            }
+        }
+    }
+    .statistics-action {
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button {
+            border: none;
+            background: transparent;
+            font-family: "SF UI Display Regular";
+            font-size: 16px;
+            color: #7d7d7d;
+            padding: 0;
+            img {
+                padding-right: 8px;
+            }
+        }
+    }
+}

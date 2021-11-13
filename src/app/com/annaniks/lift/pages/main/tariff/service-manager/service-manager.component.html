@@ -1,0 +1,206 @@
+      <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85947000, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85947000" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<section class="services-settings">
+    <div class="toggled-head">
+        <h2 class="toggled-head__title">Управление услугами</h2>
+        <button class="toggled-head__toggle-button" (click)="listIsVisible = !listIsVisible">
+            <ng-container *ngIf="listIsVisible; else listIsHidden">
+              <span class="material-icons">keyboard_arrow_up</span>
+            </ng-container>
+            <ng-template #listIsHidden>
+              <span class="material-icons">keyboard_arrow_down</span>
+            </ng-template>
+      </button>
+    </div>
+
+    <form class="services-settings__main-form" [formGroup] = "profileForm" *ngIf="listIsVisible" (ngSubmit)="onClickSubmit()">
+        <p class="services-settings__note last-paragraph">
+            Вы можете в любой момент добавить к текущему тарифу дополнительные услуги, или отключить те, которыми не пользуетесь.
+            Итоговая стоимость пакета рассчитывается автоматически.
+        </p>
+        <div class="services-settings__content-top">
+            <div class="services-settings__statistic">
+                <div class="services-settings__statistic-info">
+                    <p class="services-settings__statistic-title">Статистика</p>
+                    <p class="services-settings__statistic-price">Бесплатно</p>
+                </div>
+                <p class="services-settings__statistic-status">Подключена</p>
+            </div>
+            <div class="services-settings__accounts-count">
+                <p class="services-settings__accounts-count-title">Количество аккаунтов</p>
+
+                <div class="custom-select" (click)="toggleAccountOptionOpened()">
+                    <button class="custom-select__choose-button" type="button">
+                        {{selectedAccountObject.text}}
+                        <svg
+                                class="custom-select__arrow-icon"
+                                width="14"
+                                height="7"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path opacity=".7" d="M14 0H0l7 7 7-7z" fill="#121111"/>
+                        </svg>
+                    </button>
+
+                    <ul class="custom-select__options-list" style="display: none;" id="custom-select-block">
+                      <li class="custom-select__option" *ngFor="let accountOption of availableAccounts; let i=index"
+                          [ngClass]="{'custom-select__option--active': accountOption.isSelected}"
+                          (click)="selectAccountOption(i, $event)">
+                        <label class="custom-select__option-label">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-8">{{accountOption.text}}</div>
+                              <div class="col-4 right-text-red" *ngIf="accountOption.discount > 0">-{{accountOption.discount}}%</div>
+                            </div>
+                          </div>
+                        </label>
+                      </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="services-settings__functions-select">
+
+            <section class="functions-select">
+                <div class="functions-select__top-wrapper">
+                    <h3 class="functions-select__title">Выбор функций</h3>
+                </div>
+
+                <div class="functions-select__middle-wrapper">
+                    <div class="functions-select__promotion">
+                        <h4 class="functions-select__promotion-title">Продвижение</h4>
+                        <div class="functions-select__promotion-checkboxes">
+
+                            <ul class="functions-list functions-list--dark">
+
+                                <li class="functions-list__item" *ngFor="let promo of getPromoList(true)">
+                                    <div class="functions-list__label">
+                                        <div class="functions-list__info-wrapper">
+                                            <p class="functions-list__name">{{promo.name}}</p>
+                                            <p class="functions-list__price">
+                                                {{promo.price}} руб. в месяц
+                                            </p>
+                                        </div>
+                                        <label class="functions-list__input-wrapper">
+                                            <input [disabled]="!promo.active || promo.id < 1"
+                                                    class="functions-list__input visually-hidden"
+                                                    name="getting_subscribers"
+                                                    [checked]="promo.isOrdered"
+                                                    (change)="toggleChecked(promo)"
+                                                    type="checkbox"
+                                            />
+                                            <span class="functions-list__toggle" [ngClass]="{'is-active': promo.active}"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="functions-select__other">
+
+                        <ul class="functions-list">
+
+                            <li class="functions-list__item" *ngFor="let promo of getPromoList(false)">
+                                <div class="functions-list__label">
+                                    <div class="functions-list__info-wrapper">
+                                        <p class="functions-list__name">{{promo.name}}</p>
+                                        <p class="functions-list__price">
+                                          {{promo.price}} руб. в месяц
+                                        </p>
+                                    </div>
+                                    <label class="functions-list__input-wrapper">
+                                        <input [disabled]="!promo.active  || promo.id < 1"
+                                            class="functions-list__input visually-hidden"
+                                            name="autoposting"
+                                            [checked]="promo.isOrdered"
+                                            (change)="toggleChecked(promo)"
+                                            type="checkbox"
+                                        />
+                                        <span class="functions-list__toggle" [ngClass]="{'is-active': promo.active}"></span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+                <p class="services-settings__note last-paragraph" style="font-size: 14px;">
+                    *данные функции находятся в разработке
+                </p>
+        </div>
+
+        <div class="services-settings__period-of-use" id="usage-period" (window:resize)="onResize($event)">
+
+            <section class="period-of-use">
+                <h2 class="period-of-use__title">Период пользования</h2>
+                <app-scroll-manager (onChangePeriod)="toggleDiscount($event)"
+                    [firstVisibleButton]="firstVisibleButton" [numberOfVisibleButtons]="numberOfVisibleButtons"
+                    [discounts]="discounts">
+                </app-scroll-manager>
+            </section>
+
+        </div>
+
+        <div class="services-settings__content-bottom">
+            <div class="services-settings__final-price-container">
+              <p class="services-settings__basic-price">
+                  Сумма услуг без скидок: {{noDiscountTotalFeeBasicPriceAll}}&nbsp;руб.
+              </p>
+              <p class="services-settings__discounts-sum small-font" *ngIf="discountForAll > 0">
+                Скидка за выбор всех функций: {{discountForAll}} %
+              </p>
+              <p class="services-settings__discounts-sum small-font"
+                  *ngIf="selectedAccountObject && (selectedAccountObject.discount > 0)">
+                Скидка за количество аккаунтов: {{selectedAccountObject.discount}} %
+              </p>
+              <p class="services-settings__discounts-sum small-font" *ngIf="totalDiscountPercent > 0">
+                Скидка за период пользования: {{totalDiscountPercent}} %
+              </p>
+              <p class="services-settings__discounts-sum">
+                Итоговая сумма скидок: {{totalDiscount}}&nbsp;руб
+              </p>
+              <p class="services-settings__discounts-sum noBottomMargin">
+                Ежедневное списание будет составлять: {{dailyTotalValue}}&nbsp;руб.
+              </p>
+              <p class="services-settings__discounts-sum">
+                При новых условиях срок действия услуг закончится: {{finishDateNew}}&nbsp;г.
+              </p>
+              <p class="services-settings__final-price">
+                Итоговая сумма услуг: {{totalDiscounted}}&nbsp;руб.
+              </p>
+            </div>
+            <div class="services-settings__buttons-container">
+                <button [disabled]="isLoading" (click)="onClickSave()"
+                        class="services-settings__save-button"
+                        type="button"
+                >
+                    Сохранить
+                </button>
+                <button [disabled]="isLoading"
+                        class="services-settings__submit-button"
+                        type="submit"
+                        oncklick="ym(85947000,'reachGoal','services-settings')"
+                >
+                    Оплатить {{getSelectedPeriod()}} дней
+                </button>
+            </div>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,175 @@
+@import 'variables';
+
+.presonal-settings-container {
+  .label {
+    padding: 0;
+    width: 100%;
+    max-width: 210px;
+  }
+
+  .input-content {
+    padding: 0;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .custom-select {
+    width: 113px;
+  }
+
+  .personal-settings-form {
+    &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      border: 1px solid #d7d7d7;
+      margin: 28px 0 28px 0;
+    }
+
+    .label {
+      margin-bottom: 10px;
+      font-weight: 700;
+      max-width: 210px;
+    }
+  }
+
+  .data-form {
+    .label {
+      @media (max-width: 750px) {
+        max-width: 100%;
+        width: 100%;
+        max-width: 210px;
+      }
+    }
+
+    .user-image {
+      border: 2px solid #63b0d6;
+      width: 65px;
+      height: 65px;
+    }
+
+    .help-image {
+      width: 20px;
+      height: 20px;
+    }
+
+    .data-text {
+      color: #a5cae1;
+    }
+
+    .input-item {
+      padding: 0;
+      max-width: 300px;
+      width: 100%;
+    }
+  }
+
+  .connected-accounts-content {
+    .connected-content {
+      width: 100%;
+
+      .connected-accounts {
+        .add-account {
+          cursor: pointer;
+        }
+        .connected-accounts-item {
+          padding: 5px;
+          margin-right: 43px;
+          position: relative;
+          &.ordinal {
+            &:hover > .delete-account {
+              display: block;
+            }
+            .delete-account {
+              display: none;
+            }
+          }
+          .delete-account {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+          }
+          .user-img {
+            position: relative;
+            .account-image {
+              display: block;
+              border: 2px solid #f6f6f6;
+              width: 65px;
+              height: 65px;
+              opacity: 1;
+              transition: 0.5s ease;
+              backface-visibility: hidden;
+            }
+            .account-change-overlay {
+              transition: 0.5s ease;
+              opacity: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              cursor: pointer;
+              .icon{
+                color:#305976;
+              }
+            }
+            &:hover {
+              .account-image {
+                opacity: 0.3;
+              }
+              .account-change-overlay {
+                opacity: 1;
+              }
+            }
+          }
+
+          .add-text {
+            color: #c1c0c0;
+          }
+
+          .add-image {
+            width: 49px;
+            height: 49px;
+          }
+        }
+      }
+
+      .description-text {
+        margin-top: 19px;
+        color: #8a9398;
+      }
+    }
+  }
+
+  .save-button {
+    color: white;
+    background: #71ceb5;
+    padding: 17px 98px;
+    margin: 20px auto 0;
+    white-space: nowrap;
+
+    @media (max-width: $mobile_width) {
+      padding: 10px 5%;
+      margin: 20px auto;
+      width: 100%;
+    }
+  }
+}
+
+.border-red {
+  border: 1px solid red !important;
+}
+
+::ng-deep mat-radio-button {
+  .mat-radio-container {
+    .mat-radio-outer-circle {
+      border-color: #3399cc !important;
+    }
+    .mat-radio-inner-circle {
+      background-color: #3399cc !important;
+    }
+  }
+}

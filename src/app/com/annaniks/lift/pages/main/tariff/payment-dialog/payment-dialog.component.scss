@@ -1,0 +1,148 @@
+:host {
+  position: relative;
+
+  div.close-bar {
+    width: 100%;
+    text-align: right;
+  }
+  @media (max-width: 650px) {
+    div.close-bar {
+      top: 0;
+      height: 32px;
+      padding: 0;
+      margin-top: 0;
+    }
+  }
+
+  span.close-btn {
+    display: block;
+    float: right;
+    margin-top: -38px;
+    margin-right: 16px;
+    font-size: 54px;
+    font-weight: lighter;
+    color: #828282;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  @media (max-width: 650px) {
+    span.close-btn {
+      margin-top: -14px;
+      margin-right: 0;
+    }
+  }
+
+  h2.dlg-title {
+    margin-top: 48px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 42px;
+    text-align: center;
+  }
+  @media (max-width: 650px) {
+    h2.dlg-title {
+      font-size: 32px;
+    }
+  }
+
+  div.amount-wrapper {
+    margin-top: 36px;
+    height: 72px;
+    width: 490px;
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+
+    input#amauntValue {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-color: #F6F6F6;
+
+      font-size: 32px;
+      font-weight: 500;
+      font-family: 'Roboto';
+      color: #3398CC;
+      border: none;
+    }
+
+    p.tool-tip {
+      width: 100%;
+      text-align: center;
+      margin-top: 16px;
+      color: #BDBDBD;
+    }
+  }
+  @media (max-width: 650px) {
+    div.amount-wrapper {
+      width: 100%;
+    }
+  }
+
+  .button-wrapper {
+    width: 487px;
+    height: 72px;
+    margin-top: 96px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+  }
+  @media (max-width: 650px) {
+    .button-wrapper {
+      width: 100%;
+    }
+  }
+
+
+  button.custom-blue-btn {
+    background-color: #3398CC;
+    color: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 28px;
+  }
+  @media (max-width: 650px) {
+    button.custom-blue-btn {
+      font-size: 18px;
+    }
+  }
+
+  div.small-text {
+    width: 100%;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #828282;
+    margin-top: 1ex;
+  }
+
+  mat-hint.small-text {
+    font-size: small;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+  }
+}
+
+div.wait-spinner {
+  position: fixed;
+  left: 64px;
+  top: 96px;
+  width: 100px;
+  height: 100px;
+  z-index: 1200;
+}
+
+mat-dialog-content {
+  overflow-y: hidden;
+}

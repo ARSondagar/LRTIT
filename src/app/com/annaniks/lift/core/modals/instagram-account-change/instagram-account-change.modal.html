@@ -1,0 +1,40 @@
+<div class="instagram-account-form">
+    <form [formGroup]="passwordForm">
+        <p class="error text-danger ">{{passwordErrorMessage}}</p>
+        <div class="form-group">
+            <label for="accountName" class="col-form-label label">Название аккаунта</label>
+            <div class="input-content">
+                <input id="accountName" name="accountName" placeholder="Название аккаунта" class="form-control here"
+                    type="accountName" formControlName="accountName"
+                    [ngClass]="{'border':checkIsValid(passwordForm,'accountName')}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="oldPassword" class="col-form-label label">Старый пароль </label>
+            <div class="input-content">
+                <input id="oldPassword" name="oldPassword" placeholder="Старый пароль " class="form-control here"
+                    type="password" formControlName="oldPassword"
+                    [ngClass]="{'border':checkIsValid(passwordForm,'oldPassword')}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="new-password" class="col-form-label label">Новый пароль</label>
+            <div class="input-content">
+                <input id="new-password" name="new-password" placeholder="Новый пароль" class="form-control here"
+                    type="password" formControlName="newPassword"
+                    [ngClass]="{'border':checkIsValid(passwordForm,'newPassword')}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="repeat-password" class="col-form-label label">Повторить пароль</label>
+            <div class="input-content">
+                <input id="repeat-password" name="repeat-password" placeholder="Повторить пароль"
+                    class="form-control here" type="password" formControlName="repeatPassword"
+                    [ngClass]="{'border':checkIsValid(passwordForm,'repeatPassword')}">
+            </div>
+        </div>
+        <button name="submit" type="submit" class="btn save-button d-flex" [disabled]="passwordForm.invalid  || loading"
+            (click)="onClickSave()">Изменить
+            пароль</button>
+    </form>
+</div>

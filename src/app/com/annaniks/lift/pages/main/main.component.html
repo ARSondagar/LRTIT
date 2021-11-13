@@ -1,0 +1,14 @@
+<div *ngIf="!isShowDisabledView" class="wrap">
+    <app-header></app-header>
+    <main class="main">
+        <ng-container *ngIf="submenuIsVisible$ | async">
+          <app-submenu></app-submenu>
+        </ng-container>
+        <router-outlet></router-outlet>
+    </main>
+    <footer-navigation></footer-navigation>
+</div>
+
+<!-- <div *ngIf="isShowDisabledView" class="se-pre-con">
+  <h1>Cтатистика появится после подключения аккаунта.</h1>
+</div> -->

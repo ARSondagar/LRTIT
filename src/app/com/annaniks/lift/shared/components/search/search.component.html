@@ -1,0 +1,23 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <form class="search" [formGroup]="form" (submit)="submit()">
+    <div class="search-field-wrap" #wrap>
+      <input #searchField formControlName="search" type="text" placeholder="Поиск" (input)="onInput()" class="search-field">
+      <perfect-scrollbar class="scrollbar" [ngClass]="{'showResult': showResult && isActive}">
+        <div (click)="reset()" #scrollbarContent>
+          <ng-content></ng-content>
+        </div>
+      </perfect-scrollbar>
+    </div>
+    <button class="btn search-button" type="submit">Поиск</button>
+  </form>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>
+
+

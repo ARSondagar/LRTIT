@@ -1,0 +1,41 @@
+@import "../../../../../../../assets/scss/styles/_auth-forms.css";
+@import "variables";
+
+.accounts-content-modal {
+  .text {
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .h3 {
+    @media (max-width: $mobile_width) {
+      font-size: 20px;
+    }
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 99;
+  }
+}
+
+.registr-btn {
+  background: #305976 !important;
+  color: white;
+}
+
+.new-accont-btn {
+  background-color: #3399cc !important;
+  border-color: #3399cc !important;
+  color: white !important;
+}
+
+.form-signin {
+  position: relative;
+
+  input {
+    margin: 10px 0;
+  }
+}

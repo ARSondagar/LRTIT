@@ -1,0 +1,29 @@
+<div [formGroup]="locationForm" class="account-by-location-container">
+    <div class="account-by-location">
+        <div class="location-item"
+            [ngClass]="{'invalid':itemsControl?.controls[i]?.invalid && itemsControl?.controls[i]?.touched}"
+            formArrayName="items" *ngFor="let item of itemsControl?.controls; let i = index;">
+            <div [formGroupName]="i">
+                <img src="assets/icons/location.png" alt="">
+                <p-autoComplete maxlength="25" field="name" formControlName="label" [suggestions]="searchValue"
+                    (completeMethod)="search($event)"
+                    (onSelect)="onPlaceSelect(i, $event)"
+                    [size]="item.get('label')?.value?.length || item.get('label')?.value?.name?.length || 5">
+                    <ng-template let-place pTemplate="pItem">
+                      {{place.name}}
+                    </ng-template>
+                    <ng-template let-place pTemplate="pSelectedItem">
+                      {{place.name}}
+                    </ng-template>
+                </p-autoComplete>
+                <img (click)="deleteLocation(i)" src="assets/icons/delete-1.png">
+            </div>
+        </div>
+        <p (click)="addItem()" class="add-location">Добавить локацию</p>
+    </div>
+    <div *ngIf="itemsControl.controls.length > 0" (click)="clearAll()" class="clear-all-fields">
+        <img src="assets/icons/trash.png">
+        <p>очистить все</p>
+    </div>
+</div>
+<div id="map"></div>

@@ -1,0 +1,328 @@
+@import "variables";
+
+.add-ps-title {
+  font-family: "SF UI Display Semibold";
+  color: #3d3d3d;
+  font-size: 24px;
+  margin-bottom: 27px;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @media (max-width: $mobile_width) {
+    font-size: 21px;
+  }
+}
+
+.ps-container {
+  @media (max-width: $tablet_width) {
+    display: block !important;
+  }
+
+  .ps-body {
+    text-align: center;
+    width: 45%;
+    margin-right: 5%;
+
+    @media (max-width: $tablet_width) {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .photo-video-place {
+      cursor: pointer;
+      height: 100%;
+      max-height: 400px;
+      margin-bottom: 30px;
+
+      @media (max-width: $tablet_width) {
+        height: auto;
+      }
+
+      .inf {
+        font-size: 18px;
+        line-height: 1.2;
+        color: white;
+        padding: 20px 12px;
+
+        @media (max-width: $mobile_width) {
+          font-size: 16px;
+          padding: 12px;
+        }
+      }
+
+      .upload-area {
+        .upload-btn {
+          padding: 11px 29px;
+          -webkit-appearance: button;
+          -webkit-writing-mode: horizontal-tb !important;
+          text-rendering: auto;
+          letter-spacing: normal;
+          word-spacing: normal;
+          text-transform: none;
+          text-indent: 0;
+          text-shadow: none;
+          display: inline-block;
+          text-align: center;
+          align-items: flex-start;
+          cursor: pointer;
+          background-color: buttonface;
+          margin: 0;
+          border-width: 2px;
+          border-style: outset;
+          border-image: initial;
+        }
+      }
+    }
+
+    .drop-file {
+      background: #000;
+    }
+
+    .dropped-files {
+      position: relative;
+
+      img {
+        object-fit: contain;
+        object-position: center;
+        max-height: 400px;
+
+        @media (max-width: $mobile_width) {
+          max-height: 300px;
+        }
+      }
+
+      .close-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    .search-for-ideas {
+      font-family: "SF UI Display Semibold";
+      color: #49c59e;
+      font-size: 18px;
+      border-style: solid;
+      border-width: 2px;
+      border-color: rgb(73, 197, 158);
+      border-radius: 4px;
+      background-color: rgb(246, 246, 246);
+      padding: 12px 21px 13px 16px;
+
+      img {
+        margin-right: 11px;
+      }
+    }
+  }
+
+  .ps-tools {
+    width: 50%;
+
+    @media (max-width: $tablet_width) {
+      width: 100%;
+    }
+
+    .tools-list {
+      .tool-label {
+        font-family: "SF UI Display Regular";
+        font-size: 11px;
+        color: rgb(61, 61, 61);
+        line-height: 1.2;
+        margin-bottom: 5px;
+      }
+
+      .tool-item-arround {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        border: 1px solid #c8c8c8;
+        display: flex;
+
+        img {
+          margin: auto;
+        }
+      }
+    }
+
+    .description-form {
+      // margin-top: 40px;
+      img {
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+    }
+  }
+}
+
+
+.publish-now {
+  p.publish-now-text {
+    font-size: 18px;
+    font-family: "SF UI Display Regular";
+    color: rgb(61, 61, 61);
+    line-height: 1.2;
+
+    @media (max-width: $mobile_width) {
+      font-size: 16px;
+    }
+
+    span {
+      text-decoration: none;
+      color: #3399cc;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+  }
+
+  img {
+    margin-left: 6px;
+  }
+}
+
+.inline-checkoxes {
+  display: flex;
+  align-items: center;
+  white-space: normal;
+
+  .checkbox-label {
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    line-height: 48px;
+    color: #3d3d3d;
+    margin-left: 4px;
+  }
+
+  .range-input {
+    border-radius: 4px;
+    border: 2px solid #c2d0db;
+    height: 30px;
+    font-size: 14px;
+    width: 70px;
+    padding-left: 4px;
+  }
+}
+
+.add-ps-form {
+  margin-top: 21px;
+}
+
+.add-ps-actions {
+  margin-top: 30px;
+  justify-content: flex-end;
+
+  @media (max-width: $mobile_width) {
+    display: block !important;
+  }
+
+  button {
+    padding: 17px 46px;
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    border: none;
+
+    @media (max-width: $mobile_width) {
+      font-size: 17px;
+      padding: 12px 46px;
+      width: 100%;
+    }
+
+    &.publish {
+      border-radius: 4px;
+      background-color: rgb(51, 153, 204);
+      color: white;
+    }
+
+    &.save {
+      border-radius: 4px;
+      background-color: #3399cc;
+      color: white;
+    }
+
+    &.discard {
+      border-radius: 4px;
+      background-color: rgb(205, 205, 205);
+      color: #7d7d7d;
+      margin-right: 8px;
+
+      @media (max-width: $mobile_width) {
+        margin-bottom: 8px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+mat-checkbox {
+  ::ng-deep {
+    display: block;
+
+    .mat-checkbox-label {
+      font-family: "SF UI Display Regular";
+      font-size: 18px;
+      line-height: 1.2;
+      color: #3d3d3d;
+      white-space: normal !important;
+
+      @media (max-width: $mobile_width) {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+mat-accordion {
+  ::ng-deep {
+    .mat-expansion-panel {
+      &.settings {
+        margin-top: 35px;
+      }
+
+      box-shadow: none;
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgb(228, 228, 228);
+      background-color: rgb(238, 238, 238);
+    }
+
+    .mat-expansion-panel-body {
+      background: white;
+      padding: 11px 24px 8px;
+
+      @media (max-width: $mobile_width) {
+        padding: 11px 12px 12px;
+      }
+
+      .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background: #3d9ece !important;
+      }
+    }
+
+    .mat-expansion-panel-header {
+      @media (max-width: $mobile_width) {
+        padding: 0 12px !important;
+      }
+    }
+
+    .title {
+      font-family: "SF UI Display SemiBold";
+      font-size: 18px;
+      color: rgb(61, 61, 61);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-family: "SF UI Display Regular";
+      color: rgb(61, 61, 61);
+      line-height: 1.2;
+      margin-left: auto;
+      text-transform: uppercase;
+    }
+
+    .mat-expansion-indicator::after {
+      color: #3d9ece;
+    }
+  }
+}

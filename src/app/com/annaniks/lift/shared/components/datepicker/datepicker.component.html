@@ -1,0 +1,17 @@
+<nz-date-picker [formControl]="dateControl" [nzRenderExtraFooter]="extraFooter" [nzDisabledDate]="disabledDate"></nz-date-picker>
+<ng-template #extraFooter>
+    <div class="d-flex justify-content-between actions">
+        <div class="d-flex align-items-center active">
+            <em class="material-icons icon">done</em>
+            <p>сегодня</p>
+        </div>
+        <div class="d-flex align-items-center">
+            <em class="material-icons icon">remove</em>
+            <p>отменить</p>
+        </div>
+        <div class="d-flex align-items-center">
+            <em class="material-icons icon">close</em>
+            <p>закрыть</p>
+        </div>
+    </div>
+</ng-template>

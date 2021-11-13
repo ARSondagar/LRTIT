@@ -1,0 +1,56 @@
+<h3 class="add-ps-title"> {{title}}</h3>
+<p class="text-danger text-center">{{errorMessage}}</p>
+<form [formGroup]="addStoryForm" class="ps-container d-flex justify-content-between">
+    <div class="ps-body ">
+        <div class="photo-video-place drop-zone" (click)="openEditPic()">
+            <div class="drop-file d-flex align-items-center justify-content-center h-100" *ngIf="localImages.length==0">
+                <div class="center">
+                    <p class="inf">
+                        Нажмите сюда, <i class="text-nowrap">чтобы добавить историю</i>
+                    </p>
+                </div>
+            </div>
+            <div class="dropped-files h-100" *ngIf="localImages.length>0">
+                <img [src]="localImages[0]" class="w-100 h-100">
+                <i class="material-icons close-icon cursor-pointer" (click)="onClickRemove()">close</i>
+            </div>
+        </div>
+    </div>
+    <div class="ps-tools">
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="true" class="settings">
+                <mat-expansion-panel-header expandedHeight="47px">
+                    <mat-panel-title>
+                        <p class="title">Настройки</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="w-100">
+                    <div class="publish-now  w-100">
+                        <p class="publish-now-text">Опубликовать
+                            <span (click)="onClickShowCalendar()">{{selectedDate}}</span>
+                        </p>
+                        <mat-form-field [class.d-none]="!showCalendar">
+                            <input matInput formControlName="time">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+                        </mat-form-field>
+                    </div>
+                    <div class="add-ps-form" *ngIf="data.type == 'story'">
+                        <div class="inline-checkoxes" formGroupName="life">
+                            <mat-checkbox formControlName="status">Удаление истории через
+                                <span class="checkbox-label text-nowrap">
+                                    <input formControlName="count" OnlyNumber="true" class="range-input" type="text">
+                                    дней
+                                </span>
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div class="add-ps-actions d-flex">
+            <button class="discard" (click)="onClickCancel()">Отмена</button>
+            <button class="save" (click)="onClickCreate()" [disabled]="addStoryForm?.invalid || loading">Сохранить</button>
+        </div>
+    </div>
+</form>

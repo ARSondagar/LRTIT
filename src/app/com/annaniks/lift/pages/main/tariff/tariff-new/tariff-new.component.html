@@ -1,0 +1,41 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <div class="tarif-page">
+
+    <div class="title-row">
+
+      <app-balans [amount]="userDetails.balance" [dailyDiscount]="dailyDiscount"></app-balans>
+
+      <app-services [orderedServices]="allServices" [validUntil]="finishDate"></app-services>
+
+    </div>
+
+    <div class="service-manager-row">
+
+      <app-service-manager [statEnabled]="false"
+                           [availableAccounts]="allAccaunts"
+                           [discountPercent]="discountAll"
+                           [sliders]="allServices"
+                           [discounts]="allPeriods"
+                           [balans]="userDetails.balance"
+                           (dailyTotal)="dailyDiscountChanged($event)">
+      </app-service-manager>
+
+    </div>
+
+    <div class="transactions-row">
+      <app-transactions [history]="history" (getMore)="onGetMoreTransaction($event)">
+      </app-transactions>
+    </div>
+
+  </div>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>
+
+

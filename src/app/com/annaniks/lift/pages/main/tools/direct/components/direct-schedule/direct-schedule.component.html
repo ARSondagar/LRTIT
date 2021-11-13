@@ -1,0 +1,91 @@
+<div class="direct-schedule">
+    <div class="tab" [ngSwitch]="tab">
+        <div class="direct-schedule-tab d-flex">
+            <div class="direct-item cursor-pointer align-items-center" [ngClass]="{'activeTab':tab==1}"
+                (click)="onChangeTab('1')">
+                <span class="tab-text">Для только что подписавшихся</span>
+            </div>
+            <div class="direct-item cursor-pointer align-items-center" [ngClass]="{'activeTab':tab==2}"
+                (click)="onChangeTab('2')">
+                <span class="tab-text">Для всех подписчиков</span>
+            </div>
+        </div>
+        <div class="signature-content" *ngSwitchCase="1">
+            <form [formGroup]="signatureGroup">
+
+                <mat-checkbox class="w-100 d-block" formControlName="delayedSending">
+                    <div class="form-item lable">
+                        <span>Отложенная отправка через </span>
+                        <span [ngStyle]="{'color':'#69aed5'}" class="nowrap">
+                            <input min="0" max="24" class="select" type="number" formControlName="delayedSendingTime"> часа
+                            <img src="assets/icons/arrow_down.png" class="rounded img-responsive ml-2">
+                        </span>
+                    </div>
+                </mat-checkbox>
+                <!-- <mat-checkbox class="w-100 d-block" formControlName="dontSendIfCorrespondence">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Не отправлять, если есть переписка или запрос на переписку</p>
+                    </div>
+                </mat-checkbox> -->
+                <mat-checkbox class="w-100 d-block" formControlName="sendAfterSubscription">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Отправлять сообщение после подписки</p>
+                    </div>
+                </mat-checkbox>
+                <mat-checkbox class="w-100 d-block" formControlName="applyForSubscribers">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Применить фильтр для подписчиков</p>
+                    </div>
+                </mat-checkbox>
+                <mat-checkbox class="w-100 d-block" formControlName="mailingText">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Текст рассылки вручную </p>
+                    </div>
+                </mat-checkbox>
+            </form>
+        </div>
+        <div class="signature-content" *ngSwitchCase="2">
+            <form [formGroup]="oldMailings">
+                <div class="publish-now d-flex align-items-center w-100">
+                    <p (click)="onClickShowCalendar()" class="publish-now-text lable">Начало
+                    </p>
+                    <mat-form-field>
+                        <input placeholder="Выберите дату" matInput [min]="minDate" [ngxMatDatetimePicker]="picker"
+                            formControlName="start">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+                    </mat-form-field>
+                </div>
+                <mat-checkbox class="w-100 d-block" formControlName="durationStatus">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Длительность</p>
+                        <input min="0" max="24" class="select ml-2" type="number" formControlName="duration">
+                        <p class="ml-2 lable">часа</p>
+
+                        <!-- <img src="assets/icons/arrow_down.png" class="rounded img-responsive  ml-3"> -->
+                    </div>
+                </mat-checkbox>
+                <mat-checkbox class="w-100 d-block" formControlName="lastDaysStatus">
+                    <div class="form-item lable d-flex flex-wrap">
+                        <span class="nowrap mr-1">Не рассылать подписчикам,</span>
+                        <span>добавленным за последние
+                            <span class="nowrap">
+                                <input min="0" max="24" class="select" type="number" formControlName="lastDays"> дней
+                            </span>
+                        </span>
+                    </div>
+                </mat-checkbox>
+                <mat-checkbox class="w-100 d-block" formControlName="applyForSubscribers">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Применить фильтр для подписчиков</p>
+                    </div>
+                </mat-checkbox>
+                <mat-checkbox class="w-100 d-block" formControlName="mailingText">
+                    <div class="form-item d-flex align-items-center">
+                        <p class="lable">Текст рассылки вручную </p>
+                    </div>
+                </mat-checkbox>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div [class.loading]="mode == 'skeletion'" *ngIf="directMessage?.item_type != 'action_log'"
+    [ngClass]="!isIncoming ? 'incoming-msg' : 'outgoing-msg flex-row-reverse'"
+    class="d-flex align-items-start msg-item">
+
+    <div *ngIf="(previousMessage?.user_id != directMessage?.user_id) || (mode == 'skeletion')" class="message-msg-img">
+        <img *ngIf="mode != 'skeletion'" [src]="userPhoto">
+    </div>
+
+    <div class="message-msg-text"
+        [ngClass]="((previousMessage?.user_id == directMessage?.user_id) && (mode != 'skeletion')) ? 'additional' : 'first'">
+
+        <span *ngIf="mode == 'skeletion'" class="message-msg-text-sceletion"></span>
+        <span *ngIf="mode == 'skeletion'" class="message-msg-text-sceletion"></span>
+        <span *ngIf="mode == 'skeletion'" class="message-msg-text-sceletion"></span>
+
+        <span class="message-body">{{directMessage?.text}}</span>
+        <div *ngIf="directMessage?.item_type =='video_call_event'">
+            <span>{{directMessage?.video_call_event?.description}}</span>
+        </div>
+        <div *ngIf="directMessage?.reel_share?.type=='reaction'" class="story-replay position-relative">
+            <span>Реакция на вашу историю {{directMessage?.reel_share?.reaction_info?.emoji}}</span>
+            <img [width]="directMessage?.reel_share?.media?.image_versions2?.candidates[1].width"
+                [height]="directMessage?.reel_share?.media?.image_versions2?.candidates[1].height"
+                *ngIf="!directMessage?.reel_share?.media?.video_versions"
+                [src]="directMessage?.reel_share?.media?.image_versions2?.candidates[1].url" alt="">
+            <video *ngIf="directMessage?.reel_share?.media?.video_versions" controls>
+                <source [src]="directMessage?.reel_share?.media?.video_versions[0].url" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+            <span class="message-body position-absolute">{{directMessage?.reel_share?.reaction_info?.emoji}}</span>
+        </div>
+        <div *ngIf="directMessage?.item_type == 'like'">
+            <span class="message-body">{{directMessage?.like}}</span>
+        </div>
+        <div *ngIf="directMessage?.item_type == 'live_viewer_invite'">
+            <span class="message-body">{{directMessage?.live_viewer_invite?.message}}</span>
+        </div>
+        <div *ngIf="directMessage?.item_type == 'link'">
+            <a target="_blank" [href]="directMessage?.link.text">{{directMessage?.link.text}}</a>
+        </div>
+        <div *ngIf="directMessage?.reel_share?.type=='reply'" class="story-replay">
+            <span>Ответил(а) на вашу историю</span>
+            <img *ngIf="!directMessage?.reel_share?.media?.video_versions"
+                [width]="directMessage?.reel_share?.media?.image_versions2?.candidates[1].width"
+                [height]="directMessage?.reel_share?.media?.image_versions2?.candidates[1].height"
+                [src]="directMessage?.reel_share?.media?.image_versions2?.candidates[1].url" alt="">
+            <video *ngIf="directMessage?.reel_share?.media?.video_versions" controls>
+                <source [src]="directMessage?.reel_share?.media?.video_versions[0].url" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+            <span class="message-body">{{directMessage?.reel_share?.text}}</span>
+        </div>
+        <div *ngIf="directMessage?.reel_share?.type=='mention'" class="story-replay mention">
+            <span>Упомянул(а) вас в своей истории</span>
+        </div>
+        <img *ngIf="getImageSource().isImage" [src]="getImageSource().imageSource">
+        <audio *ngIf="directMessage.item_type == 'voice_media'" controls>
+            <source [src]="directMessage?.voice_media?.media?.audio.audio_src" type="audio/ogg">
+            <source [src]="directMessage?.voice_media?.media?.audio.audio_src" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div *ngIf="directMessage?.item_type == 'placeholder'">
+            <h3 class="unavailable-message">{{directMessage?.placeholder.title}}</h3>
+            <p>{{directMessage?.placeholder?.message}}</p>
+        </div>
+        <div class="iframe-container" *ngIf="directMessage.item_type == 'media_share'">
+            <iframe height="550" [src]="iframe"></iframe>
+        </div>
+        <div *ngIf="directMessage.item_type == 'media'">
+            <video *ngIf="directMessage?.media?.video_versions" controls>
+                <source [src]="directMessage?.media?.video_versions[0].url" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <span class="message-date">{{+directMessage?.timestamp / 1000  | date:"HH:mm"}}</span>
+    </div>
+</div>

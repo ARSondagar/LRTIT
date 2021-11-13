@@ -1,0 +1,29 @@
+<div [formGroup]="hashtagsForm" class="hashtags-content">
+    <div class="hashtags-container">
+        <div [ngClass]="{'invalid':itemsControl?.controls[i].invalid && itemsControl?.controls[i].touched}"
+            class="hashtag-item" formArrayName="items" *ngFor="let item of itemsControl?.controls; let i = index;">
+            <div [formGroupName]="i">
+                <p>#</p>
+                <p-autoComplete maxlength="50" field="name" formControlName="label" [suggestions]="searchValue$ | async"
+                    (completeMethod)="search($event)"
+                    [size]="item.get('label')?.value?.length || item.get('label')?.value?.name?.length || 5">
+                    <ng-template let-label pTemplate="item">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <img [src]="label.profile_pic_url" class="rounded-circle" height="32" />
+                            <div class="ml-1 d-block">{{label.name}}</div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+                <!-- <input formControlName="label" type="text" #hashtagInput [size]="hashtagInput.value.length || 5"
+                    maxlength="50">
+                <p>{{hashtag}}</p> -->
+                <img (click)="deleteHashtag(i)" src="assets/icons/delete-1.png">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="itemsControl?.controls.length > 0" (click)="clearAll()" class="clear-all-hashtags">
+        <img src="assets/icons/trash.png">
+        <p>очистить все</p>
+    </div>
+</div>
+<button (click)="addItem()" class="text-center add-location btn w-100">Добавить хэштег</button>

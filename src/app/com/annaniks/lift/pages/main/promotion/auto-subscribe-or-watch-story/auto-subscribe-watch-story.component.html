@@ -1,0 +1,92 @@
+<!--
+  1. то есть если приходит с роута accountDetails:
+  services.id1.active - true   nuimti neapmoketa
+  То функция всегда доступна, независимо что придет с роута /me.
+  Занавеска "Перейдите в тарифы для оплаты." подавляется (только для первого ТАБа) ++
+
+  2. Если приходит services.id1.active - false, то тут уже смотрим, если
+  testFollowing - false
+  wasTestFollowing - false  nuimti neapmoketa
+  Занавеска "Перейдите в тарифы для оплаты." подавляется (только для первого ТАБа)
+  то показываем окно с активацией тестового периода  и кнопкой "Активировать", которая ведет на enableTestPeriod(userId)
+
+  3. testFollowing - true
+  wasTestFollowing - true nuimti neapmoketa
+  то ничего не показываем и функция для пользователя доступна
+
+  4. testFollowing - false
+  wasTestFollowing - true
+  то показываем окно с перейти в тарифы
+-->
+      <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85947000, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85947000" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<ng-template #showPreviewBlock>
+  <app-subscription-suitable></app-subscription-suitable>
+  <app-subscribe-parametres #subscribeParametres></app-subscribe-parametres>
+  <div class="pg-container">
+      <div class="save-discard-settings">
+          <button class="save" (click)='onSettingsSave($event)'
+                  [disabled]="loading || (countTask < 0) || !(conditionWasModified$ | async)">
+            Сохранить
+          </button>
+      </div>
+  </div>
+</ng-template>
+
+<!-- (1) services.id1.active - true
+     То функция всегда доступна, независимо что придет с роута /me -->
+<!-- (3) services.id1.active - false, testFollowing - true, wasTestFollowing - true
+    то ничего не показываем и функция для пользователя доступна -->
+<ng-container *ngIf="promotionIsActive || testFollowing && wasTestFollowing">
+  <ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+    <ng-container *ngTemplateOutlet="showPreviewBlock"></ng-container>
+  </ng-container>
+
+  <ng-template #hidePreviewBlock>
+    <ng-container [ngSwitch]="showPreviewBlock$ | async">
+      <app-faq *ngSwitchCase="1"></app-faq>
+      <app-company *ngSwitchCase="2"></app-company>
+      <app-contacts *ngSwitchCase="3"></app-contacts>
+    </ng-container>
+  </ng-template>
+</ng-container>
+
+<!-- (2) services.id1.active - false, testFollowing - false, wasTestFollowing - false
+     то показываем окно с активацией тестового периода  и кнопкой "Активировать", которая ведет на enableTestPeriod(userId) -->
+<ng-container *ngIf="!promotionIsActive && !testFollowing && !wasTestFollowing">
+  <ng-container *ngTemplateOutlet="showPreviewBlock"></ng-container>
+  <div class="block-curtain-small small-index" *ngIf="secondCurtain">
+    <div class="warning-message"  oncklick="ym(85947000,'reachGoal','enableTestPeriod')">
+      <h2>Вам доступен тестовый период.</h2>
+      <button class="balance__payment-button" (click)="enableTestPeriod($event)">Активировать</button>
+    </div>
+  </div>
+</ng-container>
+
+<!--(4) services.id1.active - false, testFollowing - false, wasTestFollowing - true
+     то показываем окно с перейти в тарифы -->
+<ng-container *ngIf="!promotionIsActive && !testFollowing && wasTestFollowing">
+  <ng-container *ngTemplateOutlet="showPreviewBlock"></ng-container>
+  <div class="block-curtain-small small-index" *ngIf="secondCurtain">
+    <div class="warning-message">
+      <h2>Тестовый период завершен.</h2>
+      <h2>Перейдите в тарифы для оплаты.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Перейти в тарифы</button>
+    </div>
+  </div>
+</ng-container>
+

@@ -1,0 +1,206 @@
+@import "variables";
+
+.affiliate-program-container {
+  .text {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .affiliate-program-card {
+    display: flex;
+    margin-top: 37px;
+
+    @media (max-width: $tablet_width) {
+      display: block !important;
+    }
+
+    .affiliate-program-card-item {
+      width: 50%;
+
+      &:first-child {
+        margin-bottom: 25px;
+      }
+
+      @media (max-width: $tablet_width) {
+        width: auto;
+      }
+
+      .card-item {
+        background: #f6f6f6;
+        border-radius: 4px;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
+        margin-left: 25px;
+        height: 190px;
+
+        @media (max-width: $tablet_width) {
+          margin-left: 0;
+        }
+
+        .card-item-container {
+          margin: 33px 104px 52px 28px;
+          width: 100%;
+          max-width: calc(100% - 121px);
+
+          @media (max-width: $mobile_width) {
+            margin: 33px 28px 52px 28px;
+            max-width: none;
+          }
+
+          .text {
+            font-weight: 600;
+            font-size: 18px;
+          }
+
+          .price {
+            margin-top: 27px;
+            color: #97d8c6;
+            font-size: 24px;
+          }
+
+          .form-group {
+            margin-top: 15px;
+
+            .input-content {
+              width: 100%;
+              border: #c2d0db;
+              color: #868686;
+            }
+          }
+
+          .card-description {
+            margin-top: 18px;
+
+            .description-icon {
+              width: 14px;
+              height: 14px;
+            }
+
+            .cord-text {
+              color: #7d7d7d;
+              font-size: 14px;
+              cursor: pointer;
+            }
+
+            .history-content {
+              margin-left: 65px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .table-wrap {
+    .lcb-table {
+      margin-top: 48px;
+      overflow-x: scroll;
+
+      @media (max-width: $tablet_width) {
+        display: flex;
+      }
+
+      thead {
+        height: 48px;
+
+        th {
+          padding: 16px 10px 16px 33px;
+          font-weight: 600;
+          border: none;
+          background: #f6f6f6;
+
+          @media (max-width: $tablet_width) {
+            padding: 16px 33px 15px 33px;
+            display: block;
+            border-bottom: 1px solid #e9e9e9;
+          }
+        }
+      }
+
+      tbody {
+        @media (max-width: $tablet_width) {
+          display: flex;
+          border-right: 1px solid #e9e9e9;
+        }
+
+        tr {
+          border-bottom: 1px solid #e9e9e9;
+
+          &:first-child {
+            td {
+              @media (max-width: $tablet_width) {
+                padding-left: 22px;
+              }
+            }
+          }
+
+          @media (max-width: $tablet_width) {
+            border-bottom: none;
+          }
+
+          td {
+            padding: 27px 10px 27px 33px;
+            border: none;
+
+            @media (max-width: $tablet_width) {
+              display: block;
+              padding: 16px 10px 15px 10px;
+              white-space: nowrap;
+              border-bottom: 1px solid #e9e9e9;
+            }
+
+            &:first-child {
+              @media (max-width: $tablet_width) {
+                //padding: 15px 10px 15px 22px;
+                border-top: 1px solid #e9e9e9;
+              }
+            }
+
+            &.custom-items {
+              display: flex;
+              align-items: center;
+              padding: 0.75rem;
+            }
+
+            &.income-text {
+              color: #94dac7;
+            }
+
+            .stat-post {
+              height: 50px;
+              width: 50px;
+              background-color: #b7b7b7;
+
+              &:not(:last-child) {
+                margin-right: 11px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .show-more {
+    border-radius: 2px;
+    border: none;
+    background-color: #f4f4f4;
+    width: 100%;
+    padding: 29px 0 25px 0;
+    font-size: 16px;
+    color: #7d7d7d;
+    margin: 54px 0;
+  }
+}
+
+mat-spinner {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+::ng-deep {
+  svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}

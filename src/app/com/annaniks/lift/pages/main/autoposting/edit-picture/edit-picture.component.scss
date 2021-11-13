@@ -1,0 +1,24 @@
+.confirm,
+.discard {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        background: transparent;
+        padding: 8px 35px;
+        border: 2px solid transparent;
+    }
+}
+.confirm {
+    button {
+        border-color: #3399cc;
+        color: #3399cc;
+    }
+}
+.discard {
+    button {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+}

@@ -1,0 +1,59 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <div class="block-curtain" *ngIf="!appSvc.autopostingIsValid">
+    <div class="warning-message">
+      <h2>Данная функция не оплачена.</h2>
+      <h2>Перейдите в тарифы для оплаты.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Перейти в тарифы</button>
+    </div>
+  </div>
+
+  <div class="autoposting pg-container">
+    <app-user-details></app-user-details>
+    <h3 class="calendar-title">Календарь публикации постов <span
+        class="highlight text-capitalize">{{viewDate | date:'MMMM y'}}</span> </h3>
+    <div class="d-flex align-items-center w-100 buttons-top-wrap">
+      <button (click)="addPost('post')" type="button" class="btn btn-secondary primary-btn mr-2">
+        <img src="assets/icons/plus-blue.png" alt="">
+        Добавить пост</button>
+      <button (click)="addStory('story')" type="button" class="btn btn-danger pink-btn">
+        <img src="assets/icons/plus-pink.png" alt="">
+        Добавить story</button>
+      <!-- <button class="search-for-ideas">
+        <img src="assets/icons/idea-white.png" alt="">
+        Поиск идей
+      </button> -->
+    </div>
+    <div class="calendar-actions d-flex align-items-center">
+      <div class="btn btn-secondary primary-btn mr-2" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="changeMonth($event)">
+        Назад
+      </div>
+      <div class="btn btn-secondary pink-btn mr-2" mwlCalendarToday [(viewDate)]="viewDate"
+        (viewDateChange)="changeMonth($event)">
+        Сегодня
+      </div>
+      <div class="btn btn-secondary primary-btn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="changeMonth($event)">
+        Вперед
+      </div>
+    </div>
+    <div class="calendar">
+      <mwl-calendar-month-view weekStartsOn="1" [locale]="locale" [viewDate]="viewDate" (dayClicked)="dayClicked($event.day)"
+        (eventClicked)="addPost('post', $event.event)" [events]="events">
+      </mwl-calendar-month-view>
+    </div>
+
+    <button class="watch-video">
+      <img src="assets/icons/play-button.png" alt="">
+      Смотреть видео как работает автопостинг
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>

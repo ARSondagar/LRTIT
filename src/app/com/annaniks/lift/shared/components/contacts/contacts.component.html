@@ -1,0 +1,136 @@
+<!-- <app-header></app-header> -->
+
+<div class="tariff">
+
+  <div class="tariff__wrapper3">
+      <div class="services-settings__note2">
+        <!-- <a class="button" routerLink="..">Назад</a> -->
+        <a href="#" class="button" (click)="toggleHeaderFlag($event)">Назад</a>
+      </div>
+
+      <div class="tariff__wrapper3">
+        <div class="toggled-head2">
+          <h2 class="toggled-head__title">Контакты</h2>
+          <p class="services-settings__note3">
+            Любой вопрос вы также можете задать в разделе "Поддержка".
+          </p>
+        </div>
+      </div>
+  </div>
+
+  <div class="tariff__wrapper">
+    <div class="tariff__services-settings">
+      <section class="services-settings">
+
+        <div class="toggled-head">
+          <h2 class="toggled-head__title">Поддержка</h2>
+          <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(0)">
+            <ng-container *ngIf="listIsVisible_0; else listIsHidden_0">
+              <span class="material-icons large-blue">expand_less</span>
+            </ng-container>
+            <ng-template #listIsHidden_0>
+              <span class="material-icons large-blue">expand_more</span>
+            </ng-template>
+          </button>
+        </div>
+
+        <div class="panel" *ngIf="listIsVisible_0">
+          <form class="services-settings__main-form">
+            <p class="services-settings__note">
+              support@liftme.pro
+            </p>
+            <div class="services-settings__content-top">
+            </div>
+            <div class="services-settings__functions-select">
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Маркетинг и реклама</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(1)">
+              <ng-container *ngIf="listIsVisible_1; else listIsHidden_1">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_1>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+
+          <div class="panel" *ngIf="listIsVisible_1">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                adv@liftme.pro
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Агентствам</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(2)">
+              <ng-container *ngIf="listIsVisible_2; else listIsHidden_2">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_2>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_2">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                partners@liftme.pro
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Instagram</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(3)">
+              <ng-container *ngIf="listIsVisible_3; else listIsHidden_3">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_3>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_3">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note"><a
+                href="https://instagram.com/liftmepro">
+              @liftmepro</a>
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

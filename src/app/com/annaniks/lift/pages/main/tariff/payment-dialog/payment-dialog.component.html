@@ -1,0 +1,45 @@
+      <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85947000, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85947000" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <div class="close-bar">
+    <!-- <i class="fa fa-times fa-2xl" (click)="close()" style="display: block; float: right"></i> -->
+    <span class="close-btn" (click)="close()">&times;</span>
+  </div>
+  <h2 mat-dialog-title class="dlg-title">Оплата услуг</h2>
+
+  <!-- <div class="wait-spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div> -->
+
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <div class="amount-wrapper">
+
+        <input type="text" class="form-control" id="amauntValue" formControlName="amount" #paymentCtrl
+              placeholder="Введите сумму, которую хотите оплатить">
+
+        <p class="tool-tip">Введите сумму, которую хотите оплатить</p>
+      </div>
+
+
+      <div class="button-wrapper"  oncklick="ym(85947000,'reachGoal','paymentCtrl')">
+        <button mat-raised-button class="custom-blue-btn" [disabled]="paymentCtrl.value <= 0.01" (click)="save()">
+          Оплатить {{paymentCtrl.value}} руб.
+        </button>
+      </div>
+      <div class="small-text">Мы перенаправим вас на платежную систему</div>
+    </form>
+
+  </mat-dialog-content>

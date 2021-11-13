@@ -1,0 +1,66 @@
+<div class="sp-container">
+    <div class="pg-container">
+        <div class="post-statistic-heading">
+
+            <h4>Статистика {{getLabel()}} <b>с
+                <app-datepicker [formControl]="startDateControl" [disableToDate]="createdAt"></app-datepicker> по
+                <app-datepicker [formControl]="endDateControl" [disableToDate]="createdAt"></app-datepicker></b>
+            </h4>
+            <a class="post-statistic-manage" routerLink="/autoposting" *ngIf="type == 'posts'">
+              <span>Управление постами</span>
+              <img src="assets/icons/settings.png" alt="Manage posts">
+            </a>
+
+            <a class="post-statistic-manage" routerLink="/promotion/autosubscribe" *ngIf="type != 'posts'">
+              <span>Продвижение</span>
+              <img src="assets/icons/settings.png" alt="Manage settings">
+            </a>
+        </div>
+        <div class="post-statistic-sources">
+            <h4>Все источники <img src="assets/icons/arrow_down.png"></h4>
+        </div>
+        <!-- POST STATISTIC CHART -->
+        <div [ngStyle]="lineChartSize">
+            <app-line-chart big="true" *ngIf="!loading" [dataSets]="chartData" customId="post-subscribe"
+                            [labels]="chartLabels" [size]="lineChartSize"></app-line-chart>
+        </div>
+        <div class="business-account-statistics"
+             [class.d-none]="!isBusinessAccount || !pieChartData || pieChartData.length==0">
+            <!-- PIE STATISTIC CHART -->
+            <div class="pie-statistic-chart-heading">
+                <button class="pie-statistic-action" [class.active]="activePieChartDataType=='country'"
+                        (click)="onClickPieChartHeading('country')">Топ Страны</button>
+                <button class="pie-statistic-action" [class.active]="activePieChartDataType=='city'"
+                        (click)="onClickPieChartHeading('city')">Топ Города</button>
+                <button class="pie-statistic-action" [class.active]="activePieChartDataType=='gender'"
+                        (click)="onClickPieChartHeading('gender')">Пол</button>
+                <button class="pie-statistic-action" [class.active]="activePieChartDataType=='age'"
+                        (click)="onClickPieChartHeading('age')">По возрасту </button>
+            </div>
+
+            <!--PIE STATISTIC CHART IN MOBILE VERSION-->
+            <div class="form-group">
+                <div class="input-content w-100">
+                    <select id="select" name="select" class="custom-select" [formControl]="dataTypeControl">
+                        <option value="country">Топ Страны </option>
+                        <option value="city">Топ Города </option>
+                        <option value="gender">Пол</option>
+                        <option value="age">По возрасту </option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="chart-map">
+                <canvas id="myChart" class="pie-chart"></canvas>
+
+                <!-- <div class="map-container">
+                    <div id="map"></div>
+                </div> -->
+            </div>
+
+            <!-- END PIE STATISTIC CHART -->
+        </div>
+    </div>
+</div>

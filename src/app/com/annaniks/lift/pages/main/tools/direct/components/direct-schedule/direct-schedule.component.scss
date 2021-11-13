@@ -1,0 +1,118 @@
+@import "variables";
+
+.direct-schedule {
+  .direct-schedule-tab {
+    border-radius: 4px;
+    border: 7px solid #dce7ec;
+
+    @media (max-width: 650px) {
+      display: block !important;
+      border: 3px solid #dce7ec;
+    }
+
+    .direct-item {
+      width: 50%;
+      background: #f1f1f1;
+      color: #3399cc;
+      padding: 14px 14px;
+      border-radius: 4px;
+      transition: 0.5s all ease-out;
+
+      @media (max-width: 650px) {
+        width: 100%;
+      }
+
+      .tab-text {
+        font-weight: 600;
+
+        @media (max-width: $mobile_width) {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .signature-content {
+    padding: 15px;
+
+    @media (max-width: 650px) {
+      padding: 15px 3px;
+    }
+
+    .form-item {
+      padding: 14px 0;
+
+      @media (max-width: 650px) {
+        padding: 7px 0;
+      }
+
+      .lable {
+        margin-left: 33px;
+        font-size: 18px;
+
+        @media (max-width: 650px) {
+          font-size: 16px;
+          line-height: 25px;
+          margin-left: 27px;
+        }
+      }
+
+      .select {
+        height: 30px;
+        width: 60px;
+        border: 1px solid #dce7ec;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.activeTab {
+  background: #3399cc !important;
+  color: #fefefe !important;
+}
+
+::ng-deep .ui-chkbox-box {
+  border: 1px solid #dce7ec !important;
+}
+
+::ng-deep .ui-chkbox .ui-chkbox-box.ui-state-active {
+  background: #3399cc !important;
+}
+
+.publish-now-text {
+  margin-right: 10px;
+  margin-left: 0 !important;
+}
+
+::ng-deep .mat-checkbox {
+  position: relative;
+
+  .mat-checkbox-inner-container {
+    position: absolute;
+    top: 23px;
+
+    @media (max-width: 650px) {
+      top: 11px;
+    }
+  }
+}
+
+.lable {
+  white-space: normal;
+  font-family: "SF UI Display Regular";
+  font-size: 18px;
+  line-height: 33px;
+  color: #3d3d3d;
+  margin-left: 33px;
+
+  @media (max-width: 650px) {
+    font-size: 16px;
+    line-height: 25px;
+    margin-left: 27px;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+}

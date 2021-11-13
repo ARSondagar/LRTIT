@@ -1,0 +1,34 @@
+<app-loading></app-loading>
+<router-outlet></router-outlet>
+
+<div id="custom-modal-back-drop" (click)="hideBackDrop()">
+
+  <div id="custom-payment-dialog"  (click)="captureClick($event)">
+
+    <div class="close-bar">
+      <span class="close-btn" (click)="hideBackDrop()">&times;</span>
+    </div>
+    <h2 mat-dialog-title class="dlg-title">Оплата услуг</h2>
+
+    <div class="mat-dialog-content">
+      <div class="amount-wrapper">
+
+        <input type="text" class="form-control" id="amauntValue" value="{{amount}}"
+              placeholder="Введите сумму, которую хотите оплатить"
+              (click)="focusMethod($event)" (keyup)="onKeyUpHandler($event.target.value)" >
+
+        <p class="tool-tip">Введите сумму, которую хотите оплатить</p>
+      </div>
+
+
+      <div class="button-wrapper">
+        <button mat-button class="custom-blue-btn" [disabled]="amount <= 0.01" (click)="save()" oncklick="ym(85947000,'reachGoal','paymentCtrl')">
+          Оплатить {{amount}} руб.
+        </button>
+      </div>
+      <div class="small-text">Мы перенаправим вас на платежную систему</div>
+
+  </div>
+</div>
+
+

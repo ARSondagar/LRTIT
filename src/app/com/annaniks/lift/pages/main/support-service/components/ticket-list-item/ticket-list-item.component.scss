@@ -1,0 +1,99 @@
+@import "variables";
+
+@keyframes animate {
+  0% {
+    background-position: 400%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+.ticket-list-item {
+  margin: 25px 0;
+  background-color: #f6f6f6;
+  padding: 32px;
+  border: 1px solid #f6f6f6;
+  transition: border-color 0.5s;
+  border-radius: 8px;
+  text-decoration: none;
+
+  @media (max-width: $mobile_width) {
+    padding: 20px;
+    margin: 15px 0;
+    font-size: 14px;
+  }
+
+  .date {
+    font-weight: bold;
+    color: #7d7d7d;
+
+    @media (max-width: $mobile_width) {
+      width: 140px;
+    }
+  }
+
+  .message {
+    color: #7d7d7d;
+    max-width: 470px;
+    overflow: hidden;
+    margin-left: 80px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media (max-width: $mobile_width) {
+      flex-shrink: 0;
+      max-width: 30%;
+      margin-left: 10%;
+      margin-right: 4%;
+    }
+  }
+
+  .status {
+    margin-right: 50px;
+    margin-left: auto;
+    color: #7d7d7d;
+
+    @media (max-width: $mobile_width) {
+      margin-right: 0;
+    }
+  }
+}
+
+.active {
+  border-color: #9cdcd2 !important;
+
+  .date {
+    color: black;
+  }
+
+  .status {
+    color: #9cdcd2 !important;
+  }
+}
+
+.loading {
+  .date {
+    width: 20%;
+    height: 16px;
+    background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+    background-size: 400%;
+    animation: animate 6s linear infinite;
+  }
+
+  .message {
+    width: 40%;
+    height: 16px;
+    background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+    background-size: 400%;
+    animation: animate 6s linear infinite;
+  }
+
+  .status {
+    width: 15%;
+    height: 16px;
+    background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+    background-size: 400%;
+    animation: animate 6s linear infinite;
+  }
+}

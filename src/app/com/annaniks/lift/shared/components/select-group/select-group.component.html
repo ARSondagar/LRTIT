@@ -1,0 +1,19 @@
+<div class="select__label" *ngIf="label">{{label}}</div>
+<div class="select" (click)="onTouched()" *ngFor="let item of options; let i = index">
+  <button class="select__toggle" (click)="onBtn(i)" [ngClass]="{'select__toggle_placeholder': isPlaceholder(item),'select__toggle_active': false,'select__toggle_first': i === 0,'select__toggle_last': i === (options.length - 1)}">
+    <span class="toggle__text">{{getTitle(item)}}</span>
+    <span class="toggle__icon" [ngClass]="{'toggle__icon_active': active === i}"></span>
+  </button>
+  <div class="select__menu" *ngIf="active === i">
+    <perfect-scrollbar class="scrollbar">
+      <ul class="selectMenu">
+        <li class="selectMenu__item disabled" *ngIf="!isPlaceholder(item)">{{item.placeholder}}</li>
+        <li class="selectMenu__item" *ngFor="let option of item.options" (click)="chooseOption(option, item)">
+          {{option.name}}
+        </li>
+        <li class="selectMenu__item_empty" *ngIf="!item?.options?.length">Empty</li>
+      </ul>
+    </perfect-scrollbar>
+  </div>
+</div>
+<p class="select__error" *ngIf="error">{{error}}</p>

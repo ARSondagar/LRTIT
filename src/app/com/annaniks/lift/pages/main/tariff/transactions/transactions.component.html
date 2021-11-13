@@ -1,0 +1,57 @@
+<div class="tariff__transactions">
+  <section class="transactions">
+
+      <div class="toggled-head">
+          <h2 class="toggled-head__title">Последние транзакции</h2>
+          <button class="toggled-head__toggle-button" (click)="listIsVisible = !listIsVisible">
+              <!-- <svg
+                      class="toggled-head__toggle-button-icon"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+              >
+                  <use xlink:href="#icon-arrow"></use>
+              </svg> -->
+              <ng-container *ngIf="listIsVisible; else listIsHidden">
+                <span class="material-icons">keyboard_arrow_up</span>
+              </ng-container>
+              <ng-template #listIsHidden>
+                <span class="material-icons">keyboard_arrow_down</span>
+              </ng-template>
+          </button>
+      </div>
+
+      <ng-container  *ngIf="listIsVisible">
+        <div class="transactions__content">
+          <table class="transactions__info">
+            <thead class="transactions__info-head">
+              <tr class="transactions__info-item">
+                <th class="transactions__info-stat-name" scope="col">Дата операции</th>
+                <th class="transactions__info-stat-name" scope="col">Тип операции</th>
+                <th class="transactions__info-stat-name" scope="col">Сумма</th>
+              <th class="transactions__info-stat-name" scope="col">Остаток</th>
+              </tr>
+            </thead>
+
+              <tbody class="transactions__info-stats">
+                <tr>
+                    <td class="transactions__info-spacer"></td>
+                </tr>
+
+                <tr class="transactions__info-item" *ngFor="let trn of history">
+                    <td class="transactions__info-stat-value">{{trn.createdAt | date:'dd MMM yyyy'}}</td>
+                    <td class="transactions__info-stat-value">{{trn.typeName}}</td>
+                    <td class="transactions__info-stat-value">{{trn.debiting}}</td>
+                    <td class="transactions__info-stat-value">{{trn.balance}}</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+        <button class="transactions__show-more" type="button" (click)="loadMoreTransactions()" ng-disabled="pageNumber < 1">
+          Смотреть еще транзакции
+        </button>
+      </ng-container>
+
+  </section>
+</div>

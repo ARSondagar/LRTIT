@@ -1,0 +1,136 @@
+<ng-container *ngIf="!(showPreviewBlock$ | async); else hidePreviewBlock">
+  <div class="scheduler pg-container">
+
+    <div class="scheduler-settings-title">
+        <h1><strong>Настройки планировщика </strong> <span>{{ monthWithYear }} г.</span></h1>
+    </div>
+
+    <div class="d-flex justify-content-between flex-wrap align-items-start top-wrapper">
+        <div class="form-group d-flex align-items-center">
+            <div class="interval-content d-flex">
+                <mat-radio-group [(ngModel)]="calendarType" (ngModelChange)="calendarTypeChanged($event)">
+                    <!-- <mat-radio-button value="week" [ngClass]="{'active-interval': calendarType == 'week'}"
+                        class="radio-button-item middle">
+                        Неделя
+                    </mat-radio-button> -->
+                    <mat-radio-button value="month" [ngClass]="{'active-interval': calendarType == 'month'}"
+                        class="radio-button-item">
+                        Месяц
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="calendar-actions d-flex align-items-center">
+            <button (viewDateChange)="viewDateChanged()" class="btn action-button" mwlCalendarPreviousView [view]="view"
+                [(viewDate)]="viewDate">
+                <img src="assets/icons/left.png" alt="">
+            </button>
+            <div (viewDateChange)="viewDateChanged()" class="action-info" mwlCalendarToday [(viewDate)]="viewDate">
+              {{ nameOfMonth }}
+            </div>
+            <button (viewDateChange)="viewDateChanged()" class="btn action-button" mwlCalendarNextView [view]="view"
+                [(viewDate)]="viewDate">
+                <img src="assets/icons/right.png" alt="">
+            </button>
+        </div>
+    </div>
+
+    <div class="calendar">
+
+        <mwl-calendar-month-view weekStartsOn="1" #monthCalendar class="d-none" (dayClicked)="onDayClicked($event.day)"
+            [class.d-block]="calendarType == 'month'" [cellTemplate]="customCellTemplate" [locale]="locale"
+            [viewDate]="viewDate" [events]="events">
+        </mwl-calendar-month-view>
+
+        <mwl-calendar-week-view weekStartsOn="1" [eventTemplate]="weekViewEventTemplate" #weekCalendar class="d-none"
+            [class.d-block]="calendarType == 'week'" [headerTemplate]="headerTemplate" [viewDate]="viewDate"
+            [events]="events">
+        </mwl-calendar-week-view>
+
+    </div>
+    <!-- <button class="watch-video">
+        <img src="assets/icons/play-button.png" alt="">
+        Смотреть видео как работает автопостинг
+    </button> -->
+  </div>
+</ng-container>
+
+<ng-template #hidePreviewBlock>
+  <ng-container [ngSwitch]="showPreviewBlock$ | async">
+    <app-faq *ngSwitchCase="1"></app-faq>
+    <app-company *ngSwitchCase="2"></app-company>
+    <app-contacts *ngSwitchCase="3"></app-contacts>
+  </ng-container>
+</ng-template>
+
+<ng-template #customCellTemplate let-day="day" let-openDay="openDay" let-locale="locale"
+    let-tooltipPlacement="tooltipPlacement" let-highlightDay="highlightDay" let-unhighlightDay="unhighlightDay"
+    let-eventClicked="eventClicked">
+    <div class="day-container">
+        <div class="cal-cell-top">
+            <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+        </div>
+        <div class="cal-events" *ngIf="day.events.length > 0">
+            <!-- <div class="cal-event d-flex" #rowRef (click)="openSchedulerDetails(event,rowRef)"
+                *ngFor="let event of day.events" [style.backgroundColor]="event.color.primary"
+                [ngClass]="event?.cssClass" (mouseenter)="highlightDay.emit({event: event})"
+                (mouseleave)="unhighlightDay.emit({event: event})">
+                <img src="/assets/icons/star.png" alt="">
+                <span class="time">{{event.start | date : 'h:mm'}}</span>
+                <span class="action">{{event.title}}</span>
+            </div> -->
+            <div class="cal-event d-flex" #rowRef
+                *ngFor="let event of day.events" [style.backgroundColor]="event.color.primary"
+                [ngClass]="event?.cssClass" (mouseenter)="highlightDay.emit({event: event})"
+                (mouseleave)="unhighlightDay.emit({event: event})">
+                <img src="/assets/icons/star.png" alt="">
+                <span class="time">{{event.start | date : 'h:mm'}}</span>
+                <span class="action">{{event.title}}</span>
+            </div>
+
+        </div>
+        <!-- <div class="add-event" (click)="openEventsScheduler(day)">
+            Добавить событие +
+        </div> -->
+    </div>
+</ng-template>
+
+<ng-template #headerTemplate let-days="days" let-locale="locale" let-dayClicked="dayClicked"
+    let-eventDropped="eventDropped">
+    <div class="cal-day-headers cursor-default">
+        <div class="cal-header" *ngFor="let day of days" [class.cal-past]="day.isPast" [class.cal-future]="day.isFuture"
+            [class.cal-drag-over]="day.dragOver">
+            <div class="top d-flex justify-content-center align-items-center" [class.today]="day.isToday">
+                <div class="day-label mr-1">
+                    {{ day.date |date :'EEEE':locale }}
+                </div>
+                <div class="day d-flex align-items-center justify-content-center">
+                    {{ day.date |date :'d':locale }}
+                </div>
+                <!-- <div class="day-number">{{ day.date | calendarDate:'weekViewColumnSubHeader':locale }}</div>                       -->
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #weekViewEventTemplate let-weekEvent="weekEvent" let-locale="locale" let-eventClicked="eventClicked"
+    let-tooltipPlacement="tooltipPlacement" let-tooltipTemplate="tooltipTemplate"
+    let-tooltipAppendToBody="tooltipAppendToBody" let-tooltipDisabled="tooltipDisabled">
+    <div class="cal-event d-flex" #rowRef (click)="openSchedulerDetails(weekEvent.event,rowRef)"
+        [style.backgroundColor]="weekEvent.event.color.primary" [ngClass]="weekEvent?.event?.cssClass">
+        <img src="/assets/icons/star.png" alt="">
+        <span class="time">{{weekEvent.event.start | date : 'h:mm'}}</span>
+        <span class="action">{{weekEvent.event.title}}</span>
+    </div>
+
+</ng-template>
+
+<!-- <ng-template #dayViewEventTemplate let-day="day" let-tooltipPlacement="tooltipPlacement" let-eventClicked="eventClicked"
+    let-tooltipTemplate="tooltipTemplate" let-tooltipAppendToBody="tooltipAppendToBody">
+    <div class="cal-event d-flex" #rowRef (click)="openSchedulerDetails(day.event,rowRef)">
+        <img src="/assets/icons/star.png" alt="">
+        <span class="time">{{weekEvent.event.start | date : 'h:mm'}}</span>
+        <span class="action">{{weekEvent.event.title}}</span>
+        {{day | json}}
+    </div>
+</ng-template> -->

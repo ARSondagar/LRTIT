@@ -1,0 +1,35 @@
+<div class="period-of-use__list-wrapper">
+  <ul class="period-of-use__list">
+    <ng-container *ngFor="let discount of discounts; let i = index">
+      <li class="period-of-use__item" *ngIf="i >= firstVisibleButton && i <= lastVisibleButton">
+        <span class="period-of-use__discount" *ngIf="discount.discount > 0">
+          -{{discount.discount}}%
+        </span>
+        <label class="period-of-use__radio-label">
+          <ng-container *ngIf="discount.isSelected; else discountOffBlock">
+            <span class="material-icons selected-mark">check_circle</span>
+          </ng-container>
+          <ng-template #discountOffBlock>
+            <span class="material-icons selected-mark cursor-hover" (click)="toggleDiscount(i, $event)">radio_button_unchecked</span>
+          </ng-template>
+        </label>
+        <p class="period-of-use__value">{{discount.days}} дней</p>
+        <p class="period-of-use__accounts-count">{{getPeriodText(i)}}</p>
+        <div class="period-of-use__price-container">
+          <span class="period-of-use__final-price">{{discount.totalSummDiscounted}}&nbsp;руб.</span>
+          <span class="period-of-use__basic-price" *ngIf="discount.discount > 0">
+            {{discount.totalSummNoDiscount}}&nbsp;руб.
+          </span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+
+<div class="period-of-use__pagination-container" *ngIf="firstVisibleButton > 0 || lastVisibleButton < discounts.length - 1">
+  <i class="fa fa-chevron-circle-left fa-lg move-button" (click)="scrollLeft($event)"
+     [attr.disabled]="firstVisibleButton < 1 ? 'disabled' : null"></i>
+  <span class="separator">&nbsp;</span>
+  <i class="fa fa-chevron-circle-right fa-lg move-button" (click)="scrollRight($event)"
+    [attr.disabled]="lastVisibleButton >= discounts.length - 1 ? 'disabled' : null"></i>
+</div>

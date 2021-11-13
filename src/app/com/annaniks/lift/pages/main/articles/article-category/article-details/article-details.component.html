@@ -1,0 +1,53 @@
+<section class="article-details-section" *ngIf="article">
+    <div class="pg-content article-details-content">
+        <div class="article-categories-outer d-flex justify-content-between align-items-start">
+            <div class="article-categories d-flex w-100 mr-10">
+                <a *ngFor="let category of article.category" [routerLink]="['/','articles','category','list']"
+                    [queryParams]="{'categoryId': category.categoryId,'pageIndex':'1'}">
+                    <div [style.border-color]="category.parent.color" class="category-item">
+                        <p [style.color]="category.parent.color">{{category.parent.title}}</p>
+                    </div>
+                </a>
+            </div>
+            <div class="article-author d-flex align-items-start">
+                <p class="author" (click)="goToSearch(article.user.name)">{{article.user.name}}</p>
+                <p class="date">{{article.createdAt | date}}</p>
+            </div>
+        </div>
+
+        <!-- <p class="path-text">
+            <b class="title" *ngIf="article?.category?.parent?.name">/{{article?.category?.parent.name}}</b></p> -->
+        <p class="text mt-2">{{article?.title}}</p>
+        <img class="poster" [src]="fileUrl + article.path" alt="">
+        <div class="article-details-description d-flex  justify-content-between">
+            <div class="article-details-left-description">
+                <div class="article-details-content" [innerHTML]="article?.html"></div>
+            </div>
+        </div>
+
+        <div class="article-tags d-flex">
+            <div class="article-tags-item" (click)="goToSearch(tag.parent.tag)" *ngFor="let tag of article.tags">
+                {{tag.parent.tag}}
+            </div>
+        </div>
+        <ng-container *ngIf="similiarArticles && similiarArticles.length > 0 ">
+            <h1 *ngIf="similiarArticles" class="similar-articles-title">Читайте также</h1>
+        </ng-container>
+        <div class="d-flex similar-articles">
+            <ng-container *ngIf="similiarArticles">
+                <ng-container *ngFor="let article of similiarArticles;let ind = index">
+                    <app-most-popular-item [inDetailView]="true" [mode]="'normal'" [style.width]="'33.3%'"
+                        class="most-popular-item" [data]="article"></app-most-popular-item>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!similiarArticles">
+                <ng-container *ngFor="let preview of [1,2,3];let ind = index">
+                    <app-most-popular-item [inDetailView]="true" [mode]="'skeleton'" [style.width]="'33.3%'"
+                        class="most-popular-item">
+                    </app-most-popular-item>
+
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</section>

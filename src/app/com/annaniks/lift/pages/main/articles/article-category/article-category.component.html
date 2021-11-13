@@ -1,0 +1,45 @@
+<div class="articles pg-container d-flex justify-content-between">
+    <div class="w-100">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="categories">
+        <app-search (ngChanged)="onSearchArticles($event)" [options]="searchResult" class="search">
+          <div [routerLink]="'/articles/category/post/' + item.id" class="search-result" *ngFor="let item of searchResult">
+            <img class="list-image" [src]="fileUrl + item.path" alt="">
+            <div class="list-text" style="font-size:18px;">
+              {{item.title}}
+            </div>
+          </div>
+        </app-search>
+        <div class="rubrics">
+            <div class="rubrics-header">
+                <p>Рубрики</p>
+            </div>
+            <hr class="divider">
+            <ul>
+                <li (click)="changeCategory(category.id)" [ngClass]="{'active':activeCategory == category.id}"
+                    *ngFor="let category of categories">{{category.title}}</li>
+            </ul>
+        </div>
+        <div class="top-of-month">
+            <div class="top-of-month-header">
+                <p>Лучшее за месяц</p>
+            </div>
+            <hr class="divider">
+            <div class="top-container" [@fadeInOut]>
+                <a *ngFor="let article of topArticles" [routerLink]="['/','articles','category','post',article.id]">
+                    <div class="top-item">
+                        <img (error)="setArticleMissingImage($event)" [src]="fileUrl + article.path" alt="">
+                        <span>{{article.title}}</span>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+        <!-- <div class=" add d-flex">
+                    <img class="m-auto" src="assets/article/add.png" alt="">
+                </div> -->
+    </div>
+</div>

@@ -1,0 +1,378 @@
+<!-- <app-header></app-header> -->
+
+<div class="tariff">
+
+  <div class="tariff__wrapper3">
+      <div class="services-settings__note2">
+        <a href="#" class="button" (click)="toggleHeaderFlag($event)">Назад</a>
+      </div>
+
+      <div class="tariff__wrapper3">
+        <div class="toggled-head2">
+          <h2 class="toggled-head__title">Часто задаваемые вопросы</h2>
+          <p class="services-settings__note3">
+            Если на ваши вопросы нет ответов ниже, не стесняйтесь, напишите нам
+            по адресу <a href="mailto:support@liftme.pro?">support@liftme.pro</a> или в раздел "Поддержка".
+            Мы реальные люди, и мы будем рады вам помочь.
+          </p>
+        </div>
+      </div>
+  </div>
+
+  <div class="tariff__wrapper">
+    <div class="tariff__services-settings">
+      <section class="services-settings">
+
+        <div class="toggled-head">
+          <h2 class="toggled-head__title">Безопасен ли ваш сервис?</h2>
+          <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(0)">
+            <ng-container *ngIf="listIsVisible_0; else listIsHidden_0">
+              <span class="material-icons large-blue">expand_less</span>
+            </ng-container>
+            <ng-template #listIsHidden_0>
+              <span class="material-icons large-blue">expand_more</span>
+            </ng-template>
+          </button>
+        </div>
+
+        <div class="panel" *ngIf="listIsVisible_0">
+          <form class="services-settings__main-form">
+            <p class="services-settings__note">
+              Нашими услугами пользуются тысячи клиентов, поэтому мы заботимся о безопасности аккаунтов,
+              а также регулярно совершенствуем систему во избежание блокировок и других неудобств.
+            </p>
+            <div class="services-settings__content-top">
+            </div>
+            <div class="services-settings__functions-select">
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Как быстро я увижу результаты?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(1)">
+              <ng-container *ngIf="listIsVisible_1; else listIsHidden_1">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_1>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+
+          <div class="panel" *ngIf="listIsVisible_1">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Если у вашего аккаунта хорошая репутация в Instagram, не было блокировок из-за сомнительного контента,
+                вы начнете набирать подписчиков в течение одного дня, а иногда и сразу. Чем дольше вы работаете в нашем сервисе,
+                тем лучше будут ваши результаты, поскольку мы сможем серьезно оптимизировать вашу целевую аудиторию с помощью
+                нашего алгоритма.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Что делать, если у меня новый аккаунт?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(2)">
+              <ng-container *ngIf="listIsVisible_2; else listIsHidden_2">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_2>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_2">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Мы можем продвигать любой профиль, но имейте в виду что, если вы начинаете проодвижение с новой учетной записи,
+                или аккаунта, срок которого не больше месяца, наш алгоритм будет продвигать ваш аккаунт немного медленнее,
+                чем обычно, из-за правил Instagram для новых учетных записей.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Мой аккаунт был заблокирован на похожем сервисе</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(3)">
+              <ng-container *ngIf="listIsVisible_3; else listIsHidden_3">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_3>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_3">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Наши инструменты были протестированы более чем на 5000 аккаунтов, 
+                поэтому мы разработали правильную стратегию и алгоритмы продвижения.
+                Это гарантирует безопасность для вашего аккаунта.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Что делать, если я хочу поменять аудиторию?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(4)">
+              <ng-container *ngIf="listIsVisible_4; else listIsHidden_4">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_4>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_4">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Настройки нашего сервиса интуитивно понятны, поэтому вы можете изменить параметры аудитории в личном кабинете.
+                Если у вас возникнут трудности - обратитесь в нашу службу поддержки.
+                Специалисты ответят вам в течение 10 минут.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Сколько подписчиков мне ожидать?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(5)">
+              <ng-container *ngIf="listIsVisible_5; else listIsHidden_5">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_5>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_5">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Большинство наших клиентов получают очень много уникальных посещений профиля,
+                и наш сервис привлекает от +300 до +1500 целевых подписчиков в месяц. Возраст вашей учетной записи в Instagram,
+                чем вы занимаетесь и качество вашего контента напрямую влияют на результаты продвижения.
+                Помните, что реальный человек будет выбирать, подписываться на ваш аккаунт или нет,
+                мы не можем ЗАСТАВИТЬ людей подписаться на вас, если им не интересен ваш контент.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+            </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Предоставляете ли вы какие нибудь гарантии?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(6)">
+              <ng-container *ngIf="listIsVisible_6; else listIsHidden_6">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_6>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_6">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Мы предлагаем 7-дневную гарантию возврата денег. Это означает, что если вы не будете довольны в течение
+                первой недели обслуживания, просто сообщите нам, и мы вернем вам деньги. Без проблем и лишних вопросов!
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Вы просто накручиваете ботов?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(7)">
+              <ng-container *ngIf="listIsVisible_7; else listIsHidden_7">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_7>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_7">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Нет. Ваши подписчики будут настоящими людьми. Каждый человек, который подписан на вас, активный пользователь.
+                Вам всего лишь нужно выбрать целевую аудиторию, которым действительно понравится ваш бренд и контент,
+                который вы публикуете.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Насколько безопасно вводить пароль?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(8)">
+              <ng-container *ngIf="listIsVisible_8; else listIsHidden_8">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_8>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_8">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Наши инструменты продвижения результативны в полной мере при подключении вашей учетной записи к нашей системе.
+                Чтобы эти алгоритмы работали у вас, вы должны доверить свой пароль в частную и безопасную серверную часть.
+                Все пароли шифруются, поэтому не волнуйтесь, мы никогда не узнаем ваш пароль и гарантируем безопасность
+                вашей учетной записи.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Как получить больше подписчиков?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(9)">
+              <ng-container *ngIf="listIsVisible_9; else listIsHidden_9">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_9>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_9">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Мы используем целевые действия, чтобы пользователи обратили внимание на ваш профиль. Мы взаимодействуем с вашей
+                целевой аудиторией, после чего они решают, интересен ли им ваш аккаунт. Делайте интересный контент для вашей
+                аудитории, правильно настраивайте параметры продвижения - остальное сделаем мы!
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Что, если я хочу прекратить продвижение?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(10)">
+              <ng-container *ngIf="listIsVisible_10; else listIsHidden_10">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_10>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_10">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Никаких проблем! Все, что нужно - это заранее отменить подписку, минимум за день до даты повторного списания,
+                чтобы избежать списания средств за следующий месяц.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tariff__wrapper2">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Есть ли у вас служба поддержки?</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(11)">
+              <ng-container *ngIf="listIsVisible_11; else listIsHidden_11">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_11>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+          <div class="panel" *ngIf="listIsVisible_11">
+            <form class="services-settings__main-form">
+              <p class="services-settings__note">
+                Конечно! Мы не можем успешно продвигать аккаунты без общения с вами. Другие сервисы часто прикрываются
+                анонимными компаниями. Мы реальная компания, мы решаем возникающие проблемы быстро и эффективно в удобном
+                для вас формате, текстовыми сообщениями, электронной почтой, онлайн-чатом. Мы предлагаем лучшую экспертную
+                поддержку в отрасли.
+              </p>
+              <div class="services-settings__content-top"></div>
+              <div class="services-settings__functions-select"></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+.pg-container {
+  margin-top: 40px;
+}
+
+.subscription-accordion {
+  .accordion-body {
+    background-color: #f6f6f6;
+    padding: 14px 36px;
+    border-radius: 6px;
+
+    .collapse-heading {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .btn {
+        font-weight: bold;
+      }
+
+      .after-count {
+        padding: 6px 9px 5px 7px;
+        background: #0dce99;
+        border-radius: 2px;
+
+        span {
+          font-family: "SF UI Display Regular";
+          font-size: 14px;
+          color: white;
+          white-space: nowrap;
+        }
+      }
+
+      button {
+        color: #3d3d3d;
+        font-size: 18px;
+        text-decoration: none;
+        text-align: left;
+
+        img {
+          position: absolute;
+          right: 0;
+          top: 100%;
+          transform: translateY(-50%);
+          transition: all 0.3s;
+        }
+
+        &.collapsed {
+          img {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+
+      .arrow-up {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.collapse.show {
+  padding-top: 40px;
+}
+
+.inline-checkoxes {
+  display: flex;
+  align-items: center;
+
+  .checkbox-label {
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    line-height: 48px;
+    color: #3d3d3d;
+    margin-left: 4px;
+  }
+
+  .range-input {
+    border-radius: 4px;
+    border: 2px solid #c2d0db;
+    height: 30px;
+    font-size: 14px;
+    width: 70px;
+    padding-left: 4px;
+  }
+}
+
+mat-checkbox {
+  ::ng-deep {
+    display: block;
+
+    .mat-checkbox-label {
+      font-family: "SF UI Display Regular";
+      font-size: 18px;
+      line-height: 48px;
+      color: #3d3d3d;
+    }
+  }
+}

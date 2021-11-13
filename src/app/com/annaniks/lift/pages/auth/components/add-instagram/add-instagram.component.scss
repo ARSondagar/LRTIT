@@ -1,0 +1,133 @@
+$font_bold: "SF Bold", sans-serif;
+
+.formAuth {
+  position: relative;
+
+  background-color: #fff;
+  border-radius: 0.444em;
+  max-width: 770px;
+  padding: 2ex 1em 2ex 1em;
+
+  .close-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .formAuth__title {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    margin-top: 48px;
+    color: #1f1f1f;
+    margin-bottom: 12px;
+  }
+
+  .subtitle-1 {
+    text-align: center;
+    margin-bottom: 2ex;
+    font-size: small;
+    font-family: system-ui;
+  }
+
+  .form-content {
+//    padding-top: 6px;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-bottom: 1ex;
+  }
+
+  .formAuth__field {
+    background-color: transparent;
+    border: 2px solid #c2d0db;
+    color: #777777;
+    border-radius: 0.5em;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.6em;
+    font: smaller "SF Regular", sans-serif;
+//    font: 1.125em/1 "SF Regular", sans-serif;
+    padding: 0.5em 1.2em;
+  }
+
+  input[type="email"] {
+    margin-bottom: -1px;
+    margin: 10px 0;
+  }
+
+  input[type="password"] {
+    margin: 10px 0;
+  }
+
+  .formAuth__labelPass {
+    display: block;
+  }
+
+  .new-accont-btn {
+    background-color: #3399cc;
+    border-color: #3399cc !important;
+    color: white !important;
+
+//    font: 1.125em/1 "SF Semibold", sans-serif;
+    font: smaller "SF Regular", sans-serif;
+    padding: 0.75em 1.8em;
+    background-color: #12aad6;
+    border: 0.125em solid #12aad6;
+    border-radius: 2em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    transition-duration: 0.2s;
+
+//    margin-top: 2ex;
+    margin-bottom: 1ex;
+  }
+  .new-accont-btn[disabled] {
+    background-color: rgba(87, 83, 83, 0.801);
+  }
+
+  .error-message {
+    display: block;
+    margin-top: 1ex;
+    color: black;
+    font-family: system-ui;
+    text-align: justify;
+
+    img {
+      width: 24px;
+      height: 24px;
+      display: block;
+      float: left;
+      margin-right: 4px;
+      color: #A4BB8E;
+    }
+
+    &:last-child {
+      margin-top: 2ex;
+      margin-bottom: 1ex;
+    }
+  }
+
+  .inp-error {
+    border: 1px solid red;
+  }
+}
+
+@media (max-width: 650px) {
+  .formAuth {
+    padding: 0.5ex 0.5em 0.5ex 0.5em;
+
+    .close-icon {
+      top: -8px;
+    }
+
+    .formAuth__title {
+      font: 1.5em/1 $font_bold;
+    }
+  }
+}

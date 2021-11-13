@@ -1,0 +1,186 @@
+<div class="pg-container lists">
+  <div class="list-top">
+    <h1 class="title">Мои списки</h1>
+    <div class="list-type d-flex align-items-end justify-content-between">
+      <div class="condition">
+        <label class="list-type">Выберите тип списка:</label>
+        <app-select [options]="listTypeControlOption" [formControl]="listTypeControl"></app-select>
+      </div>
+      <button class="btn create-list" (click)="openCreateUserComment()">+<span> Создать список</span></button>
+    </div>
+    <div class="list-type-search">
+      <input
+        [formControl]="searchControl"
+        type="text"
+        placeholder="Название списка"
+      />
+    </div>
+  </div>
+
+
+  <div class="list-result-content">
+    <div
+      class="list-result-item"
+      *ngFor="
+        let i of showingList | search: 'name':searchControl.value;
+        let ind = index
+      "
+    >
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header
+            collapsedHeight="60px"
+            expandedHeight="60px"
+          >
+            <mat-panel-title>
+              <p class="title">{{ i.name }}</p>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="list-actions">
+            <div class="list-type d-flex align-items-center justify-content-between flex-wrap">
+              <div class="condition">
+                <label for="list-name" class="list-type">Название списка</label>
+                <input [(ngModel)]="i.name" class="list-name" type="text" />
+              </div>
+              <button class="btn outline-button">Правила создания списка
+                <span>пользователей <img src="assets/icons/question-blue.png" alt=""></span>
+              </button>
+            </div>
+            <div class="list-user-list">
+              <div class="user-list-label">
+                <label for="user-list">
+                  {{
+                    listTypeControl.value == "commentsList"
+                      ? "Введите список сообщений, разделенных слешой /"
+                      : "Введите&nbsp;пользователей, разделенных&nbsp;запятой&nbsp;и&nbsp;@"
+                  }}
+                </label>
+              </div>
+              <div
+                class="user-list-container d-flex justify-content-between align-items-start"
+              >
+                <div class="w-100">
+                  <div class="chip-list d-flex align-items-center flex-wrap">
+                    <ng-container
+                      *ngIf="listTypeControl.value == 'commentsList'"
+                    >
+                      <mat-form-field class="w-100">
+                        <mat-chip-list #commentsList>
+                          <mat-chip
+                            *ngFor="let comment of i.comment"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="
+                              removeComment(comment, ind, 'commentsList')
+                            "
+                          >
+                            {{ comment }}
+                            <mat-icon matChipRemove *ngIf="removable"
+                              >cancel</mat-icon
+                            >
+                          </mat-chip>
+                          <input
+                            placeholder=""
+                            [matChipInputFor]="commentsList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="
+                              addComment($event, ind, 'commentsList')
+                            "
+                          />
+                        </mat-chip-list>
+                      </mat-form-field>
+                    </ng-container>
+                    <ng-container *ngIf="listTypeControl.value == 'usersList'">
+                      <mat-form-field class="w-100">
+                        <mat-chip-list #commentsList>
+                          <mat-chip
+                            *ngFor="let comment of i.users"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="removeComment(comment, ind, 'usersList')"
+                          >
+                            {{ comment.username }}
+                            <mat-icon matChipRemove *ngIf="removable"
+                              >cancel</mat-icon
+                            >
+                          </mat-chip>
+                          <input
+                            placeholder=""
+                            [matChipInputFor]="commentsList"
+                            [formControl]="instaSearchControl"
+                            #instaAccountInput
+                            [matChipInputSeparatorKeyCodes]="
+                              usersSeparatorKeyCodes
+                            "
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            [matAutocomplete]="auto"
+                          />
+                        </mat-chip-list>
+                        <mat-autocomplete
+                          #auto="matAutocomplete"
+                          (optionSelected)="selected($event,ind)"
+                        >
+                          <mat-option
+                            *ngFor="let user of searchStream$ | async"
+                            [value]="user"
+                          >
+                            {{ user.username }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </ng-container>
+                    <p class="list-item-count">
+                      {{
+                        listTypeControl.value == "commentsList"
+                          ? "Сообщений"
+                          : "Пользователей"
+                      }}:<span>
+                        {{
+                          listTypeControl.value == "commentsList"
+                            ? i.comment?.length
+                            : i.users?.length
+                        }}
+                      </span>
+                    </p>
+                  </div>
+
+                  <small class="small-note">
+                    Вы можете добавить сразу несколько сообщений разделив их
+                    <span>звездочкой *</span>
+                  </small>
+                  <div class="save-discard-settings">
+                    <button
+                      (click)="onListDelete(i, ind)"
+                      class="discard d-flex align-items-center justify-content-center"
+                    >
+                      <img src="assets/icons/trash.png" alt="" />
+                      Удалить список
+                    </button>
+                    <button
+                      class="save d-flex align-items-center justify-content-center"
+                      (click)="onEditList(i)"
+                    >
+                      Сохранить список
+                    </button>
+                  </div>
+                </div>
+                <div
+                  (click)="
+                    listTypeControl.value == 'usersList'
+                      ? (i.users = [])
+                      : (i.comment = [])
+                  "
+                  class="clear-all"
+                >
+                  <img src="assets/icons/trash.png" alt="" />
+                  <p>очистить все</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

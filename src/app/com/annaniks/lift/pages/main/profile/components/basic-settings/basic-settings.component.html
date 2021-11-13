@@ -1,0 +1,127 @@
+<div class="basic-settings-container">
+  <div class="basic-settings-form login-form">
+    <form [formGroup]="loginForm">
+      <div class="form-group d-flex">
+        <label for="email" class="col-form-label label p-0">Email</label>
+        <div class=" input-content">
+          <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text"
+                 formControlName="email" [ngClass]="{'border':checkIsValid(loginForm,'email')}">
+        </div>
+      </div>
+      <div class="form-group d-flex">
+        <label class="col-form-label  label p-0">Часовой пояс</label>
+        <div class="input-content">
+          <app-select [options]="GMT" formControlName="time" [placeholder]="timeZonePlaceholder"></app-select>
+          <p class="select-title mt-3">Локальное время {{localeDateTime | date: "HH:mm zzzz"}}</p>
+        </div>
+      </div>
+      <button name="submit" type="submit" (click)="changeMe('loginForm')" class="btn save-button"
+              [disabled]="loginForm.invalid || loading">Сохранить
+        изменения
+      </button>
+    </form>
+  </div>
+  <div class="basic-settings-form password-form">
+    <div class="password-form-description d-flex align-items-center" (click)="togglePasswordBlock()">
+      <p class="title">Сменить пароль</p>
+      <img src="assets/icons/arrow_up.png" class="rounded img-responsive up-image ml-3"
+           *ngIf="isPasswordBlockToggle; else iconDown">
+      <ng-template #iconDown>
+        <img src="assets/icons/arrow_down.png" class="rounded img-responsive up-image ml-3">
+      </ng-template>
+    </div>
+    <form [formGroup]="passwordForm" *ngIf="isPasswordBlockToggle">
+      <p class="error text-danger ">{{passwordErrorMessage}}</p>
+      <div class="form-group d-flex">
+        <label for="password" class="col-form-label label">Текущий пароль</label>
+        <div class="input-content">
+          <input id="password" name="password" placeholder="Текущий пароль" class="form-control here" type="password"
+                 formControlName="password" [ngClass]="{'border':checkIsValid(passwordForm,'password')}">
+        </div>
+      </div>
+      <div class="form-group d-flex ">
+        <label for="new-password" class="col-form-label label">Новый пароль</label>
+        <div class="input-content">
+          <input id="new-password" name="new-password" placeholder="Новый пароль" class="form-control here"
+                 type="password" formControlName="newPassword"
+                 [ngClass]="{'border':checkIsValid(passwordForm,'newPassword')}">
+        </div>
+      </div>
+      <div class="form-group d-flex">
+        <label for="repeat-password" class="col-form-label label">Новый пароль еще
+          раз</label>
+        <div class="input-content">
+          <input id="repeat-password" name="repeat-password" placeholder="Новый пароль еще раз"
+                 class="form-control here" type="password" formControlName="repeatPassword"
+                 [ngClass]="{'border':checkIsValid(passwordForm,'repeatPassword') || passwordForm.hasError('mismatchedPasswords')}">
+          <p class="password-title mt-3">Забыли пароль?</p>
+        </div>
+      </div>
+      <button name="submit" type="submit" class="btn save-button"
+              [disabled]="passwordForm.invalid || changePasswordLoading" (click)="onClickChangePassword()">Изменить
+        пароль
+      </button>
+    </form>
+  </div>
+
+  <div class="basic-settings-form notification-form">
+    <form [formGroup]="notificationForm">
+      <div class="form-group">
+        <div class="enable-notification">
+          <mat-slide-toggle color="primary" formControlName="autoDiscount">
+            Включить автосписание
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+<!--  <div class="basic-settings-form notification-form">-->
+<!--    <p class="title">Настройки уведомлений</p>-->
+<!--    <form [formGroup]="notificationForm">-->
+<!--      <div class="form-group">-->
+<!--        <div class="enable-notification">-->
+<!--          <mat-checkbox formControlName="notification">-->
+<!--            Включить уведомления по Email-->
+<!--          </mat-checkbox>-->
+<!--        </div>-->
+<!--        <div class="d-flex email-nots">-->
+<!--          <label for="notsEmail" class=" col-form-label label ">Email</label>-->
+<!--          <div class="input-content full-width">-->
+<!--            <div [ngClass]="{'border':checkIsValid(notificationForm,'email')}">-->
+<!--              <p-chips formControlName="email"></p-chips>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group d-flex">-->
+<!--        <label class="col-form-label label">Включить уведомления-->
+<!--          через Telegram</label>-->
+<!--        <div>-->
+<!--          <button name="submit" type="submit" class="btn save-button ml-0" [disabled]="notificationForm.invalid">-->
+<!--            <img src="assets/icons/telegram.png" class="rounded img-responsive telegram-image mr-3">Подключить-->
+<!--            Telegram-->
+<!--          </button>-->
+<!--          <div class="d-flex  mt-3">-->
+<!--            <img src="assets/icons/settings-icon.png" class="rounded img-responsive settings-image">-->
+<!--            <p class="settings-title  ml-3 cursor-pointer" (click)="openNotificationModal()">Расширенные-->
+<!--              настройки уведомлений</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button name="submit" type="submit" (click)="changeMe('notificationForm')" class="btn save-button"-->
+<!--              [disabled]="notificationForm.invalid || loading">Сохранить-->
+<!--        изменения-->
+<!--      </button>-->
+<!--    </form>-->
+<!--  </div>-->
+
+
+  <div class="d-flex next-button-content">
+    <button [disabled]="loading" (click)="changeMe('notificationForm',true)" name="submit" type="submit"
+            class="btn next-button m-auto">Сохранить<img src="assets/icons/next.png"
+                                                      class="rounded img-responsive next-image ml-3"></button>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="best-posts-slider slider pg-container">
+  <p class="best-posts-slider__title slider-title d-flex align-items-center">
+    Лучшие посты за последний месяц
+  </p>
+  <ngx-slick-carousel
+    class="mb-3"
+    #slickModal="slick-carousel"
+    [config]="sliderConfig"
+  >
+    <div ngxSlickItem *ngFor="let post of posts; let i = index" class="slider-item-wrap">
+      <div class="best-post-card slider-item">
+        <div class="slider-description d-flex flex-wrap">
+          <img [src]="imageToShow[i]" *ngIf="hasImage[i]; else noPostImage" class="rounded img-responsive post-image"
+               alt="Best post in the last month" />
+          <ng-template #noInstagramImage1>
+            <img src="../../../../../../../../../../assets/images/boy.png" class="rounded img-responsive post-image">
+          </ng-template>
+
+          <div class="posts d-flex flex-column justify-content-between">
+            <div>
+              <p class="text-date">
+                {{ post.takenAt | date: 'dd MMMM yyyy' }}
+              </p>
+              <p class="text post-caption">
+                {{ post.text | decodeURIComponent | takeWords: 5 }}
+              </p>
+            </div>
+            <div class="post-review d-flex align-items-center">
+              <img
+                class="rounded img-responsive review-icon mr-1"
+                src="assets/images/like.png "
+              />
+              <p class="value">{{ post.likeCount }}</p>
+              <img
+                class="rounded img-responsive review-icon ml-2 mr-1"
+                src="assets/images/chat.png"
+              />
+              <p class="value">{{ post.commentCount }}</p>
+              <ng-container *ngIf="post.mediaType === 2">
+                <img
+                  class="rounded img-responsive review-icon ml-2 mr-1"
+                  src="assets/images/view.svg"
+                  style="height: 18px"
+                />
+                <p class="value">{{ post.viewCount }}</p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</div>
+
+<!-- <img
+  src="assets/icons/arr_down_blue.png"
+  class="rounded img-responsive cursor-pointer ml-2 down-image cursor-poiner"
+  *ngIf="slide1"
+  (click)="closeSlider(1)"
+/>
+<img
+  src="assets/icons/arrow_up.png"
+  class="rounded img-responsive cursor-pointer ml-2 down-image cursor-poiner"
+  *ngIf="!slide1"
+  (click)="closeSlider(1)"
+/> -->

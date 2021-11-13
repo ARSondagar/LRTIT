@@ -1,0 +1,102 @@
+<div class="pg-container">
+  <div class="block-curtain" *ngIf="isRestricted && isAutosubscribe">
+    <div class="warning-message">
+      <h2>Функция заблокирована.</h2>
+      <h2>Пожалуйста, пополните счет.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Оплата</button>
+    </div>
+  </div>
+  <div class="block-curtain half-16"
+      *ngIf="(appSvc.showPaimentCurtain$ | async) && !appSvc.autoSubscribeIsValid && isAutosubscribe">
+    <div class="warning-message">
+      <h2>Данная функция не оплачена.</h2>
+      <h2>Перейдите в тарифы для оплаты.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Перейти в тарифы</button>
+    </div>
+  </div>
+  <div class="block-curtain half-16"
+      *ngIf="!appSvc.autoWatchStoryIsValid && isAutoWatchStory">
+    <div class="warning-message">
+      <h2>Данная функция не оплачена.</h2>
+      <h2>Перейдите в тарифы для оплаты.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Перейти в тарифы</button>
+    </div>
+  </div>
+
+
+  <div class="subscription-header" [ngClass]="{'blurred-text':isRestricted}">
+    <div class="subscription-title">
+        <p>{{isAutosubscribe ? 'Получение подписчиков' : 'Получение активности'}} </p>
+    </div>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="">
+        <p> </p>
+    </a>
+    <a class="subscribers-statistic" [routerLink]="statisticsRoute">
+        <p> Статистика {{isAutosubscribe ? '' : ''}} </p> <img src="assets/icons/graph.png">
+    </a>
+    <a class="subscribers-statistic" [routerLink]="shedulerRoute">
+        <p> Планировщик </p> <img src="assets/icons/calendar.png">
+    </a>
+  </div>
+  <div [formGroup]="suitableSubsOrStoryForm" class="subscription-accordion accordion" id="accordionExample">
+      <div class="accordion-body" [ngClass]="{'blurred-text':isRestricted}">
+          <div class="collapse-heading mb-0">
+              <img src="assets/icons/setting-1.png" alt="">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne" [ngClass]="{'blurred-text':isRestricted}">
+                  Параметры {{isAutosubscribe ? 'получения подписчиков' : 'просмотра'}}
+                  <img class="arrow-up" src="assets/icons/arrow_up.png" alt="">
+              </button>
+          </div>
+
+          <div id="collapseOne" class="collapse show accordion-body-collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <h4 class="same-conditions" style="text-align: justify; font-size: 16px;">
+                  Нажмите на "Добавить условие" чтобы выбрать те условия, по которым вы хотели бы получать подписчиков. Вы можете выбрать как одно, так и несколько условий для функции, однако, желательно использовать условия с большим количеством целевых пользователей.
+              </h4>
+              <div class="conditions-list">
+                  <app-subscribe-watch-condition
+                    *ngFor="let condition of conditions; let index = index"
+                    [index]="index"
+                    [selectedType]="condition.type"
+                    (onSelect)="onTypeChanged($event, index)"
+                    (onRemove)="removeCondition(condition)">
+
+                  </app-subscribe-watch-condition>
+                  <button [disabled]="conditions.length > 2" class="add-condition" (click)="onClickAddCondition()">+
+                      Добавить
+                      условие</button>
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>
+

@@ -1,0 +1,7 @@
+<a class="ticket-list-item w-100 cursor-pointer d-flex align-items-center"
+    [ngClass]="{'active':ticket?.status?.name === 'Открыт'}" [routerLink]="['/ticket/',ticket?.id]"
+    [class.loading]="mode=='skeletion'">
+    <p class="date"><strong>{{ticket?.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</strong></p>
+    <p class="message">{{ticket?.firstMessage?.message}}</p>
+    <p class="status">{{ticket?.status?.name}}</p>
+</a>

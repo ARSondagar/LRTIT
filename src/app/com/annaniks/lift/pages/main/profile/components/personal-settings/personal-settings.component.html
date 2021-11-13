@@ -1,0 +1,100 @@
+<section class="presonal-settings-container">
+  <div class="personal-settings-form data-form">
+    <form [formGroup]="dataForm">
+      <div class="form-group d-flex flex-wrap">
+        <!-- <label for="account" class="col-form-label label">Тип аккаунта</label> -->
+        <!-- <div class="input-content d-flex align-items-center">
+
+          <img [src]="imageToShow1" *ngIf="hasImage1; else noInstagramImage1"
+               class="rounded-circle img-responsive user-image img-center" />
+          <ng-template #noInstagramImage1>
+            <img src="../../../../../../../../../assets/images/boy.png" class="rounded-circle img-responsive user-image">
+          </ng-template>
+
+          <div class=" ml-2">
+            <div class="d-flex">
+              <p class="text">Стандартный</p>
+              <img src="../../../../../../../../../assets/images/help-web-button.png" class="ml-3 rounded-circle img-responsive help-image">
+            </div>
+            <label for="photo" class="data-text cursor-pointer">Изменить</label>
+            <input type="file" (change)="changePhoto($event)" class="d-none" id="photo" accept=".png,.jpg,.jpeg" />
+          </div>
+        </div> -->
+      </div>
+      <div class="form-group d-flex">
+        <label for="firstname" class="col-form-label label ">Ваше имя</label>
+        <div class="input-item  d-flex">
+          <div class="input-content">
+            <input id="firstname" name="firstname" placeholder="Имя" class="form-control here" required="required"
+                   type="text" formControlName="name" [ngClass]="{'border-red':checkIsValid(dataForm,'name')}">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="personal-settings-form connected-accounts-content">
+    <div class="form-group d-flex flex-wrap">
+      <label for="account" class="col-form-label label">Подключенные аккаунты</label>
+      <div class="connected-content">
+        <div class="d-flex align-items-center">
+          <div class="connected-accounts d-flex flex-wrap">
+            <ng-container *ngFor="let account of activeAccounts; index as i;">
+              <div class="connected-accounts-item ordinal d-flex align-items-center" *ngIf="account.active"
+                   [class.border-red]="!account.verification || account.needPassword || account.loginRequired">
+                <div class="user-img">
+
+                <img [src]="imageToShow[i]" *ngIf="hasImage[i]; else noInstagramImage"
+                     class="rounded-circle img-responsive account-image">
+                <ng-template #noInstagramImage>
+                  <img src="../../../../../../../../../assets/images/user.png" class="rounded-circle img-responsive user-image">
+                </ng-template>
+
+                <div class="account-change-overlay" (click)="onClickChangeAccount(account)"><i
+                    class="material-icons icon">create</i></div>
+                </div>
+                <p class="text ml-2">{{account.login}}</p>
+                <img class="delete-account" [src]="'assets/icons/x.png'" (click)="openActionModal(account.id)" alt="">
+              </div>
+            </ng-container>
+
+            <div (click)="onClickAddAccount($event)" class="connected-accounts-item add-account d-flex align-items-center" *ngIf="addAcountIsValid">
+              <img src="assets/images/add.png" class="rounded-circle img-responsive add-image">
+              <p class="text add-text ml-2">Добавить аккаунт</p>
+            </div>
+          </div>
+        </div>
+        <p class="description-text">{{availableAccountsText()}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="personal-settings-form contacts-form">
+    <form [formGroup]="contactForm">
+      <div class="form-group d-flex flex-wrap">
+        <label for="phoneNumber" class="col-form-label label ">Контактный номер</label>
+        <div class=" input-content">
+          <input id="phoneNumber" name="phoneNumber" prefix="+7" mask="(000) 000 00 00" placeholder="Контактный номер"
+                 class="form-control here" type="text" formControlName="phoneNumber"
+                 [ngClass]="{'border-red':checkIsValid(contactForm,'phoneNumber')}">
+        </div>
+      </div>
+
+      <!-- <div class="form-group d-flex flex-wrap ">
+        <label for="current-city" class="col-form-label label ">Город проживания</label>
+        <div class="input-content">
+          <input id="current-city" name="current-city" placeholder="Город проживания" class="form-control here"
+                 type="text" formControlName="currentCity"
+                 [ngClass]="{'border-red':checkIsValid(contactForm,'currentCity')}">
+        </div>
+      </div> -->
+
+    </form>
+  </div>
+  <div class="d-flex save-button-content">
+    <button name="submit" type="submit" (click)="changeMe()"
+            [disabled]="loading || contactForm.invalid || dataForm.invalid" class="btn save-button">
+      Сохранить
+    </button>
+  </div>
+</section>

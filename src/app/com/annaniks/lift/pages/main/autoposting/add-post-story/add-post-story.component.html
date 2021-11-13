@@ -1,0 +1,72 @@
+<h3 class="add-ps-title"> {{title}}</h3>
+<p class="text-danger text-center">{{errorMessage}}</p>
+<form [formGroup]="addPostForm" class="ps-container d-flex justify-content-between">
+  <div class="ps-body">
+    <div class="photo-video-place drop-zone" (click)="openEditPic()">
+      <div class="drop-file d-flex align-items-center justify-content-center h-100" *ngIf="localImages.length===0">
+        <div class="center">
+          <p class="inf">Нажмите сюда, <i class="text-nowrap">чтобы добавить фото</i> </p>
+        </div>
+      </div>
+      <div class="dropped-files h-100" *ngIf="localImages.length>0">
+        <img [src]="localImages[0]" class="w-100 h-100">
+        <i class="material-icons close-icon cursor-pointer" (click)="onClickRemove()">close</i>
+      </div>
+    </div>
+  </div>
+  <div class="ps-tools">
+    <div class="description-form d-flex justify-content-between align-items-center">
+      <img [src]="userImage" alt="" width="64px" height="64px">
+      <mat-form-field class="w-100">
+        <input id="QWERTY" formControlName="type_mark" matInput #message maxlength="345"
+          placeholder="Введите подпись...">
+        <!-- <mat-hint align="start"><strong>
+            <img (click)="toggleShowEmojies()" src="assets/icons/smile.png" alt="">
+            <emoji-mart *ngIf="showEmojies" title="Pick your emoji…" emoji="point_up"></emoji-mart>
+          </strong> </mat-hint> -->
+        <mat-hint align="end">еще можно ввести {{ 345 - message.value.length }} символов
+        </mat-hint>
+      </mat-form-field>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true" class="settings">
+        <mat-expansion-panel-header expandedHeight="47px">
+          <mat-panel-title>
+            <p class="title">Настройки</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="w-100">
+          <div class="publish-now  w-100">
+            <p class="publish-now-text">Опубликовать
+              <span (click)="onClickShowCalendar()">{{selectedDate}}</span>
+            </p>
+            <mat-form-field [class.d-none]="!showCalendar">
+              <input matInput [ngxMatDatetimePicker]="picker" formControlName="time">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+          <div class="add-ps-form">
+            <mat-checkbox formControlName="showFirstComment">Указать первый комментарий</mat-checkbox>
+            <mat-form-field class="w-100">
+              <textarea matInput formControlName="comment" placeholder="Напишите комментарий..."></textarea>
+            </mat-form-field>
+            <div class="inline-checkoxes" formGroupName="life">
+              <mat-checkbox class="delete-text" formControlName="status">Удаление поста через
+                <span class="checkbox-label text-nowrap">
+                  <input formControlName="count" class="range-input" type="text">
+                  дней
+                </span>
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div class="add-ps-actions d-flex">
+      <!-- <button class="publish">Опубликовать</button> -->
+      <button class="discard" (click)="onClickCancel()">Отмена</button>
+      <button class="save" (click)="onClickCreate()" [disabled]="addPostForm?.invalid || loading">Сохранить</button>
+    </div>
+  </div>
+</form>

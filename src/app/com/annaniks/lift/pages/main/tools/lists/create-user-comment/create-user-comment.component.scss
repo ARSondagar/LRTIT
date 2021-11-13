@@ -1,0 +1,230 @@
+@import "variables";
+
+.comment-users {
+  padding: 32px 40px;
+
+  @media (max-width: $mobile_width) {
+    padding: 32px 20px;
+  }
+
+  .title {
+    border-bottom: 1px solid #7d7d7d7d;
+    padding-bottom: 32px;
+
+    h2 {
+      font-family: "SF UI Display SemiBold";
+      color: #3d3d3d;
+      font-size: 24px;
+      line-height: 1.3;
+      padding-right: 20px;
+    }
+
+    img {
+      transform: translateY(2px);
+    }
+  }
+
+  .list-name {
+    width: 50%;
+    margin-right: 20px;
+
+    @media (max-width: $tablet_width) {
+      width: 400px;
+    }
+
+    @media (max-width: $tablet_width) {
+      margin-right: 0;
+    }
+
+    label {
+      font-family: "SF UI Display SemiBold";
+      color: #3d3d3d;
+      font-size: 18px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .list-type-input {
+      border-style: solid;
+      border-width: 2px;
+      border-color: rgb(194, 208, 219);
+      border-radius: 4px;
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      height: 46px;
+      padding-left: 16px;
+      color: #7d7d7d;
+      font-family: "SF UI Display Regular";
+      font-size: 18px;
+    }
+
+    &.full-width {
+      margin-top: 29px;
+
+      .list-type-input {
+        width: 100%;
+      }
+    }
+  }
+
+  .list-type {
+    margin-top: 32px;
+
+    .outline-button {
+      position: relative;
+      background: transparent;
+      border: none;
+      width: 350px;
+      flex-shrink: 0;
+      font-family: "SF UI Display Regular";
+      color: #3399cc;
+      font-size: 16px;
+      padding-left: 0;
+      margin-top: 20px;
+      text-align: left;
+
+      @media (max-width: $tablet_width) {
+        margin-top: 0;
+      }
+
+      @media (max-width: $mobile_width) {
+        width: 100%;
+      }
+
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &-text {
+    margin-top: 30px;
+
+    label {
+      font-family: "SF UI Display SemiBold";
+      color: #3d3d3d;
+      font-size: 18px;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      resize: none;
+      border-style: solid;
+      border-width: 2px;
+      border-color: rgb(194, 208, 219);
+      border-radius: 4px;
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      height: 204px;
+      padding: 14px 16px;
+      color: #7d7d7d;
+      font-family: "SF UI Display Regular";
+      font-size: 18px;
+    }
+  }
+
+  .save-list {
+    margin-top: 27px;
+
+    .clear-all {
+      display: flex;
+      align-items: center;
+      margin-left: 22px;
+
+      img {
+        margin-right: 10px;
+
+        @media (max-width: $mobile_width) {
+          margin-right: 22px;
+        }
+      }
+
+      p {
+        font-family: "SF UI Display Regular";
+        font-size: 14px;
+        color: #7d7d7d;
+        text-transform: uppercase;
+        white-space: nowrap;
+        cursor: pointer;
+
+        @media (max-width: $mobile_width) {
+          font-size: 0;
+        }
+      }
+    }
+
+    .save {
+      border-radius: 6px;
+      background-color: rgb(51, 153, 204);
+      width: 216px;
+      padding: 16px 10px;
+      font-family: "SF UI Display SemiBold";
+      color: #fff;
+      font-size: 16px;
+    }
+  }
+
+  .comment-list-area {
+    margin-top: 10px;
+
+    .list-area {
+      resize: none;
+      border-style: solid;
+      border-width: 2px;
+      border-color: rgb(194, 208, 219);
+      border-radius: 4px;
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      padding: 14px 16px;
+      color: #7d7d7d;
+      font-family: "SF UI Display Regular";
+      font-size: 18px;
+    }
+  }
+}
+
+p-autoComplete {
+  ::ng-deep {
+    resize: none !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: rgb(194, 208, 219) !important;
+    border-radius: 4px !important;
+    background-color: rgb(255, 255, 255) !important;
+    width: 100% !important;
+    padding: 10px 16px !important;
+    color: #7d7d7d !important;
+    font-family: "SF UI Display Regular" !important;
+    font-size: 18px !important;
+
+    input.ui-inputtext {
+      padding-left: 0 !important;
+    }
+
+    ul {
+      border: none;
+
+      li.ui-autocomplete-token {
+        font-family: "SF UI Display Regular" !important;
+        background-color: #d7d7d7 !important;
+        border-radius: 4px;
+        padding: 5px 12px 5px 13px !important;
+        color: #7d7d7d !important;
+        margin: 0 5px !important;
+      }
+
+      li {
+        input {
+          width: 353px;
+          // &.ui-autocomplete-items {
+          //   li {
+          //     background-color: #305976 !important;
+          //     color: white !important;
+          //   }
+          // } max-width: 500px;
+        }
+      }
+    }
+  }
+}

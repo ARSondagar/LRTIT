@@ -1,0 +1,319 @@
+<div class="editor">
+  <main id="main-area">
+    <div class="history-content">
+      <canvas id="c" width="360" height="640"></canvas>
+      <img class="gui" src="../../../../../../../../assets/images/story-editor/gui-overlay.png">
+    </div>
+  </main>
+  <aside>
+    <p-tabView styleClass="tabview-custom" [activeIndex]="index">
+      <p-tabPanel header="background">
+        <ng-template pTemplate="header">
+          <span>Фон</span>
+        </ng-template>
+        <div id="pick-image-1" class="control-items">
+          <h3>Загрузите свой фон</h3>
+          <p>Загрузите картинку или видео</p>
+          <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+          <button (click)="fileInput.click()">Выбрать файл</button>
+          <hr>
+          <figure id="videoContainer" data-fullscreen="false">
+            <video crossorigin="anonymous" id="video1" style="display: none" class="canvas-img" width="480"
+              height="360">
+              <source id="video_src1" [src]="videoUrl">
+            </video>
+            <div id="video-controls" class="controls" data-state="visible">
+              <button id="playpause" type="button" data-state="play" (click)="playVideo()">Play/Pause</button>
+
+              <div class="progress">
+                <progress id="progress" value="0" min="0">
+                  <span id="progress-bar"></span>
+                </progress>
+              </div>
+
+              <button id="mute" type="button" data-state="mute" (click)="muteMusic()">Mute/Unmute</button>
+              <!-- <button id="volinc" type="button" data-state="volup">Vol+</button>
+              <button id="voldec" type="button" data-state="voldown">Vol-</button> -->
+            </div>
+          </figure>
+
+          <div style="width: 300px; margin: auto;">
+            <h1>canvas2video(mp4)</h1>
+            <div id="container"></div>
+            <div id="videoContainer" style="display: none;">
+              <h2>视频</h2>
+              <video width="300" height="300" controls="true" autoplay="true" id="video"></video>
+            </div>
+          </div>
+          <hr>
+          <h3>Заливка</h3>
+          <div class="backgrounds">
+            <img src="{{background.url}}" *ngFor="let background of backgrounds; let iBackground=index"
+              (click)="setBackgroundImage(background.url)" class="background-item">
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="stickers">
+        <ng-template pTemplate="header">
+          <span>Стикеры</span>
+        </ng-template>
+
+        <button mat-raised-button color="primary" (click)="openCanva()" class="w-100">Открыть Canva</button>
+        <!-- <h3>Статичные стикеры</h3>
+        <div class="sticker-list">
+          <img src="{{sticker.url}}" *ngFor="let sticker of staticStickers; let iSticker=index"
+            (click)="addSticker(sticker.url)" class="sticker-item">
+        </div>
+        <hr>
+        <h3>Смайлики</h3> -->
+
+        <!-- <div class="sticker-list">
+          <img src="{{sticker.url}}" *ngFor="let sticker of emojiStickers; let iSticker=index"
+            (click)="addSticker(sticker.url)" class="sticker-item">
+        </div> -->
+      </p-tabPanel>
+      <p-tabPanel header="dyStickers">
+        <ng-template pTemplate="header">
+          <span>Динамичные Стикеры</span>
+        </ng-template>
+        <div *ngIf="isStickerEdit === true; else stickersList">
+          <h3>{{currentSticker.title}}</h3>
+          <div [ngSwitch]="currentSticker.type">
+            <div *ngSwitchCase="'poll'">
+              <form [formGroup]="frmPoll" (ngSubmit)="addPoll()">
+                <mat-form-field class="w-100">
+                  <input matInput formControlName="question" placeholder="Введите вопрос">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <input matInput formControlName="pAnswer" placeholder="Позитивный ответ">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <input matInput formControlName="nAnswer" placeholder="Отрицательный ответ">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit">Сохранить</button>
+              </form>
+            </div>
+
+            <div *ngSwitchCase="'quiz'">
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.question" placeholder="Введите вопрос">
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.correctAnswer"
+                  placeholder="Введите номер правильного ответа">
+              </mat-form-field>
+              <mat-form-field class="w-100"
+                *ngFor="let option of clickbleStickersCurrent[1].options.options; let iOption=index; trackBy:indexTracker">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.options[iOption]"
+                  placeholder="Введите ответ">
+              </mat-form-field>
+              <!-- <button mat-raised-button color="primary" (click)="addClickbleSticker('sticker.url')">Добавить
+                стикер</button> -->
+              <button mat-raised-button color="primary" (click)="addQuiz(1)">Сохранить</button>
+            </div>
+
+            <div *ngSwitchCase="'slider'">
+              <form [formGroup]="frmSlider" (ngSubmit)="addSlider()">
+                <mat-form-field class="w-100">
+                  <mat-label>Вопрос</mat-label>
+                  <input matInput formControlName="question" placeholder="Введите вопрос">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <mat-label>Эмодзи</mat-label>
+                  <mat-select formControlName="emoji">
+                    <mat-option *ngFor="let emoj of emojis" [value]="emoj.char">
+                      {{emoj.char}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+
+                <button mat-raised-button color="primary" type="submit">Сохранить</button>
+              </form>
+            </div>
+
+            <div *ngSwitchCase="'question'">
+              <form [formGroup]="frmSlider" (ngSubmit)="addQuestion()">
+                <mat-form-field class="w-100">
+                  <mat-label>Текст</mat-label>
+                  <input matInput formControlName="question" placeholder="Введите вопрос">
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Сохранить</button>
+              </form>
+            </div>
+
+
+            <div *ngSwitchCase="'hashtag'">
+              <form [formGroup]="frmHashtag" (ngSubmit)="addHashtag()">
+                <mat-form-field class="w-100">
+                  <input matInput formControlName="hashtag" placeholder="Введите хэштэг (без #)">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit">Сохранить</button>
+              </form>
+            </div>
+
+            <div *ngSwitchCase="'mention'">
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.userId" placeholder="Введите user id">
+              </mat-form-field>
+              <!-- <button mat-raised-button color="primary" (click)="addClickbleSticker('sticker.url')">Добавить
+                стикер</button> -->
+              <button mat-raised-button color="primary" (click)="addHashtag()">Сохранить</button>
+            </div>
+
+            <div *ngSwitchCase="'location'">
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.locationId"
+                  placeholder="Введите id локации">
+              </mat-form-field>
+              <!-- <button mat-raised-button color="primary" (click)="addClickbleSticker('sticker.url')">Добавить
+                стикер</button> -->
+              <button mat-raised-button color="primary" (click)="addLocation(1)">Сохранить</button>
+            </div>
+
+            <div *ngSwitchCase="'countdown'">
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.text" placeholder="Введите текст">
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.endTs"
+                  placeholder="Введите введите конец отсчета (дату и время)">
+              </mat-form-field>
+              <!-- <button mat-raised-button color="primary" (click)="addClickbleSticker('sticker.url')">Добавить
+                стикер</button> -->
+              <button mat-raised-button color="primary" (click)="addCountDown(1)">Сохранить</button>
+            </div>
+
+            <div *ngSwitchCase="'linkstory'">
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.userName" placeholder="Введите текст">
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <input matInput [(ngModel)]="clickbleStickersCurrent[1].options.currentStoryNumber"
+                  placeholder="Введите введите конец отсчета">
+              </mat-form-field>
+              <!-- <button mat-raised-button color="primary" (click)="addClickbleSticker('sticker.url')">Добавить
+                стикер</button> -->
+              <button mat-raised-button color="primary" (click)="addLinkStory(1)">Сохранить</button>
+            </div>
+            <!-- <button mat-raised-button color="warn" (click)="closeAddDynamicSticker()">Отменить</button> -->
+          </div>
+        </div>
+
+        <ng-template #stickersList>
+          <div class="stikers">
+            <div *ngFor="let sticker of dynamicStickers " class="sticker-item" [ngClass]="{'disable': sticker.disable}">
+              <img [src]="sticker.url" [class]="sticker.size" (click)="openAddDynamicSticker(sticker.index)" />
+            </div>
+          </div>
+        </ng-template>
+      </p-tabPanel>
+      <!-- <p-tabPanel header="paint">
+        <ng-template pTemplate="header">
+          <span>Рисование</span>
+        </ng-template>
+        <h3>Цвет</h3>
+        <hr>
+        <h3>Толщина</h3>
+      </p-tabPanel> -->
+      <p-tabPanel header="text">
+        <ng-template pTemplate="header">
+          <span>Текст</span>
+        </ng-template>
+        <div *ngIf="isTextEdit === true; else addTextTempl">
+          <h2>Редактирование Выбранного Текста</h2>
+          <mat-form-field class="w-100">
+            <mat-label>Выравнивание</mat-label>
+            <mat-select [(ngModel)]="textEffects.textAlign">
+              <mat-option *ngFor="let alignItem of alignItems" [value]="alignItem.value">
+                {{alignItem.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <hr>
+          <mat-form-field class="w-100">
+            <mat-label>Шрифт</mat-label>
+            <mat-select [(ngModel)]="textEffects.fontFamily">
+              <mat-option *ngFor="let fontItem of fontItems" [value]="fontItem.value">
+                {{fontItem.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <hr>
+          <mat-form-field class="w-100">
+            <mat-label>Размер шрифта</mat-label>
+            <mat-select [(ngModel)]="textEffects.fontSize">
+              <mat-option *ngFor="let fontSize of fontSizeItems" [value]="fontSize.value">
+                {{fontSize.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>Толщина шрифта</mat-label>
+            <mat-select [(ngModel)]="textEffects.fontWeight">
+              <mat-option *ngFor="let fontWeight of fontWeightItems" [value]="fontWeight.value">
+                {{fontWeight.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <h3>Тень</h3>
+            <hr>
+            <h3>Эффекты</h3>
+            <hr> -->
+          <!--   <h3></h3> -->
+
+          <mat-form-field class="w-100">
+            <mat-label>Цвет</mat-label>
+            <input type="color" [(ngModel)]="textEffects.color" matInput>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="button" (click)="updateTextEffects()">Сохранить</button>
+
+        </div>
+        <ng-template #addTextTempl>
+          <button mat-raised-button color="primary" (click)="addText()" class="w-100">Добавить текст</button>
+        </ng-template>
+      </p-tabPanel>
+      <p-tabPanel header="actions">
+        <ng-template pTemplate="header">
+          <span>Действия</span>
+        </ng-template>
+        <h3>Активные Действия</h3>
+        <button mat-raised-button color="warn" (click)="removeObject()">Удалить выбранный объект</button>
+        <hr>
+        <h3>Справка</h3>
+        <p>Выберите объект и нажмите на клавиатуре кнопку Delete</p>
+      </p-tabPanel>
+    </p-tabView>
+    <div class="d-flex justify-content-center">
+      <div class="discard">
+        <button (click)="closeDialog(false)" class="btn">Отклонить</button>
+      </div>
+      <div class="confirm">
+        <button class="btn" (click)="download()">
+          Скачать
+        </button>
+      </div>
+      <div class="confirm">
+        <button (click)="closeDialog(true)" class="btn">Применить</button>
+      </div>
+    </div>
+  </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+

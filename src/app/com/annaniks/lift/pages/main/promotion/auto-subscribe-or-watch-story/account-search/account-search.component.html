@@ -1,0 +1,19 @@
+<div class="subscribed-to-container">
+    <div class="subscribed-to" [ngClass]="{'invalid':accounts.invalid && accounts.touched}">
+      <form class="user-autocomplete" [formGroup]="form" novalidate>
+        <p-autoComplete maxlength="50" field="username" placeholder="Введите имена аккаунтов" formControlName="accounts"
+            [ngClass]="{'blurred-text': isRestricted}" [type]="'search'" #accountAutocomplete
+            [suggestions]="searchValue" (completeMethod)="search($event)" [multiple]="true" (onClear)="onClear()">
+            <ng-template let-user pTemplate="item">
+                <div class="d-flex align-items-center">
+                    <div class="ml-1" [ngClass]="{'blurred-text': isRestricted}" style="line-height: 32px; margin-left: 15px !important;">{{user.username}}</div>
+                </div>
+            </ng-template>
+        </p-autoComplete>
+      </form>
+    </div>
+    <div *ngIf="accounts?.value.length > 0" (click)="clearAll()" class="clear-all-fields">
+        <img src="assets/icons/trash.png">
+        <p>очистить все</p>
+    </div>
+</div>

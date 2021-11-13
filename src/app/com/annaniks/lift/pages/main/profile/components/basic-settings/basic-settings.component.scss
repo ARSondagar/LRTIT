@@ -1,0 +1,198 @@
+@import "variables";
+
+.basic-settings-container {
+  .basic-settings-form {
+    .form-group {
+      @media (max-width: $mobile_width) {
+        flex-wrap: wrap;
+      }
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      border: 1px solid #d7d7d7;
+      margin: 28px 0 28px 0;
+    }
+
+    .label {
+      padding: 0;
+      width: 100%;
+      max-width: 210px;
+      margin-bottom: 5px;
+
+      @media (max-width: $mobile_width) {
+        font-weight: 700;
+        padding-left: 12px !important;
+      }
+    }
+
+    .input-content {
+      padding: 0;
+      max-width: 300px;
+      width: 100%;
+
+      &.full-width {
+        max-width: 100%;
+      }
+    }
+
+    .save-button {
+      margin-left: 210px;
+      background: #3399cc;
+      color: white;
+      padding: 13px 34px;
+      cursor: pointer;
+      white-space: nowrap;
+
+      @media (max-width: $mobile_width) {
+        margin: 10px auto 0;
+        padding: 8px 20px;
+      }
+    }
+
+    .title {
+      font-weight: 600;
+    }
+  }
+
+  .login-form {
+    @media (max-width: $mobile_width) {
+      padding-top: 20px;
+    }
+
+    .select-title {
+      color: #7d7d7d;
+
+      @media (max-width: $mobile_width) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .error {
+    margin-left: 210px;
+  }
+
+  .password-form {
+    .password-form-description {
+      margin-bottom: 50px;
+      cursor: pointer;
+    }
+
+    .up-image {
+      height: 10px;
+      width: 15px;
+    }
+
+    .password-title {
+      color: #3399cc;
+    }
+  }
+
+  .notification-form {
+    .text {
+      margin-bottom: 50px;
+    }
+
+    .telegram-image {
+      height: 17px;
+      width: 20px;
+    }
+
+    .settings-image {
+      height: 20px;
+      width: 20px;
+    }
+
+    .settings-title {
+      color: #3399cc;
+    }
+
+    .enable-notification {
+      margin: 37px 0 16px 210px;
+
+      @media (max-width: $tablet_width) {
+        margin: 37px 0 26px 0;
+      }
+    }
+
+    .email-nots {
+      @media (max-width: $mobile_width) {
+        display: block !important;
+      }
+    }
+  }
+
+  .next-button {
+    color: white;
+    background: #71ceb5;
+    padding: 17px 98px;
+    margin-top: 15px !important;
+
+    @media (max-width: $mobile_width) {
+      margin-top: 0;
+      padding: 12px 20%;
+      width: 100%;
+    }
+  }
+}
+
+.border {
+  border: 1px solid red !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+  background-color: #3399cc !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border: 1px solid #c2d0db !important;
+}
+
+p-chips {
+  ::ng-deep {
+    input.ui-inputtext {
+      padding-left: 0 !important;
+    }
+
+    ul {
+      border: none;
+      display: block !important;
+      overflow: auto !important;
+
+      li.ui-chips-token {
+        font-family: "SF UI Display Regular" !important;
+        background-color: #3399cc !important;
+        border-radius: 4px;
+        padding: 10px 12px 10px 13px !important;
+        color: #ffffff !important;
+        margin: 5px !important;
+
+        @media (max-width: $mobile_width) {
+          font-size: 12px !important;
+          padding: 8px 10px 8px 11px !important;
+        }
+      }
+
+      li {
+        input {
+          width: 315px;
+          // &.ui-autocomplete-items {
+          //   li {
+          //     background-color: #305976 !important;
+          //     color: white !important;
+          //   }
+          // } max-width: 500px;
+        }
+      }
+    }
+  }
+}
+

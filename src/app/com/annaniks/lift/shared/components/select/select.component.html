@@ -1,0 +1,32 @@
+<div class="select" [ngClass]="{'select_time': time,'select_positionTop': position}" (click)="onTouched()">
+  <div class="select__label" *ngIf="label" (click)="(isActive = !isActive)">{{label}}</div>
+  <button class="select__toggle" (click)="(isActive = !isActive)" [ngClass]="{'select__toggle_placeholder': !select, 'select__toggle_active': isActive && options}">
+    <span class="toggle__text">{{select?.name || placeholder}}</span>
+    <span class="toggle__icon" [ngClass]="{'toggle__icon_active': isActive && options}"></span>
+  </button>
+  <div class="select__menu" *ngIf="isActive && (options || optionsMulti)" [ngStyle]="{height: 'calc(' + (options.length*2.4) + 'em + 3px)'}">
+      <perfect-scrollbar class="scrollbar">
+      <ul class="selectMenu" *ngIf="options">
+        <li class="selectMenu__item disabled" *ngIf="select && time">{{placeholder}}</li>
+        <li class="selectMenu__item" *ngFor="let item of (optionsFiltered ? optionsFiltered : options )"
+            (click)="item?.disabled || chooseOption(item)" [class.disabled]="item.disabled">
+          {{item.name}}
+        </li>
+        <li class="selectMenu__item_empty" *ngIf="optionsFiltered && !optionsFiltered.length">Empty</li>
+      </ul>
+      <ul class="selectMenu" *ngIf="optionsMulti">
+        <li class="selectMenu__header">Group</li>
+        <li class="selectMenu__item" *ngFor="let item of (optionsMultiFiltered.group ? optionsMultiFiltered.group : optionsMulti.group)" (click)="chooseOptionMulti(item, 'group')">
+          {{item.name}}
+        </li>
+        <li class="divider"></li>
+        <li class="selectMenu__header">Single</li>
+        <li class="selectMenu__item" *ngFor="let item of (optionsMultiFiltered.single ? optionsMultiFiltered.single : optionsMulti.single)" (click)="chooseOptionMulti(item, 'single')">
+          {{item.name}}
+        </li>
+        <li class="selectMenu__item_empty" *ngIf="optionsFiltered && !optionsFiltered.length">Empty</li>
+      </ul>
+    </perfect-scrollbar>
+  </div>
+  <p class="select__error" *ngIf="error">{{error}}</p>
+</div>

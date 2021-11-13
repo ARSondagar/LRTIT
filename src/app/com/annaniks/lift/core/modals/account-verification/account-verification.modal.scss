@@ -1,0 +1,64 @@
+@import "variables";
+
+.instagram-account-form {
+    .label {
+        padding: 0;
+        width: 100%;
+        max-width: 210px;
+    }
+
+    .input-content {
+        padding: 0;
+        width: 100%;
+    }
+
+    .verification-buttons-wrap {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .verification-save-button {
+        background: #3399cc;
+        color: white;
+        padding: 12px;
+        cursor: pointer;
+        margin: 0 0 12px;
+        width: 100%;
+
+        @media (min-width: $mobile_width) {
+            max-width: 180px;
+            margin: 0 12px 0 auto;
+        }
+    }
+
+    .verification-check-button {
+        background: #3399cc;
+        color: white;
+        padding: 12px 5px;
+        cursor: pointer;
+        width: 100%;
+        white-space: nowrap;
+
+        @media (min-width: $mobile_width) {
+            max-width: 220px;
+        }
+    }
+
+    .ml-10 {
+        margin-left: 10px;
+    }
+
+    .title {
+        font-weight: 600;
+    }
+
+    .text {
+        opacity: .5;
+    }
+}
+
+.border {
+    border: 1px solid red !important;
+}
+
+

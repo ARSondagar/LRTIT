@@ -1,0 +1,133 @@
+@import "variables";
+
+app-header-switch-account {
+  .switch-account-content {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    background: #ffffff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    width: 320px;
+    max-height: 411px;
+    padding: 32px 15px 25px 22px;
+
+    @media (max-width: $tablet_width) {
+      width: 100%;
+      top: 60px;
+    }
+
+    .switch-account-content-container {
+      max-height: 286px;
+      overflow-y: auto;
+      margin-bottom: 36px;
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #c4c4c4;
+      }
+
+      &::-webkit-scrollbar {
+        width: 6px;
+        background-color: #c4c4c4;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #545454;
+      }
+
+      .switch-account-item {
+        width: 250px;
+        height: 45px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+        &:not(:last-child) {
+          margin-bottom: 22px;
+        }
+
+        p {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 19px;
+          line-height: 22px;
+          color: #000000;
+
+          &.active {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .add-account {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 19px;
+      line-height: 22px;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .switch-account {
+    position: relative;
+    height: 36px;
+    background-color: #3e6683;
+    padding: 9px 10px;
+
+    @media (max-width: $mobile_width) {
+      max-width: 220px;
+    }
+
+    .switch-account-action {
+      position: relative;
+      padding: 0 25px;
+
+      .insta-icon {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      .arrow-icon {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    p {
+      font-family: "SF UI Display Regular";
+      color: #8ee7e4;
+      font-size: 16px;
+      max-width: 300px;
+      min-width: 100px;
+      overflow: hidden;
+
+      &.small {
+        color: white;
+      }
+    }
+
+    img {
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.border-red {
+  background-color: #ffcaca !important;
+}
+
+li.disabled-item {
+  font-weight: bold;
+  font-size: larger;
+
+  &:hover {
+    cursor: default;
+  }
+}

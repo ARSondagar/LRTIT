@@ -1,0 +1,187 @@
+@import 'variables'
+
+$accent: #D14B4E
+$text__secondary: #A4AAB1
+$text__basic: #212121
+$border_color: #c2d0db
+$border: 2px solid $border_color
+$text__basic_dark: #FFFFFF
+\:host
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-flow: row nowrap
+  @media (max-width: 350px)
+    flex-wrap: wrap
+
+  &.ng-touched.ng-invalid
+    .select__label
+      color: $accent
+
+    .select__toggle
+      border-color: $accent
+
+      &:focus
+        outline-color: $accent
+
+    .select__error
+      color: $accent
+      display: block
+
+.select
+  font-size: 1rem
+  position: relative
+  //min-width: 10em
+  @media (max-width: 350px)
+    width: 100%
+
+  &:not(:last-child)
+    .select__toggle
+      @media (max-width: 350px)
+        border-bottom: none
+
+  & + &
+    .select__toggle
+      border-left-width: 0
+      @media (max-width: 350px)
+        border-left-width: 2px
+
+    .select__menu
+      left: -2px
+      @media (max-width: 350px)
+        left: 0
+
+.select__label
+  color: $text__secondary
+  margin-bottom: 0.4em
+
+.select__toggle
+  font-size: 1em
+  color: $text__basic
+  line-height: 1.6
+  padding: 0.5em 0.5em 0.5em 2.5em
+  //padding: 0.5em 1em 0.5em 0.8em
+  border: $border
+  display: flex
+  justify-content: space-between
+  align-items: center
+  text-align: left
+  background-color: transparent
+  width: 100%
+  cursor: pointer
+  transition-duration: 0.3s
+  transition-property: background-color
+  @media (max-width: $mobile_width)
+    padding: 0.2em 0.2em 0.2em 1em
+
+  &_first
+    border-radius: 4px 0 0 4px
+    @media (max-width: $mobile-width)
+      border-radius: 4px 4px 0 0
+
+  &_last
+    border-radius: 0 4px 4px 0
+    @media (max-width: $mobile-width)
+      border-radius: 0 0 4px 4px
+
+  &_active
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    background-color: $text__basic_dark
+
+.select__toggle_placeholder
+  color: $text__secondary
+  fill: $text__secondary
+
+.toggle__text
+  flex-grow: 1
+  line-height: 1.4
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  margin-right: 1.4em
+  text-align: center
+
+.toggle__icon
+  width: 0.9em
+  height: 0.9em
+  transform: translateY(0.1em)
+  flex-shrink: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  transition-duration: 0.3s
+  background: url("../../../../../../../assets/icons/arr_grey.png") center center no-repeat
+  background-size: contain
+
+.toggle__icon_active
+  transform: rotate(-180deg)
+
+.select__menu
+  height: 200px
+  position: absolute
+  //top: 100%
+  top: calc(100% - 2px)
+  left: 0
+  right: 0
+  z-index: 999999
+  background-color: $text__basic_dark
+  border-radius: 0 0 4px 4px
+//box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)
+.select__menu_active
+  display: block
+
+.selectMenu
+  width: 100%
+  list-style: none
+  padding: 0
+  min-width: 100%
+  margin: 0
+
+.selectMenu__item
+  font-size: 1em
+  padding: 0.8em 1em 0.8em 0.8em
+  display: block
+  transition-duration: 0.1s
+  cursor: pointer
+  text-align: center
+
+  &:hover, &:focus
+    color: $text__basic_dark
+    background-color: rgb(51, 152, 204)
+
+  &:active
+    color: $text__basic_dark
+    background-color: rgb(51, 120, 172)
+
+  &.disabled
+    background-color: transparent !important
+    color: $text__secondary !important
+    cursor: default
+
+.selectMenu__item_empty
+  padding: 0.5em
+  text-align: center
+
+.selectMenu__link
+
+.divider
+  height: 0
+  border-bottom: 1px solid $border_color
+
+.selectMenu__header
+  padding: 0.5em
+  font-weight: bold
+  font-size: 120%
+
+.select__error
+  text-align: left
+  display: none
+  margin: 0.4em 0 0
+  font-size: 80%
+
+.scrollbar
+  height: 100%
+  border: $border
+  border-top-width: 1px
+  border-radius: 0 0 4px 4px

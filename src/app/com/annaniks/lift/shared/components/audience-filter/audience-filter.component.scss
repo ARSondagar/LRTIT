@@ -1,0 +1,192 @@
+@import "variables";
+
+.content-wrapper {
+  margin-top: 40px;
+}
+
+.subscription-accordion {
+  .accordion-body {
+    background-color: #f6f6f6;
+    padding: 14px 36px;
+    border-radius: 6px;
+
+    @media (max-width: $tablet_width) {
+      padding: 14px 15px;
+    }
+
+    .collapse-heading {
+      display: flex;
+      flex-wrap: wrap;
+      padding-right: 30px;
+      align-items: center;
+      position: relative;
+
+      .btn {
+        font-weight: bold;
+      }
+
+      .filters-count {
+        padding: 3px 9px 3px 7px;
+        background: #0dce99;
+        border-radius: 2px;
+        white-space: nowrap;
+
+        span {
+          font-family: "SF UI Display Regular";
+          font-size: 14px;
+          color: white;
+        }
+      }
+
+      button {
+        color: #3d3d3d;
+        font-size: 18px;
+        text-decoration: none;
+        text-align: left;
+
+        img {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: all 0.3s;
+        }
+
+        &.collapsed {
+          img {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+
+      .arrow-up {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.inline-checkoxes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &.wrap {
+    display: inline-block;
+
+    mat-checkbox {
+      display: inline-block;
+    }
+  }
+
+  .checkbox-label {
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    line-height: 48px;
+    color: #3d3d3d;
+    margin-left: 4px;
+
+    @media (max-width: $tablet_width) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 700px) {
+
+    }
+  }
+
+  .range-input {
+    border-radius: 4px;
+    border: 2px solid #c2d0db;
+    height: 30px;
+    font-size: 14px;
+    width: 70px;
+    padding-left: 4px;
+  }
+}
+
+.filters-container {
+  padding: 26px 45px 12px 6px;
+
+  @media (max-width: $tablet_width) {
+    padding: 26px 0 6px;
+  }
+
+  .checkoboxes-filter {
+    & > * {
+      @media (max-width: $mobile_width) {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #cccccc;
+      }
+    }
+  }
+}
+
+.close-button-wrapper {
+  text-align: right;
+
+  .close-button {
+    padding: 5px 10px;
+  }
+}
+
+textarea {
+  width: 460px;
+  height: 140px;
+  font-family: "SF UI Display Regular";
+  font-size: 14px;
+  line-height: initial;
+  color: #3d3d3d;
+  resize: none;
+  padding: 14px 15px;
+
+  @media (max-width: $tablet_width) {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+}
+
+mat-checkbox {
+  ::ng-deep {
+    display: block;
+
+    @media (max-width: $mobile_width) {
+      width: 100%;
+    }
+
+    .mat-checkbox-label {
+      font-family: "SF UI Display Regular";
+      font-size: 18px;
+      line-height: 48px;
+      white-space: normal;
+      color: #3d3d3d;
+
+      @media (max-width: $tablet_width) {
+        font-size: 16px;
+      }
+
+      @media (max-width: $mobile_width) {
+        line-height: 100%;
+      }
+    }
+
+    .range-input {
+      border-radius: 4px;
+      border: 2px solid #c2d0db;
+      height: 30px;
+      font-size: 14px;
+      width: 70px;
+      padding-left: 4px;
+    }
+  }
+}
+
+mat-checkbox.with-text {
+  ::ng-deep {
+    label.mat-checkbox-layout {
+      display: block;
+    }
+  }
+}

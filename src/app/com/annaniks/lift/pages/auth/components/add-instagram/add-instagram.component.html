@@ -1,0 +1,66 @@
+<div class="formAuth">
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () {
+        (m[i].a = m[i].a || []).push(arguments)
+      };
+      m[i].l = 1 * new Date();
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k,
+        a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(85947000, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/85947000" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+  <i class="close-icon material-icons cursor-pointer" (click)="onClickClose($event)">close</i>
+  <form class="form-signin" [formGroup]="instagramForm">
+    <h1 class="formAuth__title">Добавление аккаунта Instagram</h1>
+    <p class="subtitle-1">Для использования сервиса необходимо подключить Instagram аккаунт.</p>
+    <p class="subtitle-1">
+      Перед добавлением аккаунта, пожалуйста, убедитесь в том, что у вас есть доступ к E-mail или телефону, указанному в
+      профиле Instagram.
+    </p>
+    <div class="form-content">
+      <input type="email" id="inputEmail1" class="formAuth__field formAuth__field_email" placeholder="Логин"
+        [ngClass]="{'inp-error':getValidationError('login','required') || getValidationError('login','email')}"
+        formControlName="login">
+      <label class="formAuth__labelPass">
+        <input formControlName="password" class="formAuth__field formAuth__field_password" type="password"
+          placeholder="Пароль" [ngClass]="{'inp-error':getValidationError('password','required')}" />
+      </label>
+      <button class="btn btn-block new-accont-btn" type="submit" (click)="onInstagramSubmit($event)"
+        [disabled]="submitDisabled$ | async">
+        <i class="fas fa-sign-in-alt"></i>
+        Подключить
+        <i class="fa fa-circle-o-notch fa-spin lm-loader" *ngIf="loading"></i>
+      </button>
+    </div>
+
+    <div class="text-danger">
+      <p class="error-message">
+        <img src="../../../../../../../../assets/images/protect1.png" style="width: 24px; height: 24px;">
+        <span class="subtitle-1">
+          Ваш пароль будет храниться в зашифрованном виде и будет надежно сохранен в нашей серверной безопасной среде.
+        </span>
+      </p>
+      <p class="error-message">
+        <span class="subtitle-1">
+          Если в вашем аккаунте включена двухфакторная аутентификация, пожалуйста, подтвердите вход в приложении или
+          введите
+          код в следующем окне.
+        </span>
+      </p>
+    </div>
+  </form>
+</div>

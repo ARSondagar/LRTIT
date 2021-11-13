@@ -1,0 +1,36 @@
+<div class="pg-container">
+    <div>
+        <div class="lcb-statistic-heading">
+            <h4>Статистика активности <b>с
+                <app-datepicker [formControl]="startDateControl" [disableToDate]="createdAt"></app-datepicker>по
+                <app-datepicker [formControl]="endDateControl" [disableToDate]="createdAt"></app-datepicker></b>
+            </h4>
+            <a class="lcb-manage" routerLink="/promotion/bonuses">
+              <span>Настройки бонусов от Lift</span>
+              <img src="assets/icons/settings.png" alt="Manage posts">
+            </a>
+        </div>
+        <!-- <app-line-chart></app-line-chart> -->
+        <div class="table-wrapper">
+            <table class="table table-image lcb-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Посты</th>
+                        <th scope="col">Лайки</th>
+                        <th scope="col">Комментарии</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of statistics">
+                        <td>{{item?.date | date:'dd.MM.yyyy'}}</td>
+                        <td>Пост #?</td>
+                        <td>{{item?.like}}</td>
+                        <td>{{item?.comment}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="load-more" (click)="onClickLoadMore()" *ngIf="isShowLoadMore">Загрузить еще</button>
+    </div>
+</div>

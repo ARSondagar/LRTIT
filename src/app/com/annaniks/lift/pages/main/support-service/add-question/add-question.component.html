@@ -1,0 +1,50 @@
+<div class="add-question-container">
+  <div class="add-question-header d-flex justify-content-between">
+    <p class="text">Задать вопрос</p>
+    <img src="assets/icons/close.png" class="rounded img-responsive  cursor-pointer close-icon"
+         (click)="closeModal()">
+  </div>
+  <div class="add-question-form">
+    <form [formGroup]="questionForm">
+      <div class="form-group d-flex inputs-wrapper">
+        <div class="input-content">
+          <input id="subject" name="subject" placeholder="Тема сообщения" class="form-control here"
+                 required="required" type="text" formControlName="subject"
+                 [ngClass]="{'border':checkIsValid('subject')}">
+        </div>
+        <div class="input-content">
+          <app-select [options]="supportCategories" formControlName="questionCategory"
+                      placeholder="Категория вопроса"></app-select>
+        </div>
+      </div>
+      <div class="text-area">
+                <textarea id="subject" name="subject" placeholder="Текст сообщения"
+                          class="form-control here text-area-content" required="required" type="text"
+                          formControlName="message" [ngClass]="{'border':checkIsValid('message')}"></textarea>
+      </div>
+      <div class="attached-files-container">
+        <p class="text" *ngIf="attachedFiles && attachedFiles.length>0">Прикрепленные файлы</p>
+        <div class="affached-file-list d-flex align-items-center flex-wrap">
+          <div *ngFor="let file of attachedFiles;let ind=index;" class="attached-file-item">
+            <span>{{file?.name}}</span>
+            <i class="icon delete-icon material-icons"
+               (click)="onClickRemoveAttachedFile(ind)">close</i>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex submit-button-content justify-content-between">
+        <button name="submit" type="submit" class="btn submit-button"
+                [disabled]="questionForm.invalid || loading" (click)="onClickSend()">Отправить
+        </button>
+        <label class="d-flex align-items-center cursor-pointer" for="file-input">
+          <img src="assets/icons/file.png" class="rounded img-responsive  cursor-pointer file-icon">
+          <p class="title ml-2">Прикрепить файл</p>
+        </label>
+        <input #fileInput class="file d-none" id="file-input" type="file" multiple
+               (change)="onChangeFiles($event,fileInput)" />
+      </div>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="sub-navigation-container" *ngIf="isShow()">
+    <nav class="sub-navigation">
+        <ul class="sub-navigation-links">
+
+          <li class="cursor-pointer" routerLinkActive="active" *ngFor="let item of navbarItems">
+            <ng-container *ngIf="item.isValid; else noLink">
+              <a [routerLink]="item.routerLink" *ngIf="!item.isRestricted; else restrictedLink">{{item.label}}</a>
+              <ng-template #restrictedLink>
+                <a class="disabled-link">{{item.label}} (Скоро)</a>
+              </ng-template>
+           </ng-container>
+           <ng-template #noLink>
+              <a class="disabled-link">{{item.label}}</a>
+           </ng-template>
+          </li>
+
+        </ul>
+    </nav>
+</div>

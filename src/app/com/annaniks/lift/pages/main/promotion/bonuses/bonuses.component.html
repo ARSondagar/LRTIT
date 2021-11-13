@@ -1,0 +1,94 @@
+<div>
+  <div class="block-curtain half-16" *ngIf="!appSvc.bonusesIsValid">
+    <div class="warning-message">
+      <h2>Данная функция не оплачена.</h2>
+      <h2>Перейдите в тарифы для оплаты.</h2>
+      <button class="balance__payment-button" (click)="goToPayment()">Перейти в тарифы</button>
+    </div>
+  </div>
+
+  <section class="bonuses-content">
+    <div class="pg-container">
+      <div [formGroup]="bonusesForm" class="bonuses-container">
+        <p class="text">Получать активность <span>по каждому посту</span></p>
+        <div class="bonus-detailes">
+          <div class="detailes-content">
+            <div class="detailes-item comments-item d-flex align-items-center flex-wrap pb-2">
+              <div class="d-flex align-items-center mr-2">
+                <mat-checkbox formControlName="commentStatus"></mat-checkbox>
+                <p class="title ml-2">Комментарии</p>
+                <div class="form-group ml-2 mt-0 mb-0">
+                  <div>
+                    <input formControlName="comment" type="number" [min]="1"
+                           class="fild-input form-control text-align-center" id="example-number-input">
+                  </div>
+                </div>
+              </div>
+              <p class="py-3">( От 1 до 30, рекомендовано 25 )</p>
+            </div>
+            <div class="d-flex align-items-flex-start add-comments flex-wrap">
+              <div class="image-upload">
+                <label for="file-input" class="mb-3">
+                  <img class="bonuses-icon cursor-pointer rounded img-responsive" height="20"
+                       src="assets/images/bonus-download-icon.png" />
+                  Загрузить файл с примерами
+                  <!--  -->
+                </label>
+                <input #fileInput (change)="handleInputChange($event)" class="file" id="file-input" type="file" />
+              </div>
+
+              <p (click)="toggleIsUploaded()" class="title cursor-pointer mb-3">
+                <img
+                  class="bonuses-icon rounded cursor-pointer img-responsive"
+                  src="assets/images/bonuses-document-icon.png"> Добавить шаблон комментариев
+              </p>
+
+            </div>
+            <div *ngIf="!isUploaded" class="comment-template">
+              <p class="title">Введите шаблон комментариев</p>
+                <textarea placeholder="Введите шаблон комментариев разделенные точкой запятой" name="" id="" cols="40" rows="5" formControlName="comments"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="bonus-detailes">
+          <div class="detailes-content">
+            <div class="detailes-item d-flex align-items-center flex-wrap">
+              <div class="d-flex align-items-center mr-2 mb-3">
+                <mat-checkbox formControlName="likeStatus"></mat-checkbox>
+                <p class="title ml-2">Лайки</p>
+                <div class="form-group ml-2 my-0">
+                  <div>
+                    <input formControlName="like" class="fild-input form-control text-align-center"
+                           type="number" [min]="1" id="example-number-input">
+                  </div>
+                </div>
+              </div>
+              <p class="pb-3">( От 1 до 30, рекомендовано 25 )</p>
+            </div>
+          </div>
+        </div>
+        <div class="bonus-detailes">
+          <div class="detailes-content">
+            <div class="detailes-item d-flex align-items-center flex-wrap">
+              <div class="d-flex align-items-center mr-2 mb-3">
+                <mat-checkbox formControlName="saveStatus"></mat-checkbox>
+                <p class="title ml-2">Закладки</p>
+                <div class="form-group ml-2 my-0">
+                  <div>
+                    <input formControlName="save" class="fild-input form-control text-align-center"
+                           type="number" [min]="1" id="example-number-input">
+                  </div>
+                </div>
+              </div>
+              <p class="pb-3">( От 1 до 30, рекомендовано 25 )</p>
+            </div>
+          </div>
+        </div>
+        <div class="save-settings">
+          <button class="save" (click)="addActivity()">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

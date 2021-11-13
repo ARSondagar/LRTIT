@@ -1,0 +1,62 @@
+<div class="comment-users">
+    <div class="title d-flex justify-content-between align-items-baseline">
+        <h2>Создать список пользователей</h2>
+        <img src="assets/icons/close.png" alt="">
+    </div>
+    <form [formGroup]="userCommentForm">
+
+        <div class="list-type d-flex align-items-end justify-content-between flex-wrap">
+            <div class="list-name">
+                <label for="list-type">Название списка</label>
+                <input formControlName="name" type="text" placeholder="Название списка" class="list-type-input">
+            </div>
+            <button class="btn outline-button">Правила создания списка
+                <span>пользователей <img src="assets/icons/question-blue.png" alt=""></span>
+            </button>
+        </div>
+
+        <div *ngIf="data == 'usersList'" class="comment-users-text">
+            <div class="form-group">
+                <label for="comment-user-text">Введите пользователей, разделенных запятой и @</label>
+                <!-- <textarea formControlName="usersList" id="comment-user-text"></textarea> -->
+                <p-autoComplete maxlength="50" field="username" placeholder="Введите имена аккаунтов"
+                    formControlName="usersList" [suggestions]="searchStream$ | async"
+                    (completeMethod)="searchForAccounts($event)" [multiple]="true">
+                    <ng-template let-user pTemplate="item">
+                        <div class="d-flex align-items-center">
+                            <img [src]="user.profile_pic_url" class="rounded-circle" height="32" />
+                            <div class="ml-1">{{user.username}}</div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+            </div>
+        </div>
+
+        <div *ngIf="data == 'commentsList'" class="comment-user-comment-list">
+            <div class="list-name full-width">
+                <label for="list-type">Введите список сообщений, разделенных слешом "/"</label>
+                <mat-form-field class="w-100">
+                    <mat-chip-list #commentsList formControlName="commentsList">
+                        <mat-chip *ngFor="let comment of userCommentForm.get('commentsList').value"
+                            [selectable]="selectable" [removable]="removable" (removed)="removeComment(comment)">
+                            {{comment}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Введите список сообщений..." [matChipInputFor]="commentsList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="addComment($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="save-list d-flex justify-content-between align-items-center">
+            <div (click)="resetForm()" class="clear-all">
+                <img src="assets/icons/trash.png" alt="">
+                <p>очистить все</p>
+            </div>
+            <button (click)="onSave()" class="btn save" [disabled]="userCommentForm.invalid">Сохранить список</button>
+        </div>
+
+    </form>
+</div>

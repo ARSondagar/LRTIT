@@ -1,0 +1,241 @@
+<div class="pg-container direct">
+    <div class="pg-content">
+        <div class="header d-flex justify-content-between">
+            <p class="pg-title text-left">Управление сообщениями в директ</p>
+            <a class="settings cursor-pointer">
+                <span class="text-left">Настройки рекламной рассылки</span>
+                <img class="icon" src="/assets/icons/settings-icon.png">
+            </a>
+        </div>
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div (clickOutside)="onClickedOutside()"
+                        class="d-flex justify-content-between message-remark position-relative">
+                        <button class="new-message" (click)="createChatOpened = !createChatOpened">
+                            Новое сообщение
+                            <img src="assets/icons/message.png" alt="">
+                        </button>
+                        <button class="new-bookmark" (click)="setActiveTab(4)">
+                            Новая рассылка
+                            <img src="assets/icons/email.png" alt="">
+                        </button>
+                        <div class="new-message-dropDown position-absolute" [ngClass]="{'d-block':createChatOpened}">
+                            <app-create-chat [(allChats)]="allChats" (activeChatChange)="setActiveChat($event)"
+                                [(activeChat)]="activeChat" [(createChatOpened)]="createChatOpened"></app-create-chat>
+                        </div>
+                    </div>
+                    <div class="headind_srch d-flex">
+                        <div class="search-tab-item" [class.active]="activeTab==1" (click)="setActiveTab(1)">
+                            <p>ЛС</p>
+                        </div>
+                        <div class="search-tab-item" [class.active]="activeTab==2" (click)="setActiveTab(2)">
+                            <p>Разослано</p>
+                        </div>
+                        <div class="search-tab-item" [class.active]="activeTab==3" (click)="setActiveTab(3)">
+                            <p>Запланировано</p>
+                        </div>
+                    </div>
+                    <div class="inbox_chat" ngxInfiniteScroller initialScrollPosition="TOP" strategy="scrollingToBottom"
+                        (onScrollDown)="moreInbox()">
+                        <div class="inbox_chat_tab" *ngIf="activeTab==1">
+                            <div class="chat_list" (click)="setActiveChat(item)"
+                                *ngFor="let item of allChats;let ind = index"
+                                [ngClass]="{'active_chat':activeChat.thread_id == allChats[ind].thread_id}">
+                                <div class="chat_people">
+
+                                    <div class="chat_img">
+                                        <img *ngIf="!item.is_group" [src]="item.users[0].profile_pic_url" alt="sunil">
+                                        <div *ngIf="item.is_group" class="chat_img_multiple">
+                                            <img [src]="item.users[0].profile_pic_url">
+                                            <img [src]="item.users[1].profile_pic_url">
+                                        </div>
+
+                                    </div>
+                                    <div class="chat_ib">
+                                        <p>{{item.thread_title}}</p>
+                                    </div>
+                                    <div *ngIf="item.read_state != 0" class="chat-count">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="loading" class="loading">
+                                <div class="thread_loading">
+                                    <div></div>
+                                    <span></span>
+                                </div>
+                                <div class="thread_loading">
+                                    <div></div>
+                                    <span></span>
+                                </div>
+                                <div class="thread_loading">
+                                    <div></div>
+                                    <span></span>
+                                </div>
+                                <div class="thread_loading">
+                                    <div></div>
+                                    <span></span>
+                                </div>
+                                <div class="thread_loading">
+                                    <div></div>
+                                    <span></span>
+                                </div>
+                                <div class="thread_loading">
+                                    <div></div>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div *ngIf="allChats.length == 0 && !loading" class="no-chat">
+                                <p class="empty-message">У вас пока нет сообщений</p>
+                            </div>
+                        </div>
+                        <div *ngIf="activeTab==2">
+                            <div (click)="setActiveMailingText(item.messages.list)"
+                                class="chat_list d-flex align-items-center"
+                                *ngFor="let item of oldMailings;let ind = index">
+                                <div class="mailing-item w-100">
+                                    <p><span>Создано - </span>{{item.createdAt | date:'mediumDate'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="activeTab==3 && newMailings">
+                            <div (click)="setActiveMailingText(item.messages.list)"
+                                class="chat_list d-flex align-items-center"
+                                *ngFor="let item of newMailings;let ind = index">
+                                <div class="mailing-item w-100">
+                                    <p><span>Создано - </span>{{item.createdAt | date:'mediumDate'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mesgs">
+                    <div class="mesgs_tab" *ngIf="activeTab==1">
+                        <div *ngIf="loading">
+                            <app-message-item mode="skeletion" [isIncoming]="true">
+                            </app-message-item>
+                            <app-message-item mode="skeletion" [isIncoming]="false">
+                            </app-message-item>
+                            <app-message-item mode="skeletion" [isIncoming]="true">
+                            </app-message-item>
+                            <app-message-item mode="skeletion" [isIncoming]="false">
+                            </app-message-item>
+                            <app-message-item mode="skeletion" [isIncoming]="true">
+                            </app-message-item>
+                            <app-message-item mode="skeletion" [isIncoming]="false">
+                            </app-message-item>
+                        </div>
+                        <div *ngIf="!loading">
+                            <div id="aaaa" initialScrollPosition="BOTTOM" strategy="scrollingToTop" ngxInfiniteScroller
+                                (onScrollUp)="onScrolledUp()" *ngIf="allChats?.length > 0" class="msg_history">
+                                <app-message-item [previousMessage]="ind > 0 ? activeChatMessages[ind - 1] : null "
+                                    [isIncoming]="getPhotoByUserIdAndCheckIfIncoming(message.user_id).isIncoming"
+                                    [senderPhoto]="getPhotoByUserIdAndCheckIfIncoming(message.user_id).picture"
+                                    [message]="message" *ngFor="let message of activeChatMessages;let ind = index">
+                                </app-message-item>
+                                <div *ngIf="activeChatMessages.length == 0" class="no-chat">
+                                    <p class="text-center empty-message">У вас пока нет сообщений</p>
+                                </div>
+                                <!-- <div class="incoming-msg d-flex align-items-start">
+                                    <div class="incoming-msg-text additional">
+                                        <span class="message-body">Проголосуй пожалуйста за мое фото у меня странице
+                                            https://www.instagram.com/p/B7o2SXTJtVx/</span>
+                                        <span class="message-date">14:36</span>
+                                    </div>
+                            </div>
+                            <div class="outgoing-msg d-flex align-items-start justify-content-end">
+                                <div class="outgoing-msg-text first">
+                                    <span class="message-body">Привет! Уже проголосовала</span>
+                                    <span class="message-date">14:38</span>
+                                </div>
+                                <img src="assets/icons/avatar.png" class="outgoing-msg-img">
+                            </div>
+                            <div class="outgoing-msg d-flex align-items-start justify-content-end">
+                                <div class="outgoing-msg-text additional">
+                                    <span class="message-body">Привет! Уже проголосовала</span>
+                                    <span class="message-date">14:38</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center day-separator">
+                                <span>19 Января</span>
+                            </div>
+                            <div class="incoming-msg d-flex align-items-start">
+                                <img src="assets/icons/avatar.png" class="incoming-msg-img">
+                                <div class="incoming-msg-text first">
+                                    <span class="message-body">Привет!</span>
+                                    <span class="message-date">14:35</span>
+                                </div>
+                            </div>
+                            <div class="incoming-msg d-flex align-items-start">
+                                <div class="incoming-msg-text additional">
+                                    <span class="message-body">Проголосуй пожалуйста за мое фото у меня странице
+                                        https://www.instagram.com/p/B7o2SXTJtVx/</span>
+                                    <span class="message-date">14:36</span>
+                                </div>
+                            </div>
+                            <div class="outgoing-msg d-flex align-items-start justify-content-end">
+                                <div class="outgoing-msg-text first">
+                                    <span class="message-body">Привет! Уже проголосовала</span>
+                                    <span class="message-date">14:38</span>
+                                </div>
+                                <img src="assets/icons/avatar.png" class="outgoing-msg-img">
+                            </div>
+                            <div class="outgoing-msg d-flex align-items-start justify-content-end">
+                                <div class="outgoing-msg-text additional">
+                                    <span class="message-body">Привет! Уже проголосовала</span>
+                                    <span class="message-date">14:38</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center day-separator">
+                                <span>19 Января</span>
+                            </div>
+                            <div class="incoming-msg d-flex align-items-start">
+                                <img src="assets/icons/avatar.png" class="incoming-msg-img">
+                                <div class="incoming-msg-text first">
+                                    <span class="message-body">Привет!</span>
+                                    <span class="message-date">14:35</span>
+                                </div>
+                            </div>
+                            <div class="incoming-msg d-flex align-items-start">
+                                <div class="incoming-msg-text additional">
+                                    <span class="message-body">Проголосуй пожалуйста за мое фото у меня странице
+                                        https://www.instagram.com/p/B7o2SXTJtVx/</span>
+                                    <span class="message-date">14:36</span>
+                                </div>
+                            </div>
+                            <div class="outgoing-msg d-flex align-items-start justify-content-end">
+                                <div class="outgoing-msg-text first">
+                                    <span class="message-body">Привет! Уже проголосовала</span>
+                                    <span class="message-date">14:38</span>
+                                </div>
+                                <img src="assets/icons/avatar.png" class="outgoing-msg-img">
+                            </div>
+                            <div class="outgoing-msg d-flex align-items-start justify-content-end">
+                                <div class="outgoing-msg-text additional">
+                                    <span class="message-body">Привет! Уже проголосовала</span>
+                                    <span class="message-date">14:38</span>
+                                </div>
+                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mesgs_tab" *ngIf="activeTab==4">
+                        <app-direct-schedule [files]="files"></app-direct-schedule>
+                    </div>
+                    <div class="mesgs_tab" *ngIf="activeTab==3 || activeTab==2">
+                        <app-direct-sent [texts]="activeMailingTexts"></app-direct-sent>
+                    </div>
+                    <ng-container [ngSwitch]="activeTab">
+                        <app-send-message *ngSwitchCase="1" [type]="'direct'" (onFileSend)="handleFileSend($event)"
+                            (onTextSend)="sendMessage($event,'direct')">
+                        </app-send-message>
+                        <app-send-message [foreignText]="files" *ngSwitchCase="4" [type]="'schedule'"
+                            (onFileSend)="handleFileSend($event)" (onTextSend)="sendMessage($event,'schedule')">
+                        </app-send-message>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

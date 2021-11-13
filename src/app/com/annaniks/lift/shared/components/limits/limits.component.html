@@ -1,0 +1,38 @@
+<div class="pg-container">
+    <h3 class="limits-title">Ограничения аккаунта
+        <span class="highlight"> {{userLogin}}</span>
+        <img src="assets/icons/question.png">
+    </h3>
+    <div class="limits">
+        <div class="limit-item">
+            <p class="limit-small-title">Подписок в час</p>
+            <div class="progress-container">
+                <p class="limits-value">{{limits?.subscribersForHour}}</p>
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" [style.width]="perHourProgress+'%'"
+                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="limit-item">
+            <p class="limit-small-title">Подписок в день</p>
+            <div class="progress-container">
+                <p class="limits-value">{{limits?.subscribersForDay}}</p>
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" [style.width]="perDayProgress+'%'"
+                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="limit-item">
+            <p class="limit-small-title">Возраст аккаунта</p>
+            <p class="limits-value">4 месяца</p>
+        </div>
+        <div class="limit-item">
+            <p class="limit-small-title">Отписки</p>
+            <p class="limits-value">Бесплатно</p>
+        </div>
+    </div>
+</div>

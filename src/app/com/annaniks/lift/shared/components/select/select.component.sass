@@ -1,0 +1,199 @@
+$accent: #D14B4E
+$text__secondary: #7d7d7d
+$text__basic: #212121
+$border_color: #c2d0db
+$border_width: 2px
+$border: $border_width solid $border_color
+$text__basic_dark: #FFFFFF
+\:host
+  display: block
+
+  &.ng-touched.ng-invalid
+    .select__label
+      color: $accent
+
+    .select__toggle
+      border-color: $accent
+
+      &:focus
+        outline-color: $accent
+
+    .select__error
+      color: $accent
+      display: block
+
+.select
+  font-size: 1rem
+  position: relative
+
+.select__label
+  color: $text__secondary
+  margin-bottom: 0.4em
+
+.select__toggle
+  font-size: 1em
+  color: $text__basic
+  line-height: 1.6
+  padding: 0.5em 1em 0.5em 0.8em
+  border: $border
+  border-radius: 4px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  text-align: left
+  background-color: transparent
+  width: 100%
+  cursor: pointer
+  transition-duration: 0.3s
+  transition-property: background-color
+
+  &_active
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    background-color: $text__basic_dark
+
+    .select_positionTop &
+      border-top-left-radius: 0
+      border-top-right-radius: 0
+
+.select__toggle_placeholder
+  color: $text__secondary
+  fill: $text__secondary
+
+.toggle__text
+  flex-grow: 1
+  line-height: 1.4
+  padding-right: 20px
+
+.toggle__icon
+  width: 0.9em
+  height: 0.9em
+  flex-shrink: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  transition-duration: 0.3s
+  background: url("../../../../../../../assets/icons/arrow_down.png") center center no-repeat
+  background-size: contain
+
+.toggle__icon_active
+  transform: rotate(-180deg)
+
+.select__menu
+  max-height: 200px
+  position: absolute
+  //top: 100%
+  top: calc(100% - 2px)
+  left: 0
+  right: 0
+  z-index: 999999
+  background-color: $text__basic_dark
+  border-radius: 0 0 4px 4px
+  //box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)
+  .select_positionTop &
+    top: auto
+    bottom: calc(100% - 3px)
+    border-radius: 4px 4px 0 0
+
+.select__menu_active
+  display: block
+
+.selectMenu
+  width: 100%
+  list-style: none
+  padding: 0
+  min-width: 100%
+  margin: 0
+
+.selectMenu__item
+  font-size: 1em
+  padding: 0.7em 1em 0.7em 0.8em
+  display: block
+  transition-duration: 0.1s
+  white-space: nowrap
+  cursor: pointer
+
+  &:hover, &:focus
+    color: $text__basic_dark
+    background-color: rgb(51, 152, 204)
+
+  &:active
+    color: $text__basic_dark
+    background-color: rgb(51, 120, 172)
+
+  &.disabled
+    background-color: transparent !important
+    color: $text__secondary !important
+    cursor: default
+
+.selectMenu__item_empty
+  padding: 0.5em
+  text-align: center
+
+.selectMenu__link
+
+.divider
+  height: 0
+  border-bottom: 1px solid $border_color
+
+.selectMenu__header
+  padding: 0.5em
+  font-weight: bold
+  font-size: 120%
+
+.select__error
+  text-align: left
+  display: none
+  margin: 0.4em 0 0
+  font-size: 80%
+
+.scrollbar
+  height: 100%
+  border: $border
+  border-top-width: 1px
+  border-radius: 0 0 4px 4px
+
+  .select_positionTop &
+    border-top-width: $border_width
+    border-bottom-width: 1px
+    border-radius: 4px 4px 0 0
+
+.select_time
+  .toggle__icon
+    transform: translateY(0.1em)
+    background: url("../../../../../../../assets/icons/arr_grey.png") center center no-repeat
+
+  .toggle__icon_active
+    transform: rotate(-180deg)
+
+  .selectMenu__item
+    padding: 0.8em 1em 0.8em 0.8em
+    transition-duration: 0.1s
+    text-align: center
+
+    &.disabled
+      background-color: transparent !important
+      color: $text__secondary !important
+      cursor: default
+
+    &:hover, &:focus
+      color: $text__basic_dark
+      background-color: rgb(51, 152, 204)
+
+    &:active
+      color: $text__basic_dark
+      background-color: rgb(51, 120, 172)
+
+  .select__toggle
+    padding: 0.5em
+    background-color: #f6f7f9
+
+  .toggle__text
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    margin-right: 0.4em
+    text-align: center
+
+  .select__menu
+    background-color: #f6f7f9

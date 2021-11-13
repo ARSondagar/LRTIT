@@ -1,0 +1,210 @@
+<div mat-dialog-title>
+  <div class="header-section">
+    <div class="title">
+      <h2>Подписка</h2>
+    </div>
+
+    <ng-container *ngIf="isMobile; else closeBtnLargeScreen">
+      <div class="close-button-vertical">
+        <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeDialog($event)"></i>
+      </div>
+    </ng-container>
+    <ng-template #closeBtnLargeScreen>
+      <div class="close-button">
+        <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeDialog($event)"></i>
+      </div>
+    </ng-template>
+
+    <div class="event-date">
+      {{dateUtcRu}}
+    </div>
+  </div>
+  <div class="subheader-section">
+    <ng-container *ngIf="isMobile; else largeScreen1">
+      <div class="filter-group-vertical">
+        <div class="filter-tags-vertical" *ngIf="dialogData.schedulerData.tags && dialogData.schedulerData.tags.length > 0">
+          <div class="title">По хэштегам:</div>
+          <div class="tag-list">
+            <span class="tag-item" *ngFor="let item of dialogData.schedulerData.tags">#{{item.name}}</span>
+          </div>
+        </div>
+        <div class="filter-tags-vertical" *ngIf="dialogData.schedulerData.locations && dialogData.schedulerData.locations.length > 0">
+          <div class="title">По геолокации:</div>
+          <div class="tag-list">
+            <span class="tag-item" *ngFor="let item of dialogData.schedulerData.locations">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;
+              {{item.short_name}}
+            </span>
+          </div>
+        </div>
+        <div class="filter-tags-vertical" *ngIf="dialogData.schedulerData.followersByAccounts && dialogData.schedulerData.followersByAccounts.length > 0">
+          <div class="title">По подписчикам:</div>
+          <div class="tag-list">
+            <span class="tag-item" *ngFor="let item of dialogData.schedulerData.followersByAccounts">
+              {{item}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #largeScreen1>
+      <div class="filter-group">
+
+        <div class="filter-tags" *ngIf="dialogData.schedulerData.tags && dialogData.schedulerData.tags.length > 0">
+          <div>
+            <div class="title">По хэштегам:</div>
+            <div class="tag-list">
+              <div class="tag-item" *ngFor="let item of dialogData.schedulerData.tags">#{{item.name}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-tags" *ngIf="dialogData.schedulerData.locations && dialogData.schedulerData.locations.length > 0">
+          <div>
+            <div class="title">По геолокации:</div>
+            <div class="tag-list">
+              <div class="tag-item" *ngFor="let item of dialogData.schedulerData.locations">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;
+                {{item.short_name}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-tags" *ngIf="dialogData.schedulerData.followersByAccounts && dialogData.schedulerData.followersByAccounts.length > 0">
+          <div>
+            <div class="title">По подписчикам:</div>
+            <div class="tag-list">
+              <div class="tag-item" *ngFor="let item of dialogData.schedulerData.followersByAccounts">
+                {{item}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<mat-dialog-content>
+  <ng-container *ngIf="isMobile; else largeScreen2">
+    <div id="followers-card-vertical">
+      <div class="title">
+        <div>Запущено:</div>
+        <div>{{dateMinUtcRu}}</div>
+      </div>
+      <div class="container">
+        <div class="followers-card-panel-vertical">
+          <h2>Всего с момента запуска</h2>
+          <p>
+            <span>Выполненно действий</span>
+            <br/>
+            <span>(только подписка): {{dialogData.schedulerTotals.actions}} чел.</span>
+          </p>
+          <p>
+            <span>Подписалось: {{dialogData.schedulerTotals.followers}} чел.</span>
+          </p>
+          <p>
+            <span>Конверсия: {{dialogData.schedulerTotals.conversion}}%</span>
+          </p>
+        </div>
+        <div class="followers-card-panel-vertical">
+          <h2>Всего за сегодня</h2>
+          <p>
+            <span>Выполненно действий</span>
+            <br/>
+            <span>{{dialogData.schedulerData.actions}} чел.</span>
+          </p>
+          <ng-container *ngIf="dialogData.schedulerData.followers !== null && dialogData.schedulerData.followers >= 0; else nodataTemplate">
+            <p>
+              <span>Подписалось: {{dialogData.schedulerData.followers}} чел.</span>
+            </p>
+            <p>
+              <span>Конверсия: {{dialogData.schedulerData.conversion}}%</span>
+            </p>
+          </ng-container>
+          <ng-template #nodataTemplate>
+            <p>
+              <span>Подписалось: -</span>
+            </p>
+            <p>
+              <span>Конверсия: -</span>
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #largeScreen2>
+    <div id="followers-card">
+      <div class="title">
+        <span>Запущено:</span>
+        <span class="separator">&nbsp;</span>
+        <span>{{dateMinUtcRu}}</span>
+      </div>
+
+      <div class="container">
+        <div class="followers-card-panel">
+          <h2>Всего с момента запуска</h2>
+          <p>
+            <span>Выполненно действий</span>
+            <br/>
+            <span>(только подписка): {{dialogData.schedulerTotals.actions}} чел.</span>
+          </p>
+          <p>
+            <span>Подписалось: {{dialogData.schedulerTotals.followers}} чел.</span>
+          </p>
+          <p>
+            <span>Конверсия: {{dialogData.schedulerTotals.conversion}}%</span>
+          </p>
+        </div>
+        <div class="followers-card-panel">
+          <h2>Всего за сегодня</h2>
+          <p>
+            <span>Выполненно действий</span>
+            <br/>
+            <span>{{dialogData.schedulerData.actions}} чел.</span>
+          </p>
+          <ng-container *ngIf="dialogData.schedulerData.followers !== null && dialogData.schedulerData.followers >= 0; else nodataTemplate">
+            <p>
+              <span>Подписалось: {{dialogData.schedulerData.followers}} чел.</span>
+            </p>
+            <p>
+              <span>Конверсия: {{dialogData.schedulerData.conversion}}%</span>
+            </p>
+          </ng-container>
+          <ng-template #nodataTemplate>
+            <p>
+              <span>Подписалось: -</span>
+            </p>
+            <p>
+              <span>Конверсия: -</span>
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="isMobile; else largeScreen3">
+    <div class="dialog-buttons-row-vertical">
+      <button mat-raised-button class="task-stop" *ngIf="countTasks > 0" (click)="closeTaskEvt($event)">
+        Остановить
+      </button>
+      <button mat-raised-button color="primary" class="task-ready" (click)="closeDialog($event)" *ngIf="countTasks === 0">
+        Задача завершена
+      </button>
+    </div>
+  </ng-container>
+  <ng-template #largeScreen3>
+    <div class="dialog-buttons-row">
+      <button mat-raised-button color="primary" class="task-ready" (click)="closeDialog($event)" *ngIf="countTasks === 0">
+        Задача завершена
+      </button>
+      <span class="separator">&nbsp;</span>
+      <button mat-raised-button class="task-stop" *ngIf="countTasks > 0" (click)="closeTaskEvt($event)">Остановить</button>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+

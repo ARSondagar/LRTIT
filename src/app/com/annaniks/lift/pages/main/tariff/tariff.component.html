@@ -1,0 +1,258 @@
+<section class="tariff-control-section">
+  <div class="pg-container tariff-control">
+    <h1 class="title">Управление услугами</h1>
+    <h5 class="description">
+      <p>
+        Вы можете в любой момент добавить к текущему тарифу дополнительные услуги, или
+        отключить те услуги которыми не пользуютесь. Итоговая стоимость пакета рассчитается автоматически.
+      </p>
+      <!-- <p>
+        После первой оплаты мы автоматически включим автосписание платежа, когда у вас закончатся средства на балансе.
+        Это нужно чтобы функции оставались включенными и не было прерывания в работе
+      </p> -->
+    </h5>
+    <div class="tabs">
+
+      <form [formGroup]="tarifForm">
+        <h5 class="additional-functionality">Выберите функции:</h5>
+        <div class="account-count">
+          <mat-slider max="50" min="1" formControlName="accountCount">
+          </mat-slider>
+          <p class="count">Аккаунты<span class="highlight">{{tarifForm.get('accountCount').value}} шт</span>
+          </p>
+        </div>
+        <div class="getting-subscribers d-flex justify-content-between align-items-center">
+          <div class="text">
+            <p class="title">Статистика</p>
+            <p class="subtitle"><span class="highlight">Бесплатно</span></p>
+          </div>
+          <div class="switch">
+            <label class="switch">
+              <input formControlName="statistics" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="getting-subscribers d-flex justify-content-between align-items-center">
+          <div class="text">
+            <p class="title">Лайки</p>
+            <p class="subtitle">{{globals.tariffBasePrices.likes}} руб. в месяц</p>
+          </div>
+          <div class="switch">
+            <label class="switch">
+              <input formControlName="likes" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div formGroupName="autosubscribe"
+             class="getting-subscribers d-flex justify-content-between align-items-start">
+          <div class="sub-menu">
+            <div class="text">
+              <p class="title">Получение подписчиков</p>
+              <p class="subtitle">
+                {{globals.tariffBasePrices.unsubscribe + globals.tariffBasePrices.fortuna + globals.tariffBasePrices.direct + globals.tariffBasePrices.manageComments + globals.tariffBasePrices.watchStories }}
+                руб. в месяц</p>
+            </div>
+            <div class="nested w-100">
+              <div class="sub-item d-flex w-100">
+                <input formControlName="watchStories" type="checkbox" id="watch-stories"
+                       name="watch-stories" checked>
+                <div class="label">
+                  <label for="watch-stories" class="d-block">Просмотр Stories </label>
+                  <label for="watch-stories" class="d-block">{{globals.tariffBasePrices.watchStories}}
+                    руб. в
+                    месяц</label>
+                </div>
+              </div>
+              <div class="sub-item d-flex w-100">
+                <input formControlName="manageComments" type="checkbox" id="manage-comments"
+                       name="manage-comments" checked>
+                <div class="label">
+                  <label for="manage-comments" class="d-block">Управление комментариями </label>
+                  <label for="manage-comments"
+                         class="d-block">{{globals.tariffBasePrices.manageComments}} руб. в
+                    месяц</label>
+                </div>
+              </div>
+              <div class="sub-item d-flex w-100">
+                <input formControlName="direct" type="checkbox" id="sms-to-direct" name="sms-to-direct"
+                       checked>
+                <div class="label">
+                  <label for="sms-to-direct" class="d-block">Сообщения в директ</label>
+                  <label for="sms-to-direct" class="d-block">{{globals.tariffBasePrices.direct}} руб.
+                    в месяц</label>
+                </div>
+              </div>
+              <div class="sub-item d-flex w-100">
+                <input formControlName="fortuna" type="checkbox" id="fortuna" name="fortuna">
+                <div class="label">
+                  <label for="fortuna" class="d-block">Розыгрыш</label>
+                  <label for="fortuna" class="d-block">{{globals.tariffBasePrices.fortuna}} руб. в
+                    месяц</label>
+                </div>
+              </div>
+              <div class="sub-item d-flex w-100">
+                <input formControlName="unsubscribe" type="checkbox" id="unsubscribe" name="unsubscribe"
+                       checked>
+                <div class="label">
+                  <label for="unsubscribe" class="d-block">Отписка</label>
+                  <label for="unsubscribe" class="d-block">{{globals.tariffBasePrices.unsubscribe}}
+                    руб. в
+                    месяц</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="switch">
+            <label class="switch">
+              <input formControlName="status" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="getting-subscribers d-flex justify-content-between align-items-center">
+          <div class="text">
+            <p class="title">Автопостинг</p>
+            <p class="subtitle">{{globals.tariffBasePrices.autoposting}} руб. в месяц</p>
+          </div>
+          <div class="switch">
+            <label class="switch">
+              <input formControlName="autoposting" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="price">
+          <p>сумма: {{totalAmount || 0}}руб</p>
+        </div>
+
+        <div class="tariff-packages d-flex align-items-center">
+          <label class="d-block package-outer">
+            <div [ngClass]="{'active':tarifForm.get('tariffPackage').value == 30}"
+                 class="position-relative d-flex package-wrapper">
+              <div class="m-auto">
+                <p class="bold text-center">30 Дней</p>
+                <p class="normal text-center">{{tarifForm.get('accountCount').value }} аккаунтов</p>
+                <p class="highlight text-center">{{totalAmountForAMonth}} руб</p>
+              </div>
+              <input class="position-absolute" type="radio" formControlName="tariffPackage" value="30">
+            </div>
+          </label>
+          <label class="d-block package-outer">
+            <div [ngClass]="{'active':tarifForm.get('tariffPackage').value == 90}"
+                 class="position-relative d-flex package-wrapper">
+              <div class="m-auto">
+                <p class="bold text-center">90 Дней</p>
+                <p class="normal text-center">{{tarifForm.get('accountCount').value}} аккаунтов</p>
+                <p class="highlight text-center">{{totalAmountForThreeMonths}}
+                  руб</p>
+              </div>
+              <input class="position-absolute" type="radio" formControlName="tariffPackage" value="90">
+              <div class="discount position-absolute">
+                <p>-10%</p>
+              </div>
+            </div>
+          </label>
+          <label class="d-block package-outer">
+            <div [ngClass]="{'active':tarifForm.get('tariffPackage').value == 180}"
+                 class="position-relative d-flex package-wrapper">
+              <div class="m-auto">
+                <p class="bold text-center">180 Дней</p>
+                <p class="normal text-center">{{tarifForm.get('accountCount').value}} аккаунтов</p>
+                <p class="highlight text-center">{{totalAmountForSixMonths}}
+                  руб</p>
+              </div>
+              <input class="position-absolute" type="radio" formControlName="tariffPackage" value="180">
+              <div class="discount position-absolute">
+                <p>-20%</p>
+              </div>
+            </div>
+          </label>
+          <label class="d-block package-outer">
+            <div [ngClass]="{'active':tarifForm.get('tariffPackage').value == 365}"
+                 class="position-relative d-flex package-wrapper">
+              <div class="m-auto">
+                <p class="bold text-center">365 Дней</p>
+                <p class="normal text-center">{{tarifForm.get('accountCount').value}} аккаунтов</p>
+                <p class="highlight text-center">{{totalAmountForTwelveMonths }}
+                  руб</p>
+              </div>
+              <input class="position-absolute" type="radio" formControlName="tariffPackage" value="365">
+              <div class="discount position-absolute">
+                <p>-30%</p>
+              </div>
+            </div>
+          </label>
+
+        </div>
+
+        <div formGroupName="promocode"
+             class="promoode d-flex justify-content-between align-items-center flex-wrap">
+          <div class="code-label">
+            <label>
+              <input formControlName="status" type="checkbox">
+              Промокод
+            </label>
+          </div>
+          <div class="code-value d-flex align-items-center ">
+            <input formControlName="value" type="text">
+            <button (click)="getPromocodeInfo()" class="btn btn-transparent d-flex"><img class="m-auto"
+                                                                                         src="assets/icons/right-blue.png">
+            </button>
+          </div>
+          <div class="flex-break"></div>
+          <ng-container *ngIf="missingPromocode">
+            <p class="text-danger text-right w-100 mt-2">Неверный промокод</p>
+          </ng-container>
+          <ng-container *ngIf="promocode?.type == 'discount'">
+            <p class="text-success text-right w-100 mt-2">Промокод успешно принят: Скидка
+              -{{promocode.discount}}%</p>
+          </ng-container>
+          <ng-container *ngIf="promocode?.type == 'service'">
+            <p class="text-success text-right w-100 mt-2">
+              Промокод успешно принят: Услуга << {{
+                promocode.isAutoPosting ? 'Автопостинг' : promocode.isLike ? 'Лайки' : 'Получение подписчиков'
+              }}>> на {{promocode.expired * 30}} дней
+            </p>
+          </ng-container>
+        </div>
+
+        <p class="pay-info"><span>Итоговая сумма:</span> {{amountWithPackage || 0}} руб</p>
+
+        <div class="pay-methods d-flex">
+          <button class="btn">
+            <img src="assets/icons/credit-card.png" alt="">
+            Банковская карта
+          </button>
+          <button class="btn">
+            <img src="assets/icons/yandex.png" alt="">
+            Яндекс Деньги
+          </button>
+          <button class="btn">
+            <img src="assets/icons/qiwi.png" alt="">
+            QIWI
+          </button>
+          <button class="btn">
+            Другие способы
+          </button>
+        </div>
+
+        <div class="tariff-pay d-flex align-items-center justify-content-between">
+          <!-- <p class="pay-info"><span>Всего к оплате: </span> 4888 руб</p> -->
+          <button (click)="resetForm()" class="btn btn-transparent reset"><img src="assets/icons/reset1.png"
+                                                                               alt="">
+            Сбросить
+          </button>
+          <button (click)="applyTariff()" class="btn pay-btn">оплатить</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</section>

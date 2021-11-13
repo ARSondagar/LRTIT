@@ -1,0 +1,58 @@
+.direct-sent {
+  .top-content {
+    &::after {
+      content: "";
+      border: 1px solid #dddddd;
+      display: block;
+      width: 100%;
+      margin-top: 45px;
+
+      @media (max-width: 650px) {
+        border: none;
+      }
+    }
+
+    .top-item {
+      width: 33.333333%;
+
+      @media (max-width: 700px) {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+      .item-image {
+        height: 42px;
+        width: 42px;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .text {
+        font-size: 18px;
+        text-align: center;
+        color: #9f9f9f;
+        margin-top: 18px;
+      }
+
+      .value {
+        font-size: 24px;
+        color: #305976;
+        margin-top: 12px;
+      }
+    }
+  }
+
+  .send-text-description {
+    margin-top: 38px;
+
+    .text {
+      font-size: 16px;
+      color: #848484;
+      width: 100%;
+
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+    }
+  }
+}

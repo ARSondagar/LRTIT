@@ -1,0 +1,60 @@
+.direct-schedule {
+  .direct-schedule-tab {
+    border-radius: 4px;
+    border: 7px solid #dce7ec;
+
+    .direct-item {
+      width: 50%;
+      background: #f1f1f1;
+      color: #3399cc;
+      padding: 14px 61px;
+      border-radius: 4px;
+      transition: 0.5s all ease-out;
+
+      .tab-text {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .signature-content {
+    padding: 15px;
+    .form-item {
+      padding: 14px 0;
+      .lable {
+        margin-left: 13px;
+        font-size: 18px;
+      }
+      .select {
+        height: 30px;
+        width: 60px;
+        border: 1px solid #dce7ec;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.activeTab {
+  background: #3399cc !important;
+  color: #fefefe !important;
+}
+
+::ng-deep .ui-chkbox-box {
+  border: 1px solid #dce7ec !important;
+}
+
+::ng-deep .ui-chkbox .ui-chkbox-box.ui-state-active {
+  background: #3399cc !important;
+}
+
+.publish-now-text {
+  margin-right: 10px;
+}
+.lable {
+  font-family: "SF UI Display Regular";
+  font-size: 18px;
+  line-height: 48px;
+  color: #3d3d3d;
+  margin-left: 4px;
+}

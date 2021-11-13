@@ -1,0 +1,51 @@
+@import "variables";
+
+.sub-navigation-container {
+  background-color: #f6f8f9;
+  border-bottom: 1px solid #d7d7d7;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: $desktop_width) {
+     display: none;
+  }
+
+  .sub-navigation {
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    &-links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      height: 100%;
+      margin: 0;
+      li {
+        padding: 18px 0;
+        cursor: pointer;
+        &.active {
+          &::after {
+            content: "";
+            display: block;
+            border-bottom: 3px solid #3399cc;
+            position: relative;
+            bottom: -20px;
+            width: 100%;
+          }
+          a {
+            color: #3399cc;
+          }
+        }
+        a {
+          font-family: "SF UI Display Regular";
+          transition: all 0.3s ease 0s;
+          text-decoration: none;
+          color: #7d7d7d;
+          font-size: 18px;
+          line-height: 1.2;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+.unavailable-message {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.story-replay {
+  &.mention {
+    border-left: 3px solid #3d3d3d;
+    padding: 0 10px;
+  }
+  img,
+  video {
+    border-radius: 8px;
+    margin: 10px 0;
+  }
+  span {
+    font-family: "SF UI Display Semibold";
+    font-size: 16px;
+    display: block;
+    &.position-absolute {
+      right: 0;
+      bottom: 30px;
+      font-size: 100px;
+    }
+  }
+}
+
+.loading {
+  .message-msg-img {
+    background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+    background-size: 400%;
+    animation: animate 6s linear infinite;
+  }
+  .message-msg-text {
+    width: 500px;
+    .message-msg-text-sceletion {
+      display: block;
+      background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+      background-size: 400%;
+      animation: animate 6s linear infinite;
+      width: 250px;
+      height: 18px;
+
+      &:nth-child(2) {
+        width: 180px;
+        margin: 10px 0;
+      }
+      &:nth-child(3) {
+        width: 100px;
+      }
+    }
+  }
+  // .message {
+  //   width: 40%;
+  //   height: 16px;
+  //   background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+  //   background-size: 400%;
+  //   animation: animate 6s linear infinite;
+  // }
+  // .status {
+  //   width: 15%;
+  //   height: 16px;
+  //   background: linear-gradient(to right, #eff2e8, #bcbfc1, #c9d0d1, #d9e2de, #eff2e8);
+  //   background-size: 400%;
+  //   animation: animate 6s linear infinite;
+  // }
+}
+
+@keyframes animate {
+  0% {
+    background-position: 400%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}

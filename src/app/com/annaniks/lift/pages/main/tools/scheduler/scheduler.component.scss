@@ -1,0 +1,338 @@
+@import "variables";
+
+.scheduler {
+  &-settings-title {
+    margin: 35px 0 35px 0;
+
+    @media (max-width: $tablet_width) {
+      margin: 35px 0;
+    }
+
+    h1 {
+      font-family: "SF UI Display Regular";
+      font-size: 24px;
+
+      @media (max-width: $desktop_width) {
+        font-size: 22px;
+      }
+
+      @media (max-width: $tablet_width) {
+        font-size: 20px;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .top-wrapper {
+    @media (max-width: 600px) {
+    // display: block !important;
+    }
+  }
+
+  .interval-content {
+    width: 100%;
+    max-width: 616px;
+    border-radius: 4px;
+    border: 2px solid #dce7ec;
+
+    .mat-radio-group {
+      display: flex;
+      width: 100%;
+
+      @media (max-width: 400px) {
+        flex-direction: column;
+      }
+    }
+
+    .active-interval {
+      color: white !important;
+      background: #3399cc !important;
+    }
+
+    .radio-button-item {
+      padding: 9px 33px;
+      color: #71b1d5;
+      background: #f1f1f1;
+      transition: 0.3s all ease-out;
+      font-family: "SF UI Display Regular";
+
+      @media (max-width: 600px) {
+      // width: 50%;
+      }
+
+      @media (max-width: 400px) {
+        width: 100%;
+      }
+
+      &.middle {
+        border-left: 1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
+
+        @media (max-width: 400px) {
+          border: none;
+          border-top: 1px solid #d7d7d7;
+          border-bottom: 1px solid #d7d7d7;
+        }
+      }
+    }
+  }
+
+  .calendar-actions {
+    background: #efeeee;
+    border-radius: 4px;
+    border: 2px solid #c9d5de;
+    margin-bottom: 25px;
+    margin-left: auto;
+
+    @media (max-width: 600px) {
+      width: max-content;
+      transform: scale(0.8);
+      transform-origin: top right;
+    }
+
+    .action-button {
+      &:first-child {
+        border-right: 1px solid #d7d7d7;
+      }
+
+      &:last-child {
+        border-left: 1px solid #d7d7d7;
+      }
+    }
+
+    .action-info {
+      font-family: "SF UI Display Regular";
+      color: #7d7d7d;
+      font-size: 15px;
+      padding: 0 28px;
+    }
+  }
+
+  .watch-video {
+    background: transparent;
+    border: none;
+    color: #3399cc;
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    padding: 0;
+
+    @media (max-width: $mobile_width) {
+      font-size: 16px;
+    }
+
+    img {
+      margin-right: 10px;
+    }
+  }
+}
+
+::ng-deep .calendar {
+  margin: 0 0 20px;
+
+  @media (max-width: $mobile_width) {
+    margin: -10px 0 20px;
+  }
+
+  .cal-month-view {
+    @media (max-width: $mobile_width) {
+        transform-origin: top left;
+        transform: scale(0.9);
+        width: 112%;
+        margin-bottom: -50px;
+    }
+
+    .cal-today .cal-day-number {
+      @media (max-width: $mobile_width) {
+        font-size: 1.5rem;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .cal-week-view {
+    @media (max-width: 750px) {
+      width: calc(100% + 6%);
+      overflow-x: auto;
+      margin-left: -3%;
+      padding-left: 3%;
+      border-top: none;
+    }
+
+    .cal-day-headers {
+      @media (max-width: 800px) {
+        width: 750px;
+        border-top: solid 1px #e1e1e1;
+        padding-left: 45px;
+      }
+    }
+
+    .cal-time {
+      @media (max-width: 800px) {
+        width: auto;
+      }
+    }
+
+    .cal-time-events {
+      @media (max-width: 800px) {
+        width: 750px;
+      }
+
+      .cal-time-label-column {
+        @media (max-width: 800px) {
+          width: 45px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-radio-container {
+  display: none !important;
+}
+
+.cal-events {
+  margin: 0;
+}
+
+.day-style {
+  background: transparent !important;
+  width: 100%;
+  height: initial !important;
+  margin: 0;
+  padding: 5px;
+
+  &.active {
+    background-color: white !important;
+    border-radius: 0;
+    position: relative;
+    z-index: 10000;
+  }
+
+  img {
+    width: 8px;
+    height: 8px;
+  }
+
+  .time {
+    color: #7d7d7d;
+    font-size: 13px;
+    font-family: "SF UI Display Regular";
+    padding: 0 5px;
+  }
+
+  .action {
+    color: #3d3d3d;
+    font-size: 13px;
+    font-family: "SF UI Display Regular";
+
+    @media (max-width: 1200px) {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 130px;
+    }
+
+    @media (max-width: 1150px) {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 110px;
+    }
+
+    @media (max-width: 1000px) {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 90px;
+    }
+
+    @media (max-width: 850px) {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 70px;
+    }
+
+    @media (max-width: 700px) {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 50px;
+    }
+
+    @media (max-width: 500px) {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0px;
+    }
+  }
+}
+
+.day-container {
+  position: relative;
+
+  &:hover > .add-event {
+     //display: block;
+    opacity: 1;
+  }
+
+  .add-event {
+    color: white;
+    background: #3398cc;
+    padding: 6px;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+
+    @media (max-width: $mobile_width) {
+      position: absolute;
+      bottom: -22px;
+      left: 0;
+      width: 70px;
+    }
+     //display: none;
+  }
+}
+
+.cal-day-headers {
+  .top {
+    height: 100%;
+
+    .day-label,
+    .day {
+      font-size: 16px;
+      font-family: "SF UI Display Regular";
+      color: rgb(125, 125, 125);
+      line-height: 1.2;
+
+      @media (max-width: $tablet_width) {
+        font-size: 14px;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    &.today {
+      .day {
+        color: white;
+        border-radius: 50%;
+        background-color: rgb(51, 153, 204);
+        width: 27px;
+        height: 27px;
+      }
+    }
+  }
+}
+
+div.cal-event > .time {
+  display : none;
+}
+div.cal-event > span.action::before {content: '\00a0';}
+// div.cal-event > img {
+//   display : none;
+// }

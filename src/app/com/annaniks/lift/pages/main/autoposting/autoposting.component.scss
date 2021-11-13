@@ -1,0 +1,151 @@
+@import "variables";
+
+.autoposting {
+  .calendar-title {
+    margin: 30px 0 34px 0;
+    font-size: 24px;
+    line-height: 1.2;
+    font-family: "SF UI Display SemiBold";
+    color: #333333;
+
+    @media (max-width: $desktop_width) {
+      font-size: 22px;
+    }
+
+    @media (max-width: $tablet_width) {
+      font-size: 20px;
+    }
+
+    @media (max-width: $mobile_width) {
+      margin: 20px 0 28px 0;
+    }
+
+    span {
+      white-space: nowrap;
+    }
+
+    span.highlight {
+      color: #3399cc;
+    }
+  }
+
+  .buttons-top-wrap {
+    @media (max-width: 380px) {
+      display: block !important;
+    }
+
+    button {
+      @media (max-width: $mobile_width) {
+        width: 50%;
+      }
+
+      @media (max-width: 380px) {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      &:last-child {
+        @media (max-width: 380px) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .action-button {
+    font-family: "SF UI Display SemiBold";
+    font-size: 16px;
+    border-radius: 6px;
+    margin-right: 17px;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 11px;
+    }
+  }
+
+  .primary-btn {
+    background: transparent;
+    border: 2px solid #3399cc;
+    color: #3399cc;
+  }
+
+  .pink-btn {
+    background: transparent;
+    border: 2px solid #a076b2;
+    color: #a076b2;
+  }
+
+  .search-for-ideas {
+    margin-left: auto;
+    font-family: "SF UI Display Semibold";
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #49c59e;
+    padding: 10px 15px;
+
+    img {
+      margin-right: 11px;
+    }
+  }
+
+  .watch-video {
+    background: transparent;
+    border: none;
+    color: #3399cc;
+    font-family: "SF UI Display Regular";
+    font-size: 18px;
+    padding: 0;
+
+    @media (max-width: $mobile_width) {
+      font-size: 16px;
+    }
+
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .calendar-actions {
+    margin-top: 20px;
+
+    @media (max-width: $mobile_width) {
+      .btn {
+         width: 33.333%;
+      }
+    }
+  }
+
+  .calendar {
+    margin: 17px 0 40px 0;
+
+    @media (max-width: $mobile_width) {
+      margin: 17px 0 30px 0;
+    }
+  }
+}
+
+::ng-deep .autoposting .calendar .cal-month-view {
+  @media (max-width: $mobile_width) {
+    transform-origin: top left;
+    transform: scale(0.9);
+    width: 112%;
+    margin-bottom: -50px;
+  }
+}
+
+::ng-deep .autoposting .calendar .cal-today .cal-day-number {
+  @media (max-width: $mobile_width) {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+}
+
+button.balance__payment-button {
+  margin-top: 3ex;
+  padding: 10px 33px !important;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 50%), 0 6px 20px 0 rgb(0 0 0 / 20%) !important;
+}

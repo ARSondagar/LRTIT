@@ -1,0 +1,244 @@
+<div class="header-container">
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85947000, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85947000" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <header>
+    <div class="header-left">
+      <a routerLink="/" class="logo-wrap">
+        <img class="logo" src="assets/logo.png" alt="logo">
+      </a>
+      <div class="switch-account">
+        <app-header-switch-account [login]="currentInstagram.login" [userAccounts]="(currentUser$ | async).instagramAccounts"
+          (selectAccount)="handleSelectAccount($event)">
+        </app-header-switch-account>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <ul class="nav-links">
+        <li>
+          <a routerLink="/statistics">
+            <img routerLinkActive='active' src="assets/icons/pie-chart.png" alt="">
+            Статистика
+          </a>
+        </li>
+        <li>
+          <a routerLink="/promotion">
+            <img routerLinkActive='active' src="assets/icons/rocket.png" alt="">
+            Продвижение
+          </a>
+        </li>
+
+        <li>
+          <ng-container *ngIf="!isRestricted; else disabledLink_2">
+            <a routerLink="/autoposting">
+              <img routerLinkActive='active' src="assets/icons/calendar.png" alt="">
+              Автопостинг
+            </a>
+          </ng-container>
+          <ng-template #disabledLink_2>
+            <a class="disabled-link">
+              <img routerLinkActive='active' src="assets/icons/calendar.png" alt="">
+              Автопостинг
+            </a>
+          </ng-template>
+        </li>
+
+        <li>
+          <a routerLink="/tools">
+            <img routerLinkActive='active' src="assets/icons/calendar.png" alt="">
+            Инструменты
+          </a>
+        </li>
+        <li>
+          <a routerLink="/articles">
+            <img routerLinkActive='active' class="last" src="assets/icons/send.png" alt="">
+            База знаний
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="account">
+      <div class="account-details" (clickOutside)="onClickedOutsideUserDetails()">
+
+        <img [src]="imageToShow" *ngIf="hasImage; else noInstagramImage1" class="user img-avatar img-center" alt="" width="50" height="50" />
+        <ng-template #noInstagramImage1>
+          <img src="../../../../../../assets/images/boy.png" class="user img-avatar img-center">
+        </ng-template>
+
+        <div class="separator">&nbsp;</div>
+
+        <div class="arrow" (click)="toggleUserDetails()">
+          <img src="assets/icons/down.png" alt="dropdown">
+        </div>
+        <app-header-user (logOut)="onClickLogOut()" (navigated)="showUserDetails = false" *ngIf="showUserDetails">
+        </app-header-user>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="small-menu-container">
+  <div class="small-menu d-flex justify-content-between align-items-center">
+    <button (click)="toggleLeftMenu()" class="toggle-left">
+      <img width="25px" height="25px" src="{{leftMenuOpened ? 'assets/icons/close.png' : 'assets/icons/menu.png' }}">
+    </button>
+    <app-header-switch-account [login]="currentInstagram.login" [userAccounts]="(currentUser$ | async).instagramAccounts"
+      (selectAccount)="handleSelectAccount($event)">
+    </app-header-switch-account>
+    <!-- <div class="nots-button">
+      <nz-badge [nzStyle]="{ backgroundColor: '#fd7f04', color: 'white', boxShadow:'none' }" [nzCount]="2"
+                (click)="toggleNotsPanel()">
+        <img src="assets/icons/bell.png" alt="notifications">
+      </nz-badge>
+    </div>
+    <app-header-notification *ngIf="showNots" class="app-header-notification"></app-header-notification> -->
+    <button (click)="toggleRightMenu()" class="toggle-right">
+      <img [src]="imageToShow" *ngIf="hasImage; else noInstagramImage2" class="rounded-circle" alt="" width="50" height="50" />
+      <ng-template #noInstagramImage2>
+        <img src="../../../../../../assets/images/boy.png" class="rounded-circle">
+      </ng-template>
+      <img width="20px" height="20px" *ngIf="rightMenuOpened" src="assets/icons/close.png" style="margin-left: 10px;">
+    </button>
+  </div>
+</div>
+
+<div class="sidenav left" [ngClass]="{'open':leftMenuOpened}" (click)="closeMenu($event)">
+  <ng-container *ngIf="!isMobileVersion; else mobileMenuVerion">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex align-items-center">
+              <p class="submenus-header">СТАТИСТИКА</p>
+            </div>
+
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <a routerLink="/statistics/preview">Обзор</a>
+        <a routerLink="/statistics/subscribers">Подписчики</a>
+        <a routerLink="/statistics/my-subscribes">Мои подписки</a>
+        <a routerLink="/statistics/posts">Посты</a>
+        <a routerLink="/statistics/activity">Активность</a>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+  <ng-template #mobileMenuVerion>
+    <a routerLink="/statistics/preview">СТАТИСТИКА</a>
+  </ng-template>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="d-flex align-items-center">
+            <!-- <img src="assets/icons/rocket.png"> -->
+            <p class="submenus-header">ПРОДВИЖЕНИЕ</p>
+          </div>
+
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <a routerLink="/promotion/autosubscribe" >Получение подписчиков</a>
+
+      <ng-container *ngIf="!isRestricted; else disabledLink_1">
+        <a routerLink="/promotion/auto-watch-story">Повышение охватов</a>
+        <a routerLink="/promotion/bonuses">Получение активности</a>
+      </ng-container>
+      <ng-template #disabledLink_1>
+        <a class="disabled-link">Повышение охватов (Скоро)</a>
+        <a class="disabled-link">Получение активности (Скоро)</a>
+      </ng-template>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="d-flex align-items-center">
+            <p class="submenus-header">ИНСТРУМЕНТЫ</p>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a routerLink="/tools/scheduler">Планировщик</a>
+      <ng-container *ngIf="!isRestricted; else disabledLink_3">
+        <a routerLink="/tools/direct">Директ</a>
+        <a routerLink="/tools/unsubscribe">Отписка</a>
+        <!-- <a routerLink="/tools/lists">Списки</a> -->
+      </ng-container>
+      <ng-template #disabledLink_3>
+        <a class="disabled-link">Директ (Скоро)</a>
+        <a class="disabled-link">Отписка (Скоро)</a>
+        <a class="disabled-link">Списки (Скоро)</a>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <a class="left-menu-links" routerLink="/autoposting">
+    <!-- <img width="15px" src="assets/icons/wrench.png"> -->
+    АВТОПОСТИНГ
+  </a>
+  <a class="left-menu-links" routerLink="/articles/most-popular">
+    <!-- <img width="15px" src="assets/icons/knowledge.png"> -->
+    БАЗА ЗНАНИЙ
+  </a>
+</div>
+
+<div class="sidenav right" [ngClass]="{'open':rightMenuOpened}" (click)="closeMenu($event)">
+  <!-- <div class="d-flex align-items-center user-info-mobile">
+
+    <img [src]="imageToShow" *ngIf="hasImage; else noInstagramImage" class="rounded-circle" alt="" width="50" height="50" />
+    <ng-template #noInstagramImage>
+      <img src="../../../../../../assets/images/boy.png" class="rounded-circle img-responsive user-image">
+    </ng-template>
+
+    <div class="user-details-mobile">
+      <p>Тариф</p>
+      <p>Персональный <img src="assets/icons/change.png" width="20px" alt=""></p>
+    </div>
+  </div> -->
+  <a routerLink="/profile">
+    <img width="20px" src="assets/icons/profile.png">
+    ПРОФИЛЬ
+  </a>
+  <a routerLink="/tariff">
+    <img width="20px" src="assets/icons/change.png">
+    ТАРИФ
+  </a>
+  <a routerLink="/support">
+    <img width="20px" src="assets/icons/support.png">
+    ПОДДЕРЖКА
+  </a>
+
+<!--   <ng-container *ngIf="!isRestricted; else disabledLink_5">
+    <a routerLink="/affiliate-program">
+      <img width="20px" src="assets/icons/partners.png">
+      ПАРТНЕРАМ
+    </a>
+  </ng-container>
+  <ng-template #disabledLink_5>
+    <a class="disabled-link">
+      <img width="20px" src="assets/icons/partners.png">
+      ПАРТНЕРАМ (Скоро)
+    </a>
+  </ng-template> -->
+
+  <a routerLink="/profile" (click)="onClickLogOut()">
+    <img width="20px" src="assets/icons/logout.png">
+    ВЫЙТИ
+  </a>
+</div>
+<noscript><div><img src="https://mc.yandex.ru/watch/85947024" style="position:absolute; left:-9999px;" alt="" /></div></noscript>

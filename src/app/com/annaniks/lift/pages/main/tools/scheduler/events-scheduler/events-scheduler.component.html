@@ -1,0 +1,79 @@
+<div class="scheduler-events">
+    <div class="scheduler-events-title">
+        <h2>Планировщик событий</h2>
+        <button type="button" (click)="closeDialog()"><img src="/assets/icons/close.png" alt="закрыть"></button>
+
+    </div>
+    <form [formGroup]="eventsSchedulerForm">
+        <div class="condition">
+          <!-- <app-select [options]="actionControlOption" placeholder="Введите параметры фильтра"
+                      formControlName="actionControl" class="condition-select">
+          </app-select> -->
+          <span class="tab-header">Получение подписчиков</span>
+        </div>
+
+        <div  id="event-calendar">
+          <div class="block-curtain-small" *ngIf="isRestricted">
+            <div class="warning-message">
+              <h2>Функция заблокирована.</h2>
+              <button class="balance__payment-button" (click)="goToPayment()">Оплата</button>
+            </div>
+          </div>
+
+          <div class="form-group d-flex align-items-center mb-0">
+            <div class="search-by d-flex align-items-start">
+                <mat-radio-group [formControl]="activeTabControl" class="radio-group d-flex align-items-start flex-wrap">
+                    <mat-radio-button [ngClass]="{'active-search':activeTabControl.value == '1'}" value="1"
+                        class="radio-button-item">
+                        <img src="assets/icons/hashtag.png" alt="">
+                        По хэштегам
+                    </mat-radio-button>
+                    <mat-radio-button [ngClass]="{'active-search':activeTabControl.value == '2'}" value="2"
+                        class="radio-button-item middle">
+                        <img src="assets/icons/to-subscribers.png" alt="">
+                        Подписчикам
+                    </mat-radio-button>
+                    <mat-radio-button [ngClass]="{'active-search':activeTabControl.value == '3'}" value="3"
+                        class="radio-button-item">
+                        <img src="assets/icons/maps.png" alt="">
+                        По геолокации
+                    </mat-radio-button>
+
+                    <!-- <mat-radio-button [ngClass]="{'active-search':activeTabControl.value == '4'}" value="4"
+                        class="radio-button-item">
+                        <img src="assets/icons/by-list.png" alt="">
+                        По списку
+                    </mat-radio-button> -->
+
+                </mat-radio-group>
+            </div>
+          </div>
+
+          <div [ngSwitch]="activeTabControl.value">
+            <app-scheduler-by-hashtags *ngSwitchCase="1"></app-scheduler-by-hashtags>
+            <app-scheduler-by-subscribers *ngSwitchCase="2"></app-scheduler-by-subscribers>
+            <scheduler-by-location *ngSwitchCase="3"></scheduler-by-location>
+            <!-- <scheduler-by-list *ngSwitchCase="4"></scheduler-by-list> -->
+          </div>
+
+        </div>
+
+        <div class="actions-buttons d-flex align-items-center flex-wrap">
+            <!-- <a class="icon-btn btn py-3 mr-3 all-settings" routerLink="/promotion">
+                <img src="/assets/icons/settings-grey.png" alt="settings">
+                Расширенные настройки
+            </a> -->
+
+            <div class="action-buttons-bottom d-flex align-items-center ml-auto">
+                <button class="icon-btn btn reset">
+                    <img src="/assets/icons/reset.png" alt="reset">
+                    Сбросить
+                </button>
+                <button class="btn save" (click)="onSettingsSave()">
+                    Сохранить событие
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="condition">
+  <div class="condition-index">{{index + 1 }}</div>
+
+  <app-select
+    class="condition-select"
+    placeholder="Введите параметры фильтра"
+    [options]="options$ | async"
+    [formControl]="typeControl"
+    >
+  </app-select>
+
+  <div class="icon-remove" (click)="onRemove()" >
+    <img _ngcontent-igq-c19="" src="assets/icons/trash.png">
+    <p>УДАЛИТЬ ЭТО УСЛОВИЕ</p>
+  </div>
+</div>
+<div [ngSwitch]="selectedType">
+    <p class="condition-subtitle" *ngSwitchCase="'hashtag'">
+        {{isAutosubscribe ? 'Получать подписчиков' : 'Посмотреть stories аккаунтов'}}, которые постят с данными хештегами:
+    </p>
+    <p class="condition-subtitle" *ngSwitchCase="'subscriber'">
+        {{isAutosubscribe ? 'Получать подписчиков' : 'Посмотреть stories аккаунтов'}} следующих аккаунтов:</p>
+    <p class="condition-subtitle" *ngSwitchCase="'comment'">
+        {{isAutosubscribe ? 'Подписываться на аккаунты' : 'Посмотреть stories аккаунтов'}}, которые комментируют</p>
+    <p class="condition-subtitle" *ngSwitchCase="'likes'">
+        {{isAutosubscribe ? 'Подписываться на аккаунты' : 'Посмотреть stories аккаунтов'}}, которые лайкают</p>
+</div>
+<div class="condition d-flex" [ngSwitch]="selectedType">
+    <app-add-hashtag (searched)="searchFor($event)" [searchValue]="searchStream" class="w-100"
+                     (allDeleted)="allTagsWereDeleted($event)" *ngSwitchCase="'hashtag'">
+    </app-add-hashtag>
+    <app-account-search (searched)="searchFor($event)" [searchValue]="searchStream" class="w-100 comment" [type]="selectedType"
+                        (allDeleted)="allTagsWereDeleted($event)" *ngSwitchCase="'comment'">
+    </app-account-search>
+
+    <app-account-search (searched)="searchFor($event)" [searchValue]="searchStream" class="w-100 likes" [type]="selectedType"
+                        (allDeleted)="allTagsWereDeleted($event)" *ngSwitchCase="'likes'">
+    </app-account-search>
+    <app-account-search (searched)="searchFor($event)" [searchValue]="searchStream" class="w-100" [type]="selectedType"
+                        (allDeleted)="allTagsWereDeleted($event)" *ngSwitchCase="'subscriber'">
+    </app-account-search>
+
+    <app-account-by-location (searched)="searchFor($event)" [searchValue]="searchStream" class="w-100"
+                             (allDeleted)="allTagsWereDeleted($event)" *ngSwitchCase="'location'">
+    </app-account-by-location>
+</div>

@@ -1,0 +1,51 @@
+<div class="pg-container">
+  <div class="subscription-accordion accordion" id="accordionExample4">
+      <div class="accordion-body">
+          <div class="collapse-heading mb-0">
+              <img src="assets/icons/setting-1.png" alt="">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
+                  aria-expanded="true" aria-controls="collapseFour" [ngClass]="{'blurred-text':isRestricted}">
+                  Выбранные параметры
+                  <img class="arrow-down" src="assets/icons/arrow_up.png" alt="">
+              </button>
+          </div>
+
+          <div id="collapseFour" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordionExample4">
+              <div class="parametres-container">
+                  <div class="parameter-item d-flex align-items-start">
+                      <p [ngClass]="{'blurred-text':isRestricted}">По хэштегам:</p>
+                      <div class="hashtags-container">
+                          <div class="hashtag-item" *ngFor="let tag of settings.tags">
+                              <div *ngIf="tag.name">
+                                  <input disabled [value]="'#' +tag.name" type="text" #hashtagInput
+                                      [size]="tag.name.length" maxlength="50">
+                                  <img src="assets/icons/delete-1.png">
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="parameter-item">
+                      <p [ngClass]="{'blurred-text':isRestricted}">На подписчиков аккаунтов:</p>
+                      <div *ngFor="let item of settings.followersByAccounts;let lastItem = last">
+                          <span>
+                              @{{item.username}}
+                          </span>
+                          <span *ngIf="!lastItem">,</span>
+                      </div>
+                  </div>
+                  <div class="parameter-item">
+                      <p [ngClass]="{'blurred-text':isRestricted}">По геолокации:</p>
+                      <div *ngFor="let item of settings.location;let lastItem = last">
+                          <span>
+                              {{item.title}}
+                          </span>
+                          <span *ngIf="!lastItem">,</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

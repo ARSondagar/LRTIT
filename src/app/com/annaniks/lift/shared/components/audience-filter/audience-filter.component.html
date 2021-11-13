@@ -1,0 +1,113 @@
+<div class="content-wrapper">
+  <div class="subscription-accordion accordion" id="accordionExample1">
+    <div class="accordion-body">
+      <div class="collapse-heading mb-0">
+        <img src="assets/icons/filter.png" alt="">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+          Настроить фильтр
+          <img class="arrow-up" src="assets/icons/arrow_up.png" alt="">
+        </button>
+        <div class="filters-count">
+          <span>{{getCountFilter()}}</span>
+        </div>
+      </div>
+
+      <div id="collapseTwo" class="collapse" [ngClass]="{'show':expanded}" aria-labelledby="headingTwo"
+           data-parent="#accordionExample1">
+        <form [formGroup]="filterAudienceForm" class="filters-container">
+          <div class="checkoboxes-filter">
+
+            <div formGroupName="followers" class="inline-checkoxes double">
+              <mat-checkbox formControlName="status">
+                Диапазон подписчиков
+              </mat-checkbox>
+              <span class="checkbox-label">от <input formControlName="min" OnlyNumber="true"
+                                                     class="range-input" type="text">
+                                до
+                                <input formControlName="max" OnlyNumber="true" class="range-input" type="text">
+                            </span>
+            </div>
+            <div formGroupName="folowings" class="inline-checkoxes double">
+              <mat-checkbox formControlName="status">
+                Диапазон подписок
+              </mat-checkbox>
+              <span class="checkbox-label">
+                                от <input formControlName="min" OnlyNumber="true" class="range-input" type="text"> до
+                                <input class="range-input" OnlyNumber="true" formControlName="max" type="text">
+                            </span>
+            </div>
+            <div formGroupName="likeInPhoto" class="inline-checkoxes double">
+              <mat-checkbox formControlName="status">Количество лайков последнего поста</mat-checkbox>
+              <span class="checkbox-label">
+                                 от <input formControlName="min" OnlyNumber="true" class="range-input" type="text"> до
+                                <input formControlName="max" OnlyNumber="true" class="range-input" type="text">
+                            </span>
+            </div>
+
+            <div formGroupName="postCount" class="inline-checkoxes double">
+              <mat-checkbox formControlName="status"> Количество публикаций</mat-checkbox>
+              <span class="checkbox-label">
+                                от <input formControlName="min" OnlyNumber="true" class="range-input" type="text">
+                                до
+                                <input formControlName="max" OnlyNumber="true" class="range-input" type="text">
+                            </span>
+            </div>
+
+
+            <mat-checkbox formControlName="haveAvatar">Присутствует аватар</mat-checkbox>
+
+            <div formGroupName="lastPostAge" class="inline-checkoxes">
+              <mat-checkbox formControlName="status">
+                Последний пост не позже
+              </mat-checkbox>
+              <span class="checkbox-label">
+                                <input formControlName="age" OnlyNumber="true" class="range-input" type="text">
+                            </span>
+            </div>
+
+
+            <div formGroupName="lastStoryAge" class="inline-checkoxes">
+              <mat-checkbox formControlName="status"> Последний Story не позже</mat-checkbox>
+              <span class="checkbox-label">
+                                <input formControlName="age" OnlyNumber="true" class="range-input" type="text">
+                            </span>
+            </div>
+
+            <mat-checkbox formControlName="profileDescription">Наличие описания профиля</mat-checkbox>
+            <mat-checkbox formControlName="haveSite">Указан сайт в профиле</mat-checkbox>
+
+          </div>
+          <div class="texts-filter d-flex flex-column">
+            <div formGroupName="descriptionInclude" class="inline-checkoxes wrap">
+              <mat-checkbox formControlName="status" class="with-text">
+                Наличие в описании данных слов
+              </mat-checkbox>
+
+              <textarea formControlName="text"
+                        placeholder="Импортируйте или напишите слова разделив запятой" class="d-block" cols="30"
+                        rows="5"></textarea>
+            </div>
+
+            <div formGroupName="descriptionExclude" class="inline-checkoxes wrap">
+              <mat-checkbox formControlName="status" class="with-text">
+                Отсутствие в описании данных
+              </mat-checkbox>
+
+              <textarea formControlName="text"
+                        placeholder="Импортируйте или напишите слова разделив запятой" class="d-block" cols="30"
+                        rows="5"></textarea>
+            </div>
+
+
+          </div>
+
+        </form>
+        <!-- <div *ngIf="dialogData.showButton" class="close-button-wrapper">
+            <button type="button" class="btn btn-primary close-button" (click)="closeModal()">Применить</button>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>

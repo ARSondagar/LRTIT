@@ -1,0 +1,24 @@
+<div class="direct-sent">
+    <div class="top-content d-flex flex-wrap">
+        <div class="top-item d-flex flex-column align-items-center">
+            <img src="assets/images/sent.png" class="rounded img-responsive item-image">
+            <p class="text">Всего отправлено</p>
+            <p class="value">4 508</p>
+        </div>
+        <div class="top-item  d-flex flex-column align-items-center">
+            <img src="assets/images/mail.png" class="rounded img-responsive item-image">
+            <p class="text">Ответили</p>
+            <p class="value">454</p>
+        </div>
+        <div class="top-item  d-flex flex-column align-items-center">
+            <img src="assets/images/podium.png" class="rounded img-responsive item-image">
+            <p class="text">Успешность рассылки</p>
+            <p class="value">11%</p>
+        </div>
+    </div>
+    <div class="send-text-description">
+        <p *ngFor="let text of texts" class="text">
+           {{text}}
+        </p>
+    </div>
+</div>

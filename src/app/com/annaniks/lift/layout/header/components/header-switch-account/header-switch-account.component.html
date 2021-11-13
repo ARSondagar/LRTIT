@@ -1,0 +1,30 @@
+<div class="switch-account">
+  <a nz-dropdown nzTrigger="click" nzOverlayClassName="account-switch" [nzDropdownMenu]="menu">
+    <div class="switch-account-action">
+      <img class="insta-icon" src="assets/icons/insta_icon.png" alt="Instagram">
+      <p>{{login}}</p>
+      <img class="arrow-icon" src="assets/icons/arr_down_blue.png" alt="">
+    </div>
+  </a>
+
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <ng-container *ngFor="let item of cUsrInstagramAccounts">
+        <li nz-menu-item (click)="onClickAccount(item)" *ngIf="item.id !== currentInstagram.id; else selectedInstagram"
+          [class.border-red]="!item.verification || item.needPassword || item.loginRequired">
+          {{item.login}}
+        </li>
+        <ng-template #selectedInstagram>
+          <li nz-menu-item class="disabled-item"
+              [class.border-red]="!item.verification || item.needPassword || item.loginRequired">
+            {{item.login}}
+          </li>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngIf="addAcountIsValid">
+        <li nz-menu-divider></li>
+        <li (click)="openAccountConnectionModal()" nz-menu-item >+Добавить аккаунт</li>
+      </ng-container>
+    </ul>
+  </nz-dropdown-menu>
+</div>

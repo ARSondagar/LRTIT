@@ -1,0 +1,108 @@
+.hashtags-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    .hashtags-container {
+        padding: 0;
+        background-color: #eaf0f3;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        margin: 0 -5px;
+        .hashtag-item {
+            background-color: #d7d7d7;
+            border-radius: 4px;
+            padding: 0 12px 0 13px;
+            margin: 5px;
+            &.invalid {
+                border: 1px solid #dc3545;
+            }
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            input {
+                font-family: "SF UI Display Regular";
+                font-size: 16px;
+                color: #3d3d3d;
+                margin-right: 14px;
+                background: transparent;
+                border: transparent;
+                border-radius: 4px;
+                padding-left: 8px;
+                // &:focus {
+                //   border: inset;
+                // }
+            }
+            img {
+                cursor: pointer;
+            }
+        }
+        .add-hashtag {
+            font-family: "SF UI Display Regular";
+            font-size: 16px;
+            color: #7d7d7d;
+            cursor: pointer;
+        }
+    }
+    .clear-all-hashtags {
+        display: flex;
+        align-items: center;
+        margin-left: 22px;
+        img {
+            margin-right: 10px;
+        }
+        p {
+            font-family: "SF UI Display Regular";
+            font-size: 16px;
+            color: #7d7d7d;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+    }
+}
+.add-location {
+    font-family: "SF UI Display Regular";
+    font-size: 16px;
+    color: #7d7d7d;
+    border: 2px solid #c2d0db;
+    margin: 15px 0;
+    cursor: pointer;
+}
+p-autoComplete {
+    ::ng-deep {
+        .ui-autocomplete-input {
+            background: transparent !important;
+            border: none !important;
+        }
+        input.ui-inputtext {
+            padding-left: 0 !important;
+        }
+        ul {
+            border: none;
+            li.ui-autocomplete-token {
+                font-family: "SF UI Display Regular" !important;
+                background-color: #d7d7d7 !important;
+                border-radius: 4px;
+                padding: 10px 12px 10px 13px !important;
+                color: #7d7d7d !important;
+            }
+            li {
+                input {
+                    // width: 315px;
+                    max-width: 500px;
+                }
+            }
+            // &.ui-autocomplete-items {
+            //   li {
+            //     background-color: #305976 !important;
+            //     color: white !important;
+            //   }
+            // }
+        }
+    }
+}

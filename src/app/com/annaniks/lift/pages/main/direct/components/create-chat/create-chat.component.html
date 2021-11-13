@@ -1,0 +1,17 @@
+<div class="subscribed-to">
+    <p-autoComplete [formControl]="chatMembers" field="username" placeholder="Введите имена аккаунтов"
+        [formControl]="accounts" [suggestions]="searchStream$ | async" (completeMethod)="searchFor($event)"
+        [multiple]="true" size="80">
+        <ng-template let-user pTemplate="item">
+            <div class="d-flex align-items-center">
+                <img [src]="user.profile_pic_url" class="rounded-circle" height="32" />
+                <div class="ml-1">{{user.username}}</div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
+    <div class="sent-button-container">
+        <button (click)="createChat()" class="btn btn-secondary">
+            Создать
+        </button>
+    </div>
+</div>

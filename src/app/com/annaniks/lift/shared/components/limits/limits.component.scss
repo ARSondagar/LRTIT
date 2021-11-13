@@ -1,0 +1,70 @@
+@import "variables";
+
+.limits-title {
+  font-size: 24px;
+  color: #3d3d3d;
+  line-height: 18px;
+  margin: 30px 0 38px 0;
+
+  @media (max-width: $tablet_width) {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+  .highlight {
+    color: #3399cc;
+  }
+}
+
+.limits {
+  display: flex;
+  align-items: center;
+  min-height: 127px;
+  border-bottom: 1px solid #d7d7d7;
+
+  @media (max-width: $tablet_width) {
+    flex-wrap: wrap;
+    min-height: 180px;
+    justify-content: space-between;
+  }
+
+  .limit-item:not(:last-child) {
+    margin-right: 125px;
+
+    @media (max-width: $desktop_width) {
+      margin-right: 105px;
+    }
+
+    @media (max-width: $tablet_width) {
+      margin-right: 0;
+    }
+  }
+
+
+}
+
+.limit-small-title {
+  font-size: 18px;
+  color: #7d7d7d;
+  margin-bottom: 15px;
+}
+
+.limits-value {
+  font-size: 24px;
+  color: #3d3d3d;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+
+  .progress {
+    margin-left: 10px;
+    width: 100%;
+    border-radius: 1.25rem;
+
+    &-bar {
+      background-color: #3399cc !important;
+    }
+  }
+}

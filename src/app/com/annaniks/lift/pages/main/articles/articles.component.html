@@ -1,0 +1,10 @@
+<!-- <div class="questions-content pg-container">
+    <div class="question-category" *ngFor="let item of articles">
+        <h3 class="category-title">{{item?.name}}</h3>
+        <ul class="question-items">
+            <li *ngFor="let childItem of item?.articles"><a class="cursor-pointer" (click)="onClickItem()"
+                    [routerLink]="['/','articles',childItem?.id]">{{childItem?.title}}</a></li>
+        </ul>
+    </div>
+</div> -->
+<router-outlet></router-outlet>

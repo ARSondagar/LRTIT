@@ -1,0 +1,22 @@
+export interface ChangeMe {
+    roleId?: number,
+    typeId?: string
+    name?: string,
+    email?: string,
+    aboutYourself?: string,
+    city?: string,
+    facebookLink?: string,
+    instagramLink?: string,
+    male?: boolean,
+    notification?: boolean,
+    autoDiscount?: boolean,
+    notoficationMail?: string,
+    dbDay?: number,
+    dbMount?: number,
+    dbYear?: number,
+    goalUsing?: number,
+    occupation?: number,
+    phone?: string,
+    telegram?: string,
+    timeZone?: string,
+}

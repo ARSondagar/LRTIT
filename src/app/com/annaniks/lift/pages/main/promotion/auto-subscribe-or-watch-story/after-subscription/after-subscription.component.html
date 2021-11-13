@@ -1,0 +1,49 @@
+<div class="pg-container">
+    <div class="subscription-accordion accordion" id="accordionExample2">
+        <div class="accordion-body">
+            <div class="collapse-heading mb-0">
+                <img src="assets/icons/next_icon.png" alt="">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    Действия после подписки
+                    <img class="arrow-up" src="assets/icons/arrow_up.png" alt="">
+                </button>
+                <div class="after-count">
+                    <span>{{getCountFilter()}}</span>
+                </div>
+            </div>
+
+            <div id="collapseThree" class="collapse show " aria-labelledby="headingTwo" data-parent="#accordionExample2">
+                <form [formGroup]="afterSubscriptionForm">
+
+                    <div formGroupName="lastPostLikes" class="inline-checkoxes">
+                        <mat-checkbox formControlName="status">Ставить</mat-checkbox>
+                        <span class="checkbox-label"> <input formControlName="count" OnlyNumber="true" class="range-input" type="text">
+                            лайков последним
+                            постам</span>
+                    </div>
+                    <div class="inline-checkoxes">
+                        <mat-checkbox formControlName="dontFollowHiddenAccounts">Подписатся на закрытые профили
+                        </mat-checkbox>
+                    </div>
+                    <div class="inline-checkoxes">
+                        <mat-checkbox formControlName="seeStories">Просматривать Stories</mat-checkbox>
+                    </div>
+                    <div class="inline-checkoxes">
+                        <mat-checkbox formControlName="comments">Комментировать по </mat-checkbox>
+                        <span class="checkbox-label"><a href="#">шаблону</a></span>
+                    </div>
+                    <div class="inline-checkoxes">
+                        <mat-checkbox formControlName="hidePostsAndStories">Скрывать в ленте публикации и Stories
+                        </mat-checkbox>
+                    </div>
+                    <div formGroupName="unfollowDays" class="inline-checkoxes">
+                        <mat-checkbox formControlName="status">Отписываться через</mat-checkbox>
+                        <span class="checkbox-label"> <input formControlName="count" class="range-input" OnlyNumber="true" type="text">
+                            дней</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="tariff">
+
+  <div class="tariff__wrapper3">
+      <div class="services-settings__note2">
+        <!-- <a class="button" routerLink="..">Назад</a> -->
+        <a href="#" class="button" (click)="toggleHeaderFlag($event)">Назад</a>
+      </div>
+
+      <div class="tariff__wrapper3">
+        <div class="toggled-head2">
+          <h2 class="toggled-head__title">Компания</h2>
+        </div>
+      </div>
+  </div>
+
+    <div class="tariff__wrapper">
+      <div class="tariff__services-settings">
+        <section class="services-settings">
+          <div class="toggled-head">
+            <h2 class="toggled-head__title">Реквизиты</h2>
+            <button type="button" class="toggled-head__toggle-button" (click)="toggleArrow(0)">
+              <ng-container *ngIf="listIsVisible_0; else listIsHidden_0">
+                <span class="material-icons large-blue">expand_less</span>
+              </ng-container>
+              <ng-template #listIsHidden_0>
+                <span class="material-icons large-blue">expand_more</span>
+              </ng-template>
+            </button>
+          </div>
+
+          <div class="transactions__content" *ngIf="listIsVisible_0">
+            <table class="transactions__info">
+              <thead class="transactions__info-head">
+                <tr class="transactions__info-item">
+                  <th class="transactions__info-stat-name" scope="col">Название организации</th>
+                  <th class="transactions__info-stat-name" scope="col">ООО "ЛИФТ МИ"</th>
+                </tr>
+              </thead>
+
+              <tbody class="transactions__info-stats">
+                <tr>
+                  <td class="transactions__info-spacer"></td>
+                </tr>
+
+                          <tr class="transactions__info-item">
+                    <td class="transactions__info-stat-value">Юридический адрес</td>
+                    <td class="transactions__info-stat-value">424006, РОССИЯ, РЕСП МАРИЙ ЭЛ, Г ЙОШКАР-ОЛА, УЛ ГОНЧАРОВА, Д 25А, ОФИС 9</td>
+                  </tr>
+                          <tr class="transactions__info-item">
+                    <td class="transactions__info-stat-value">ИНН</td>
+                    <td class="transactions__info-stat-value">1215235572</td>
+                  </tr>
+                          <tr class="transactions__info-item">
+                    <td class="transactions__info-stat-value">КПП</td>
+                    <td class="transactions__info-stat-value">121501001</td>
+                  </tr>
+                          <tr class="transactions__info-item">
+                    <td class="transactions__info-stat-value">ОГРН</td>
+                    <td class="transactions__info-stat-value">1211200002177</td>
+                  </tr>
+                          <tr class="transactions__info-item">
+                    <td class="transactions__info-stat-value">Расчетный счет</td>
+                    <td class="transactions__info-stat-value">40702810710000820233</td>
+                  </tr>
+                          <tr class="transactions__info-item">
+                    <td class="transactions__info-stat-value">Банк</td>
+                    <td class="transactions__info-stat-value">АО "ТИНЬКОФФ БАНК"</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+</div>
